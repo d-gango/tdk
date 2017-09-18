@@ -1,0 +1,23 @@
+[0 pi/6 -pi/2 0 0 0]
+vx = 0;
+vy = -0.1;
+timeStep = 0.001;
+maxStep = 4500;
+============================
+[0 pi/6 -pi/2 0 0 0]
+vx = -0.1;
+vy = 0;
+timeStep = 0.001;
+maxStep = 4500;
+===========================
+[0 pi/6 -pi/2 0 0 0]
+vx = -0.1*2*sin(2*timeVector(step));
+vy = 0.1*2*cos(2*timeVector(step));
+timeStep = 0.0001;
+maxStep = 45000;
+===============================
+[0 pi/6 -pi/2 0 0 0]
+vx = -0.05*timeVector(step)*2*sin(2*timeVector(step));
+vy = 0.05*timeVector(step)*2*cos(2*timeVector(step));
+timeStep = 0.0001;
+maxStep = 45000;
