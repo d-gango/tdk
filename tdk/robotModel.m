@@ -32,7 +32,7 @@ classdef robotModel < handle
             obj.qd(1) = state(4);
             obj.qd(2) = state(5);
             obj.qd(3) = state(6);
-            obj.u = [0; 0];
+            obj.u = [1; 0];
             refreshMatrices(obj);
         end
         
@@ -55,19 +55,20 @@ classdef robotModel < handle
             dq1 = obj.qd(2);
             dq2 = obj.qd(3);
             
-            m11 = (4*I0*m0 + 4*I0*m1 + 4*I1*m0 + 4*I0*m2 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + 4*l0^2*m0*m1 + 4*l0^2*m0*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 4*l0*l1*m0*cos(q1)*(m1 + 2*m2) + 2*l1*l2*m2*cos(q2)*(2*m0 + m1) + 4*l0*l2*m0*m2*cos(q1 + q2))/(4*(m0 + m1 + m2));
-            m12 = (4*I1*m0 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 2*l0*l1*m0*cos(q1)*(m1 + 2*m2) + 2*l1*l2*m2*cos(q2)*(2*m0 + m1) + 2*l0*l2*m0*m2*cos(q1 + q2))/(4*(m0 + m1 + m2));
-            m13 = (4*I2*m0 + 4*I2*m1 + 4*I2*m2 + l2^2*m0*m2 + l2^2*m1*m2 + l1*l2*m2*cos(q2)*(2*m0 + m1) + 2*l0*l2*m0*m2*cos(q1 + q2))/(4*(m0 + m1 + m2));
-            m21 = (4*I1*m0 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 2*l0*l1*m0*cos(q1)*(m1 + 2*m2) + 2*l1*l2*m2*cos(q2)*(2*m0 + m1) + 2*l0*l2*m0*m2*cos(q1 + q2))/(4*(m0 + m1 + m2));
+            m11 = (4*I0*m0 + 4*I0*m1 + 4*I1*m0 + 4*I0*m2 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + 4*l0^2*m0*m1 + 4*l0^2*m0*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 4*l0*l1*m0*cos(fi0 - q1)*(m1 + 2*m2) + 4*l0*l2*m0*m2*cos(q1 - fi0 + q2) + 4*l1*l2*m0*m2*cos(q2) + 2*l1*l2*m1*m2*cos(q2))/(4*(m0 + m1 + m2));
+            m12 = (4*I1*m0 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 2*l0*l1*m0*cos(fi0 - q1)*(m1 + 2*m2) + 2*l0*l2*m0*m2*cos(q1 - fi0 + q2) + 4*l1*l2*m0*m2*cos(q2) + 2*l1*l2*m1*m2*cos(q2))/(4*(m0 + m1 + m2));
+            m13 = (4*I2*m0 + 4*I2*m1 + 4*I2*m2 + l2^2*m0*m2 + l2^2*m1*m2 + l1*l2*m2*cos(q2)*(2*m0 + m1) + 2*l0*l2*m0*m2*cos(q1 - fi0 + q2))/(4*(m0 + m1 + m2));
+            m21 = (4*I1*m0 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 2*l0*l1*m0*cos(fi0 - q1)*(m1 + 2*m2) + 2*l0*l2*m0*m2*cos(q1 - fi0 + q2) + 4*l1*l2*m0*m2*cos(q2) + 2*l1*l2*m1*m2*cos(q2))/(4*(m0 + m1 + m2));
             m22 = (4*I2*m0 + 4*I2*m1 + 4*I2*m2 + 4*I1*(m0 + m1 + m2) + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 2*l1*l2*m2*cos(q2)*(2*m0 + m1))/(4*(m0 + m1 + m2));
             m23 = (m2*(m0 + m1)*l2^2 + l1*m2*cos(q2)*(2*m0 + m1)*l2 + 4*I2*(m0 + m1 + m2))/(4*(m0 + m1 + m2));
-            m31 = (4*I2*m0 + 4*I2*m1 + 4*I2*m2 + l2^2*m0*m2 + l2^2*m1*m2 + l1*l2*m2*cos(q2)*(2*m0 + m1) + 2*l0*l2*m0*m2*cos(q1 + q2))/(4*(m0 + m1 + m2));
+            m31 = (4*I2*m0 + 4*I2*m1 + 4*I2*m2 + l2^2*m0*m2 + l2^2*m1*m2 + l1*l2*m2*cos(q2)*(2*m0 + m1) + 2*l0*l2*m0*m2*cos(q1 - fi0 + q2))/(4*(m0 + m1 + m2));
             m32 = (m2*(m0 + m1)*l2^2 + l1*m2*cos(q2)*(2*m0 + m1)*l2 + 4*I2*(m0 + m1 + m2))/(4*(m0 + m1 + m2));
             m33 = (m2*(m0 + m1)*l2^2 + 4*I2*(m0 + m1 + m2))/(4*(m0 + m1 + m2));
             
-            c1 = -(2*dq0*(2*dq1*l0*m0*(l1*sin(q1)*(m1 + 2*m2) + l2*m2*sin(q1 + q2)) + dq2*l2*m2*(l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 + q2))) + 2*dq1^2*l0*m0*(l1*sin(q1)*(m1 + 2*m2) + l2*m2*sin(q1 + q2)) + dq2^2*l2*m2*(l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 + q2)) + 2*dq1*dq2*l2*m2*(l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 + q2)))/(4*(m0 + m1 + m2));
-            c2 = -(- 2*l0*m0*(l1*sin(q1)*(m1 + 2*m2) + l2*m2*sin(q1 + q2))*dq0^2 + 2*dq2*l1*l2*m2*sin(q2)*(2*m0 + m1)*dq0 + dq2*l1*l2*m2*sin(q2)*(2*dq1 + dq2)*(2*m0 + m1))/(4*(m0 + m1 + m2));
-            c3 = (l2*m2*((l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 + q2))*dq0^2 + 2*l1*sin(q2)*(2*m0 + m1)*dq0*dq1 + l1*sin(q2)*(2*m0 + m1)*dq1^2))/(4*(m0 + m1 + m2));
+            c1 = (dq0*(4*dq1*l0*m0*(l1*sin(fi0 - q1)*(m1 + 2*m2) - l2*m2*sin(q1 - fi0 + q2)) - 2*dq2*l2*m2*(l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 - fi0 + q2))) - dq2^2*l2*m2*(l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 - fi0 + q2)) + 2*dq1^2*l0*m0*(l1*sin(fi0 - q1)*(m1 + 2*m2) - l2*m2*sin(q1 - fi0 + q2)) - 2*dq1*dq2*l2*m2*(l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 - fi0 + q2)))/(4*(m0 + m1 + m2));
+            c2 = -(2*l0*m0*(l1*sin(fi0 - q1)*(m1 + 2*m2) - l2*m2*sin(q1 - fi0 + q2))*dq0^2 + 2*dq2*l1*l2*m2*sin(q2)*(2*m0 + m1)*dq0 + dq2*l1*l2*m2*sin(q2)*(2*dq1 + dq2)*(2*m0 + m1))/(4*(m0 + m1 + m2));
+            c3 = (l2*m2*((l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 - fi0 + q2))*dq0^2 + 2*l1*sin(q2)*(2*m0 + m1)*dq0*dq1 + l1*sin(q2)*(2*m0 + m1)*dq1^2))/(4*(m0 + m1 + m2));
+
                         
             obj.M = [m11, m12, m13;...
                      m21, m22, m23;...
@@ -100,19 +101,19 @@ classdef robotModel < handle
             dq1 = state(5);
             dq2 = state(6);
             
-           m11 = (4*I0*m0 + 4*I0*m1 + 4*I1*m0 + 4*I0*m2 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + 4*l0^2*m0*m1 + 4*l0^2*m0*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 4*l0*l1*m0*cos(q1)*(m1 + 2*m2) + 2*l1*l2*m2*cos(q2)*(2*m0 + m1) + 4*l0*l2*m0*m2*cos(q1 + q2))/(4*(m0 + m1 + m2));
-            m12 = (4*I1*m0 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 2*l0*l1*m0*cos(q1)*(m1 + 2*m2) + 2*l1*l2*m2*cos(q2)*(2*m0 + m1) + 2*l0*l2*m0*m2*cos(q1 + q2))/(4*(m0 + m1 + m2));
-            m13 = (4*I2*m0 + 4*I2*m1 + 4*I2*m2 + l2^2*m0*m2 + l2^2*m1*m2 + l1*l2*m2*cos(q2)*(2*m0 + m1) + 2*l0*l2*m0*m2*cos(q1 + q2))/(4*(m0 + m1 + m2));
-            m21 = (4*I1*m0 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 2*l0*l1*m0*cos(q1)*(m1 + 2*m2) + 2*l1*l2*m2*cos(q2)*(2*m0 + m1) + 2*l0*l2*m0*m2*cos(q1 + q2))/(4*(m0 + m1 + m2));
+            m11 = (4*I0*m0 + 4*I0*m1 + 4*I1*m0 + 4*I0*m2 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + 4*l0^2*m0*m1 + 4*l0^2*m0*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 4*l0*l1*m0*cos(fi0 - q1)*(m1 + 2*m2) + 4*l0*l2*m0*m2*cos(q1 - fi0 + q2) + 4*l1*l2*m0*m2*cos(q2) + 2*l1*l2*m1*m2*cos(q2))/(4*(m0 + m1 + m2));
+            m12 = (4*I1*m0 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 2*l0*l1*m0*cos(fi0 - q1)*(m1 + 2*m2) + 2*l0*l2*m0*m2*cos(q1 - fi0 + q2) + 4*l1*l2*m0*m2*cos(q2) + 2*l1*l2*m1*m2*cos(q2))/(4*(m0 + m1 + m2));
+            m13 = (4*I2*m0 + 4*I2*m1 + 4*I2*m2 + l2^2*m0*m2 + l2^2*m1*m2 + l1*l2*m2*cos(q2)*(2*m0 + m1) + 2*l0*l2*m0*m2*cos(q1 - fi0 + q2))/(4*(m0 + m1 + m2));
+            m21 = (4*I1*m0 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 2*l0*l1*m0*cos(fi0 - q1)*(m1 + 2*m2) + 2*l0*l2*m0*m2*cos(q1 - fi0 + q2) + 4*l1*l2*m0*m2*cos(q2) + 2*l1*l2*m1*m2*cos(q2))/(4*(m0 + m1 + m2));
             m22 = (4*I2*m0 + 4*I2*m1 + 4*I2*m2 + 4*I1*(m0 + m1 + m2) + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 2*l1*l2*m2*cos(q2)*(2*m0 + m1))/(4*(m0 + m1 + m2));
             m23 = (m2*(m0 + m1)*l2^2 + l1*m2*cos(q2)*(2*m0 + m1)*l2 + 4*I2*(m0 + m1 + m2))/(4*(m0 + m1 + m2));
-            m31 = (4*I2*m0 + 4*I2*m1 + 4*I2*m2 + l2^2*m0*m2 + l2^2*m1*m2 + l1*l2*m2*cos(q2)*(2*m0 + m1) + 2*l0*l2*m0*m2*cos(q1 + q2))/(4*(m0 + m1 + m2));
+            m31 = (4*I2*m0 + 4*I2*m1 + 4*I2*m2 + l2^2*m0*m2 + l2^2*m1*m2 + l1*l2*m2*cos(q2)*(2*m0 + m1) + 2*l0*l2*m0*m2*cos(q1 - fi0 + q2))/(4*(m0 + m1 + m2));
             m32 = (m2*(m0 + m1)*l2^2 + l1*m2*cos(q2)*(2*m0 + m1)*l2 + 4*I2*(m0 + m1 + m2))/(4*(m0 + m1 + m2));
             m33 = (m2*(m0 + m1)*l2^2 + 4*I2*(m0 + m1 + m2))/(4*(m0 + m1 + m2));
             
-            c1 = -(2*dq0*(2*dq1*l0*m0*(l1*sin(q1)*(m1 + 2*m2) + l2*m2*sin(q1 + q2)) + dq2*l2*m2*(l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 + q2))) + 2*dq1^2*l0*m0*(l1*sin(q1)*(m1 + 2*m2) + l2*m2*sin(q1 + q2)) + dq2^2*l2*m2*(l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 + q2)) + 2*dq1*dq2*l2*m2*(l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 + q2)))/(4*(m0 + m1 + m2));
-            c2 = -(- 2*l0*m0*(l1*sin(q1)*(m1 + 2*m2) + l2*m2*sin(q1 + q2))*dq0^2 + 2*dq2*l1*l2*m2*sin(q2)*(2*m0 + m1)*dq0 + dq2*l1*l2*m2*sin(q2)*(2*dq1 + dq2)*(2*m0 + m1))/(4*(m0 + m1 + m2));
-            c3 = (l2*m2*((l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 + q2))*dq0^2 + 2*l1*sin(q2)*(2*m0 + m1)*dq0*dq1 + l1*sin(q2)*(2*m0 + m1)*dq1^2))/(4*(m0 + m1 + m2));
+            c1 = (dq0*(4*dq1*l0*m0*(l1*sin(fi0 - q1)*(m1 + 2*m2) - l2*m2*sin(q1 - fi0 + q2)) - 2*dq2*l2*m2*(l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 - fi0 + q2))) - dq2^2*l2*m2*(l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 - fi0 + q2)) + 2*dq1^2*l0*m0*(l1*sin(fi0 - q1)*(m1 + 2*m2) - l2*m2*sin(q1 - fi0 + q2)) - 2*dq1*dq2*l2*m2*(l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 - fi0 + q2)))/(4*(m0 + m1 + m2));
+            c2 = -(2*l0*m0*(l1*sin(fi0 - q1)*(m1 + 2*m2) - l2*m2*sin(q1 - fi0 + q2))*dq0^2 + 2*dq2*l1*l2*m2*sin(q2)*(2*m0 + m1)*dq0 + dq2*l1*l2*m2*sin(q2)*(2*dq1 + dq2)*(2*m0 + m1))/(4*(m0 + m1 + m2));
+            c3 = (l2*m2*((l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 - fi0 + q2))*dq0^2 + 2*l1*sin(q2)*(2*m0 + m1)*dq0*dq1 + l1*sin(q2)*(2*m0 + m1)*dq1^2))/(4*(m0 + m1 + m2));
 
                         
             obj.M = [m11, m12, m13;...
@@ -175,7 +176,7 @@ classdef robotModel < handle
             q1 = stateVariables(2,1);
             q2 = stateVariables(3,1);
             
-            baseCenter = [ -(l1*cos(fi0 + q0 + q1)*(m1 + 2*m2) + 2*l0*cos(fi0 + q0)*(m1 + m2) + l2*m2*cos(fi0 + q0 + q1 + q2))/(2*(m0 + m1 + m2)), -(l1*sin(fi0 + q0 + q1)*(m1 + 2*m2) + 2*l0*sin(fi0 + q0)*(m1 + m2) + l2*m2*sin(fi0 + q0 + q1 + q2))/(2*(m0 + m1 + m2))];
+            baseCenter = [ -(l1*cos(q0 + q1)*(m1 + 2*m2) + l2*m2*cos(q0 + q1 + q2) + 2*l0*cos(fi0 + q0)*(m1 + m2))/(2*(m0 + m1 + m2)), -(l1*sin(q0 + q1)*(m1 + 2*m2) + l2*m2*sin(q0 + q1 + q2) + 2*l0*sin(fi0 + q0)*(m1 + m2))/(2*(m0 + m1 + m2))];
             baseCorners = [ baseCenter(1) - l0*cos(fi0+q0), baseCenter(2) - l0*sin(fi0+q0);...
                             baseCenter(1) + l0*cos(fi0-q0), baseCenter(2) - l0*sin(fi0-q0);...
                             baseCenter(1) + l0*cos(fi0+q0), baseCenter(2) + l0*sin(fi0+q0);...
@@ -183,12 +184,12 @@ classdef robotModel < handle
             baseFaces = [1, 2, 3, 4];
             base = patch('Vertices',baseCorners, 'Faces', baseFaces, 'FaceColor', 'r');
             
-            link1x = [ -(l1*cos(fi0 + q0 + q1)*(m1 + 2*m2) + l2*m2*cos(fi0 + q0 + q1 + q2) - 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2)), (l1*cos(fi0 + q0 + q1)*(2*m0 + m1) - l2*m2*cos(fi0 + q0 + q1 + q2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2))];
-            link1y = [ -(l1*sin(fi0 + q0 + q1)*(m1 + 2*m2) + l2*m2*sin(fi0 + q0 + q1 + q2) - 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2)), (l1*sin(fi0 + q0 + q1)*(2*m0 + m1) - l2*m2*sin(fi0 + q0 + q1 + q2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2))];
+            link1x = [ -(l1*cos(q0 + q1)*(m1 + 2*m2) + l2*m2*cos(q0 + q1 + q2) - 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2)), (l1*cos(q0 + q1)*(2*m0 + m1) - l2*m2*cos(q0 + q1 + q2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2))];
+            link1y = [ -(l1*sin(q0 + q1)*(m1 + 2*m2) + l2*m2*sin(q0 + q1 + q2) - 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2)), (l1*sin(q0 + q1)*(2*m0 + m1) - l2*m2*sin(q0 + q1 + q2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2))];
             link1 = line('XData', link1x, 'YData', link1y);
             
-            link2x = [ link1x(2), (l1*cos(fi0 + q0 + q1)*(2*m0 + m1) + l2*cos(fi0 + q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2)) ];
-            link2y = [ link1y(2), (l1*sin(fi0 + q0 + q1)*(2*m0 + m1) + l2*sin(fi0 + q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2)) ];
+            link2x = [ link1x(2), (l1*cos(q0 + q1)*(2*m0 + m1) + l2*cos(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2)) ];
+            link2y = [ link1y(2), (l1*sin(q0 + q1)*(2*m0 + m1) + l2*sin(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2)) ];
             link2 = line('XData', link2x, 'YData', link2y);
             
             r = 0.1;
@@ -202,15 +203,15 @@ classdef robotModel < handle
                 q1 = stateVariables(2,i);
                 q2 = stateVariables(3,i);
                 
-                baseCenter = [ -(l1*cos(fi0 + q0 + q1)*(m1 + 2*m2) + 2*l0*cos(fi0 + q0)*(m1 + m2) + l2*m2*cos(fi0 + q0 + q1 + q2))/(2*(m0 + m1 + m2)), -(l1*sin(fi0 + q0 + q1)*(m1 + 2*m2) + 2*l0*sin(fi0 + q0)*(m1 + m2) + l2*m2*sin(fi0 + q0 + q1 + q2))/(2*(m0 + m1 + m2))];
-            baseCorners = [ baseCenter(1) - l0*cos(fi0+q0), baseCenter(2) - l0*sin(fi0+q0);...
-                            baseCenter(1) + l0*cos(fi0-q0), baseCenter(2) - l0*sin(fi0-q0);...
-                            baseCenter(1) + l0*cos(fi0+q0), baseCenter(2) + l0*sin(fi0+q0);...
-                            baseCenter(1) - l0*cos(fi0-q0), baseCenter(2) + l0*sin(fi0-q0)];
-                link1x = [ -(l1*cos(fi0 + q0 + q1)*(m1 + 2*m2) + l2*m2*cos(fi0 + q0 + q1 + q2) - 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2)), (l1*cos(fi0 + q0 + q1)*(2*m0 + m1) - l2*m2*cos(fi0 + q0 + q1 + q2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2))];
-                link1y = [ -(l1*sin(fi0 + q0 + q1)*(m1 + 2*m2) + l2*m2*sin(fi0 + q0 + q1 + q2) - 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2)), (l1*sin(fi0 + q0 + q1)*(2*m0 + m1) - l2*m2*sin(fi0 + q0 + q1 + q2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2))];
-                link2x = [ link1x(2), (l1*cos(fi0 + q0 + q1)*(2*m0 + m1) + l2*cos(fi0 + q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2)) ];
-                link2y = [ link1y(2), (l1*sin(fi0 + q0 + q1)*(2*m0 + m1) + l2*sin(fi0 + q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2)) ];
+                baseCenter = [ -(l1*cos(q0 + q1)*(m1 + 2*m2) + l2*m2*cos(q0 + q1 + q2) + 2*l0*cos(fi0 + q0)*(m1 + m2))/(2*(m0 + m1 + m2)), -(l1*sin(q0 + q1)*(m1 + 2*m2) + l2*m2*sin(q0 + q1 + q2) + 2*l0*sin(fi0 + q0)*(m1 + m2))/(2*(m0 + m1 + m2))];
+                baseCorners = [ baseCenter(1) - l0*cos(fi0+q0), baseCenter(2) - l0*sin(fi0+q0);...
+                                baseCenter(1) + l0*cos(fi0-q0), baseCenter(2) - l0*sin(fi0-q0);...
+                                baseCenter(1) + l0*cos(fi0+q0), baseCenter(2) + l0*sin(fi0+q0);...
+                                baseCenter(1) - l0*cos(fi0-q0), baseCenter(2) + l0*sin(fi0-q0)];
+                link1x = [ -(l1*cos(q0 + q1)*(m1 + 2*m2) + l2*m2*cos(q0 + q1 + q2) - 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2)), (l1*cos(q0 + q1)*(2*m0 + m1) - l2*m2*cos(q0 + q1 + q2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2))];
+                link1y = [ -(l1*sin(q0 + q1)*(m1 + 2*m2) + l2*m2*sin(q0 + q1 + q2) - 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2)), (l1*sin(q0 + q1)*(2*m0 + m1) - l2*m2*sin(q0 + q1 + q2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2))];
+                link2x = [ link1x(2), (l1*cos(q0 + q1)*(2*m0 + m1) + l2*cos(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2)) ];
+                link2y = [ link1y(2), (l1*sin(q0 + q1)*(2*m0 + m1) + l2*sin(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2)) ];
             
                 set(base,'Vertices', baseCorners);
                 set(link1, 'XData', link1x, 'YData', link1y);
@@ -243,7 +244,7 @@ classdef robotModel < handle
             dq1 = obj.qd(2);
             dq2 = obj.qd(3);
 
-            K = (dq2*(4*I2*m0 + 4*I2*m1 + 4*I2*m2 + l2^2*m0*m2 + l2^2*m1*m2 + l1*l2*m2*cos(q2)*(2*m0 + m1) + 2*l0*l2*m0*m2*cos(q1 + q2)) + dq1*(4*I1*m0 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 2*l0*l1*m0*cos(q1)*(m1 + 2*m2) + 2*l1*l2*m2*cos(q2)*(2*m0 + m1) + 2*l0*l2*m0*m2*cos(q1 + q2)) + dq0*(4*I0*m0 + 4*I0*m1 + 4*I1*m0 + 4*I0*m2 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + 4*l0^2*m0*m1 + 4*l0^2*m0*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 4*l0*l1*m0*cos(q1)*(m1 + 2*m2) + 2*l1*l2*m2*cos(q2)*(2*m0 + m1) + 4*l0*l2*m0*m2*cos(q1 + q2)))/(4*(m0 + m1 + m2));
+            K = (dq1*(4*I1*m0 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 2*l0*l1*m0*cos(fi0 - q1)*(m1 + 2*m2) + 2*l0*l2*m0*m2*cos(q1 - fi0 + q2) + 4*l1*l2*m0*m2*cos(q2) + 2*l1*l2*m1*m2*cos(q2)) + dq0*(4*I0*m0 + 4*I0*m1 + 4*I1*m0 + 4*I0*m2 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + 4*l0^2*m0*m1 + 4*l0^2*m0*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 4*l0*l1*m0*cos(fi0 - q1)*(m1 + 2*m2) + 4*l0*l2*m0*m2*cos(q1 - fi0 + q2) + 4*l1*l2*m0*m2*cos(q2) + 2*l1*l2*m1*m2*cos(q2)) + dq2*(4*I2*m0 + 4*I2*m1 + 4*I2*m2 + l2^2*m0*m2 + l2^2*m1*m2 + l1*l2*m2*cos(q2)*(2*m0 + m1) + 2*l0*l2*m0*m2*cos(q1 - fi0 + q2)))/(4*(m0 + m1 + m2));
         end
         
         % calculates the kinetic energy of the system
@@ -265,7 +266,7 @@ classdef robotModel < handle
             dq1 = obj.qd(2);
             dq2 = obj.qd(3);
 
-            T = (I1*(dq0 + dq1)^2)/2 + (I0*dq0^2)/2 + (I2*(dq0 + dq1 + dq2)^2)/2 + (m1*((2*dq0*l0*m0*cos(fi0 + q0) - l2*m2*cos(fi0 + q0 + q1 + q2)*(dq0 + dq1 + dq2) + l1*cos(fi0 + q0 + q1)*(dq0 + dq1)*(m0 - m2))^2 + (2*dq0*l0*m0*sin(fi0 + q0) - l2*m2*sin(fi0 + q0 + q1 + q2)*(dq0 + dq1 + dq2) + l1*sin(fi0 + q0 + q1)*(dq0 + dq1)*(m0 - m2))^2))/(8*(m0 + m1 + m2)^2) + (m2*((l2*cos(fi0 + q0 + q1 + q2)*(m0 + m1)*(dq0 + dq1 + dq2) + 2*dq0*l0*m0*cos(fi0 + q0) + l1*cos(fi0 + q0 + q1)*(dq0 + dq1)*(2*m0 + m1))^2 + (l2*sin(fi0 + q0 + q1 + q2)*(m0 + m1)*(dq0 + dq1 + dq2) + 2*dq0*l0*m0*sin(fi0 + q0) + l1*sin(fi0 + q0 + q1)*(dq0 + dq1)*(2*m0 + m1))^2))/(8*(m0 + m1 + m2)^2) + (m0*((2*dq0*l0*cos(fi0 + q0)*(m1 + m2) + l2*m2*cos(fi0 + q0 + q1 + q2)*(dq0 + dq1 + dq2) + l1*cos(fi0 + q0 + q1)*(dq0 + dq1)*(m1 + 2*m2))^2 + (2*dq0*l0*sin(fi0 + q0)*(m1 + m2) + l2*m2*sin(fi0 + q0 + q1 + q2)*(dq0 + dq1 + dq2) + l1*sin(fi0 + q0 + q1)*(dq0 + dq1)*(m1 + 2*m2))^2))/(8*(m0 + m1 + m2)^2);
+            T = (I1*(dq0 + dq1)^2)/2 + (I0*dq0^2)/2 + (I2*(dq0 + dq1 + dq2)^2)/2 + (m1*((l1*cos(q0 + q1)*(dq0 + dq1)*(m0 - m2) + 2*dq0*l0*m0*cos(fi0 + q0) - l2*m2*cos(q0 + q1 + q2)*(dq0 + dq1 + dq2))^2 + (l1*sin(q0 + q1)*(dq0 + dq1)*(m0 - m2) + 2*dq0*l0*m0*sin(fi0 + q0) - l2*m2*sin(q0 + q1 + q2)*(dq0 + dq1 + dq2))^2))/(8*(m0 + m1 + m2)^2) + (m2*((l1*cos(q0 + q1)*(dq0 + dq1)*(2*m0 + m1) + 2*dq0*l0*m0*cos(fi0 + q0) + l2*cos(q0 + q1 + q2)*(m0 + m1)*(dq0 + dq1 + dq2))^2 + (l1*sin(q0 + q1)*(dq0 + dq1)*(2*m0 + m1) + 2*dq0*l0*m0*sin(fi0 + q0) + l2*sin(q0 + q1 + q2)*(m0 + m1)*(dq0 + dq1 + dq2))^2))/(8*(m0 + m1 + m2)^2) + (m0*((2*dq0*l0*cos(fi0 + q0)*(m1 + m2) + l1*cos(q0 + q1)*(dq0 + dq1)*(m1 + 2*m2) + l2*m2*cos(q0 + q1 + q2)*(dq0 + dq1 + dq2))^2 + (2*dq0*l0*sin(fi0 + q0)*(m1 + m2) + l1*sin(q0 + q1)*(dq0 + dq1)*(m1 + 2*m2) + l2*m2*sin(q0 + q1 + q2)*(dq0 + dq1 + dq2))^2))/(8*(m0 + m1 + m2)^2);
         end
         
         function pos = endEffectorPos(obj)
@@ -284,8 +285,8 @@ classdef robotModel < handle
             q1 = stateVariables(2,step);
             q2 = stateVariables(3,step);
             
-            pos = [(l1*cos(fi0 + q0 + q1)*(2*m0 + m1) + l2*cos(fi0 + q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2));
-                   (l1*sin(fi0 + q0 + q1)*(2*m0 + m1) + l2*sin(fi0 + q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2))];
+            pos = [ (l1*cos(q0 + q1)*(2*m0 + m1) + l2*cos(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2));
+                    (l1*sin(q0 + q1)*(2*m0 + m1) + l2*sin(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2))];
 
         end
     end
