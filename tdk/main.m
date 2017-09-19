@@ -13,7 +13,7 @@ uVector = zeros(2, maxStep+1);
 endEffectorPosition = zeros(2, maxStep+1);
 step = 1;
 
-model = robotModel([0 pi/6 -pi/2 0 0 0]);
+model = robotModel([0 pi/3 -pi/2 0 0 0]);
 controller = wenBayard();
 
 stateVariables(:,1) = model.getStateVariables();
