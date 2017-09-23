@@ -15,19 +15,22 @@ classdef LaplaceController < handle
          trajectory
          EQfinal
          prevError
-         P = [50;50]
+         P = [150;150]
          D = [20; 20]
     end
     
     methods
         function obj = LaplaceController(system)
-            
+            global desiredPosition maxStep timeStep
             %desired trajectory
             obj.t = sym('t');
             obj.t0 = sym('t0');
             
-            obj.trajectory = [1.9222 + 0.05 * (obj.t+obj.t0) * cos(2*(obj.t+obj.t0));...
+            obj.trajectory = [2.0222 + 0.05 * (obj.t+obj.t0) * cos(2*(obj.t+obj.t0));...
                               0.7154 + 0.05 * (obj.t+obj.t0) * sin(2*(obj.t+obj.t0))];
+            for i = 1:maxStep+1
+                desiredPosition(:,i) = double(subs(obj.trajectory, [obj.t, obj.t0], [(i-1)*timeStep, 0]));
+            end
             
             %mozgásegyenlet és szervo-kényszer
             eq1 = system.M_sym * system.qdd_sym + system.C_sym - system.H *system.u_sym;
