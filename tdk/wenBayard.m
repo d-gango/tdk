@@ -19,8 +19,8 @@ classdef wenBayard < handle
             I2 = system.I2;
             fi0 = system.fi0;
             
-           vx = -0.05*timeVector(step)*2*sin(2*timeVector(step));
-           vy = 0.05*timeVector(step)*2*cos(2*timeVector(step));
+           vx = 0;
+           vy = -0.1;
             k = system.angularMomentum();
             
             if step == 1

@@ -3,8 +3,8 @@ close all
 
 global timeStep stateVariables timeVector maxStep step
 %initialization
-timeStep = 0.0001;
-maxStep = 45000;
+timeStep = 0.01;
+maxStep = 450;
 stateVariables = zeros(6, maxStep+1);
 timeVector = zeros(1, maxStep+1);
 angularMomentum = zeros(1, maxStep+1);
@@ -14,7 +14,7 @@ endEffectorPosition = zeros(2, maxStep+1);
 step = 1;
 
 model = robotModel([0 pi/3 -pi/2 0 0 0]);
-controller = wenBayard();
+controller = LaplaceController(model);
 
 stateVariables(:,1) = model.getStateVariables();
 angularMomentum(1) = model.angularMomentum();
@@ -38,6 +38,8 @@ for i = 1:maxStep
     angularMomentum(step) = model.angularMomentum();
     kineticEnergy(step) = model.kineticEnergy();
     endEffectorPosition(:,step) = model.endEffectorPos();
+    
+    disp(timeVector(step));
 end
 
 roundedEndEff = round(endEffectorPosition,4);
