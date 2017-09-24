@@ -15,8 +15,8 @@ classdef LaplaceController < handle
          trajectory
          EQfinal
          prevError
-         P = [150;150]
-         D = [20; 20]
+         P = [50;50]
+         D = [20;10]
     end
     
     methods

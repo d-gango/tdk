@@ -3,8 +3,8 @@ close all
 
 global timeStep stateVariables timeVector maxStep step desiredPosition
 %initialization
-timeStep = 0.001;
-maxStep = 4500;
+timeStep = 0.01;
+maxStep = 450;
 stateVariables = zeros(6, maxStep+1);
 timeVector = zeros(1, maxStep+1);
 angularMomentum = zeros(1, maxStep+1);
