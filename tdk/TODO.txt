@@ -1,0 +1,3 @@
+static position control is working
+maybe slower path following will be better
+check individual joint movement and errors to help PD tuning

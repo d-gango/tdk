@@ -24,6 +24,8 @@ endEffectorPosition(:,1) = model.endEffectorPos();
 
 controller = LaplaceController(model);
 errorNorm(1) = norm(desiredPosition(:,1) - endEffectorPosition(:,1));
+
+tic
 for i = 1:maxStep
     % calculate u
     u = controller.getU(model);
@@ -45,6 +47,7 @@ for i = 1:maxStep
     
     disp(timeVector(step));
 end
+toc
 
 roundedEndEff = round(endEffectorPosition,4);
 model.animate();
