@@ -21,13 +21,14 @@ classdef LaplaceController < handle
     
     methods
         function obj = LaplaceController(system)
-            global desiredPosition maxStep timeStep
+            global desiredPosition maxStep timeStep laplaceSolution
+            laplaceSolution = zeros(5, maxStep);
             %desired trajectory
             obj.t = sym('t');
             obj.t0 = sym('t0');
             
-            obj.trajectory = [2.2;...
-                              0.6];
+            obj.trajectory = [2.0222 + 0.05*(obj.t+obj.t0) * cos((obj.t+obj.t0));...
+                              0.7154 + 0.05*(obj.t+obj.t0) * sin((obj.t+obj.t0))];
             for i = 1:maxStep+1
                 desiredPosition(:,i) = double(subs(obj.trajectory, [obj.t, obj.t0], [(i-1)*timeStep, 0]));
             end
@@ -91,7 +92,7 @@ classdef LaplaceController < handle
         end
         
         function u_ret = getU(obj, system)
-            global timeStep stateVariables timeVector step
+            global timeStep stateVariables timeVector step laplaceSolution
             %kezdeti értékek mentése
             state = stateVariables(:, step);
             deriv = system.derivatives(state);
@@ -109,6 +110,7 @@ classdef LaplaceController < handle
                        ilaplace(U1sol, obj.s, obj.t);...
                        ilaplace(U2sol, obj.s, obj.t)];
             sol = real(double(limit(solution, obj.t, 0, 'right')));
+            laplaceSolution(:,step) = sol;
             
             %hibaszámítás a PD-hez
            % disp(state(1));

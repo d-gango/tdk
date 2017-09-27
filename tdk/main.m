@@ -1,7 +1,7 @@
 clear all
 close all
 
-global timeStep stateVariables timeVector maxStep step desiredPosition
+global timeStep stateVariables timeVector maxStep step desiredPosition laplaceSolution
 %initialization
 timeStep = 0.01;
 maxStep = 450;
@@ -15,7 +15,7 @@ desiredPosition = zeros(2, maxStep+1);
 errorNorm = zeros(1, maxStep+1);
 step = 1;
 
-model = robotModel([0 pi/3 -pi/2 0 0 0]);
+model = robotModel([0 pi/3 -pi/2 0 0 0]); %0.0314 -0.1051 0.0867]
 
 stateVariables(:,1) = model.getStateVariables();
 angularMomentum(1) = model.angularMomentum();
