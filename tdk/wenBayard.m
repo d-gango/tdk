@@ -3,6 +3,8 @@ classdef wenBayard < handle
     %   Detailed explanation goes here
     
     properties
+        P = 10;
+        D = 5;
     end
     
     methods
@@ -42,10 +44,14 @@ classdef wenBayard < handle
                 desiredPosition(:,step+1) = system.endEffectorPos() + timeStep * [vx; vy];
             end
             desiredState = vertcat(q_des, dq_des);
-            system.refreshMatricesForRK4(desiredState);
+            system.refreshMatricesForRK4(desiredState); %puts the desired values in the system matrices
             
             usol = system.H \ (system.M * ddq_des + system.C);
-            system.refreshMatrices();
+            system.refreshMatrices();  %restores the actual values
+            
+%             error_p = stateVariables(2:3,step) - q_des(2:3);
+%             error_d = stateVariables(5:6,step) - dq_des(2:3);
+            
             u = usol;
             
         end
