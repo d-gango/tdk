@@ -302,6 +302,26 @@ classdef robotModel < handle
 
         end
         
+        function pos = calcEndEffectorPos(obj, q)
+            global step stateVariables
+            m0 = obj.m0;
+            m1 = obj.m1;
+            m2 = obj.m2;
+            l0 = obj.l0;
+            l1 = obj.l1;
+            l2 = obj.l2;
+            I0 = obj.I0;
+            I1 = obj.I1;
+            I2 = obj.I2;
+            fi0 = obj.fi0;
+            q0 = q(1);
+            q1 = q(2);
+            q2 = q(3);
+            
+            pos = [ (l1*cos(q0 + q1)*(2*m0 + m1) + l2*cos(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2));
+                    (l1*sin(q0 + q1)*(2*m0 + m1) + l2*sin(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2))];
+        end
+        
         % initializes symbolic variables
         function makeSymbolicVariables(obj)
             % state variables

@@ -1,0 +1,7 @@
+laplace spiral
+900 step 
+obj.trajectory = [2.0222 + 0.05*(obj.t+obj.t0) * cos((obj.t+obj.t0));...
+                  0.7154 + 0.05*(obj.t+obj.t0) * sin((obj.t+obj.t0))];
+              
+532. step BUG
+q0 is calculated wrong
