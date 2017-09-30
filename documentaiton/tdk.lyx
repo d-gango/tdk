@@ -1,0 +1,1344 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass report
+\begin_preamble
+%\textwidth 160mm
+%\oddsidemargin 0cm
+%\topmargin -15mm
+\usepackage{bm}
+\lhead{}
+\cfoot{}\rfoot{\thepage}
+%\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter.\ fejezet. #1}}{}}
+\newcommand{\tg}{\mathop\mathrm{tg}}
+\newcommand{\grad}{\mathop\mathrm{grad}}
+\newcommand{\BME}{\hrule\vspace{6pt}{\large Budapesti Műszaki és Gazdaságtudományi Egyetem\\
+Gépészmérnöki Kar\\
+Műszaki Mechanikai Tanszék}}
+\newcommand{\szerzo}{Gángó Dániel}
+\newcommand{\konzulensek}{%
+\hfill%
+\parbox[t]{6cm}{\normalsize Témavezető:\\
+\hspace*{3em}Zelei Ambrus\\
+\hspace*{3em}tudományos munkatárs}}
+
+
+
+\usepackage{babel}
+
+
+
+
+
+\usepackage{babel}
+
+
+
+
+
+\usepackage{babel}
+\usepackage[style=numeric, backend=bibtex]{biblatex}
+\addbibresource{irodalomjegyzek.bib} 
+
+\fancyhf{}
+\fancyfoot[CE, CO]{\thepage}
+\fancyhead[RO]{\rightmark}
+\fancyhead[LE]{\leftmark}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\sectionmark}[1]{\markright{\ \uppercase{#1}}}
+\end_preamble
+\options twoside, rightopen
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding iso8859-2
+\fontencoding T1
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\paperfontsize 12
+\spacing onehalf
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\headheight 12pt
+\headsep 24pt
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle fancy
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset VSpace -5cm
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename bme_skyline.eps
+	width 40text%
+	keepAspectRatio
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+BME
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace 5cm
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+ Szakdolgozat címe
+\begin_inset Newline newline
+\end_inset
+
+ ALULAKTUÁLT RENDSZEREK SZABÁLYOZÁSI MÓDSZEREINEK ÖSSZEHASONLÍTÁSA
+\end_layout
+
+\begin_layout Author
+Készítette: 
+\shape smallcaps
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+szerzo
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Date
+\begin_inset VSpace 3cm
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+konzulensek
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset VSpace 4cm
+\end_inset
+
+ Budapest, 2016
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagenumbering{roman}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Szerzői jog 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+copyright
+\end_layout
+
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+szerzo
+\end_layout
+
+\end_inset
+
+, 2016
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introduction
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\backslash
+markboth{
+\backslash
+MakeUppercase{Bevezet
+\backslash
+H{o}}}{}%
+\backslash
+addcontentsline{toc}{chapter}{Bevezet
+\backslash
+H{o}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagenumbering{arabic}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Space robot equation of motion
+\end_layout
+
+\begin_layout Standard
+The 2D model of the space robot consists of a base and two arms.
+ FIGURE.
+ The robot contains two actuators, one at the base of each arm.
+ The joints can rotate around the 
+\begin_inset Formula $z$
+\end_inset
+
+ axis.
+ The motion of the robot is described with the joint coordinates
+\begin_inset Formula 
+\[
+\bm{q}(t)=\left[\begin{array}{c}
+q_{0}(t)\\
+q_{1}(t)\\
+q_{2}(t)
+\end{array}\right].
+\]
+
+\end_inset
+
+The robot has 3 rotational degrees of freedom: the rotation angle of each
+ part, and 2 translational DOFs: the position of the robot in the 
+\begin_inset Formula $x-y$
+\end_inset
+
+ plane.
+ However due to the conservation of momentum the translational DOFs can
+ be neglected, because to common center of mass of the system is either
+ at rest or is moving with a constant speed thus reducing the degrees of
+ freedom from 5 to 3.
+ 
+\end_layout
+
+\begin_layout Standard
+For the formulation of the equation of motion we can use the second order
+ Lagrange equation
+\begin_inset Formula 
+\begin{equation}
+\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial\mathcal{T}}{\partial\dot{q}_{j}}-\frac{\partial\mathcal{T}}{\partial q_{j}}+\frac{\partial\mathcal{D}}{\partial\dot{q_{j}}}+\frac{\partial\mathcal{U}}{\partial q_{j}}=Q_{j},\;j=1...n,\label{lagrange_eq}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\mathcal{T}$
+\end_inset
+
+ is the total kinetic energy of the system, 
+\begin_inset Formula $\mathcal{D}$
+\end_inset
+
+ is the dissipative potential and 
+\begin_inset Formula $\mathcal{U}$
+\end_inset
+
+ is the potential of the system.
+ 
+\begin_inset Formula $Q_{j}$
+\end_inset
+
+ denotes the generalized forces acting on the system and 
+\begin_inset Formula $q_{j}$
+\end_inset
+
+ is the 
+\begin_inset Formula $j$
+\end_inset
+
+th generalized coordinate of the 
+\begin_inset Formula $n$
+\end_inset
+
+ DOF system.
+\end_layout
+
+\begin_layout Standard
+In the space robot's case the both the dissipative potential and the potential
+ energy are identically zero.
+\end_layout
+
+\begin_layout Standard
+The total kinetic energy of the system is
+\begin_inset Formula 
+\begin{equation}
+T=\sum_{i=0}^{2}\frac{1}{2}m_{i}\boldsymbol{v}_{i}^{2}+\frac{1}{2}\theta_{i}\omega_{i}^{2},
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $m$
+\end_inset
+
+ is the mass, 
+\begin_inset Formula $\bm{v}$
+\end_inset
+
+ is the velocity vector, 
+\begin_inset Formula $\theta$
+\end_inset
+
+ is the mass moment of inertia and 
+\begin_inset Formula $\omega$
+\end_inset
+
+ is the angular velocity of the individual parts of the robot.
+\end_layout
+
+\begin_layout Standard
+In order to formulate the velocity vectors, we need the position vector
+ of each part's center of mass, which are the following:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{r}_{0}=\left[\begin{array}{c}
+x_{0}\\
+y_{0}
+\end{array}\right],
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{r}_{1}=\left[\begin{array}{c}
+x_{0}+l_{0}\cos(\varphi_{0}+q_{0})+\frac{l_{1}}{2}\cos(q_{1})\\
+y_{0}+l_{0}\sin(\varphi_{0}+q_{0})+\frac{l_{1}}{2}\sin(q_{1})
+\end{array}\right],
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{r}_{2}=\left[\begin{array}{c}
+x_{0}+l_{0}\cos(\varphi_{0}+q_{0})+l_{1}\cos(q_{1})+\frac{l_{2}}{2}\cos(q_{2})\\
+y_{0}+l_{0}\sin(\varphi_{0}+q_{0})+l_{1}\sin(q_{1})+\frac{l_{2}}{2}\sin(q_{2})
+\end{array}\right].
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+After differentiating the position vectors we get the individual velocity
+ vectors: 
+\begin_inset Formula 
+\begin{equation}
+\frac{\mathrm{d}\bm{r}_{0}}{\mathrm{d}t}\boldsymbol{=v}_{0}=\left[\begin{array}{c}
+\dot{x}_{0}\\
+\dot{y}_{0}
+\end{array}\right],
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\frac{\mathrm{d}\bm{r}_{1}}{\mathrm{d}t}=\boldsymbol{v}_{1}=\left[\begin{array}{c}
+\dot{x}_{0}-l_{0}\dot{q}_{0}\sin(\varphi_{0}+q_{0})-\frac{l_{1}}{2}\dot{q}_{1}\sin(q_{1})\\
+\dot{y}_{0}+l_{0}\dot{q}_{0}\cos(\varphi_{0}+q_{0})+\frac{l_{1}}{2}\dot{q}_{1}\cos(q_{1})
+\end{array}\right],
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\frac{\mathrm{d}\bm{r}_{2}}{\mathrm{d}t}=\boldsymbol{v}_{2}=\left[\begin{array}{c}
+\dot{x}_{0}-l_{0}\dot{q}_{0}\sin(\varphi_{0}+q_{0})-l_{1}\dot{q}_{1}\sin(q_{1})-\frac{l_{2}}{2}\dot{q}_{2}\sin(q_{2})\\
+\dot{y}_{0}+l_{0}\dot{q}_{0}\cos(\varphi_{0}+q_{0})+l_{1}\dot{q}_{1}\cos(q_{1})+\frac{l_{2}}{2}\dot{q}_{2}\cos(q_{2})
+\end{array}\right].
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The angular velocities of each part are
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\omega_{0}=\dot{q}_{0},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\omega_{1}=\dot{q}_{0}+\dot{q}_{1},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\omega_{2}=\dot{q}_{0}+\dot{q}_{1}+\dot{q}_{2}.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now we can construct the equation of motion of the system
+\begin_inset Formula 
+\begin{equation}
+\bm{M}(\bm{q})\ddot{\bm{q}}+\bm{C}(\bm{q},\dot{\bm{q}})=\bm{H}\bm{u},\label{eq:eq-of-motion}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\bm{M}$
+\end_inset
+
+ is the inertia matrix, 
+\begin_inset Formula $\bm{C}$
+\end_inset
+
+ is the vector of Coriolis and centripetal torques, 
+\begin_inset Formula $\bm{H}$
+\end_inset
+
+ is the input matrix and 
+\begin_inset Formula $\bm{u}$
+\end_inset
+
+ is the vector of the torques acting on the system.
+ Due to their extent, 
+\begin_inset Formula $\bm{M}$
+\end_inset
+
+ and 
+\begin_inset Formula $\bm{C}$
+\end_inset
+
+ can be found in Appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:System-matrices-of-5dof"
+
+\end_inset
+
+.
+ The input matrix is
+\begin_inset Formula 
+\[
+\bm{H}=\left[\begin{array}{cc}
+0 & 0\\
+0 & 0\\
+0 & 0\\
+1 & 0\\
+0 & 1
+\end{array}\right],
+\]
+
+\end_inset
+
+and the vector of the actuating torques is
+\begin_inset Formula 
+\begin{equation}
+\bm{u}=\left[\begin{array}{c}
+u_{1}\\
+u_{2}
+\end{array}\right].
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let us calculate the common center of mass of the system and also its velocity:
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{r}_{C}=\frac{m_{0}\boldsymbol{r}_{0}+m_{1}\boldsymbol{r}_{1}+m_{2}\boldsymbol{r}_{2}}{m_{0}+m_{1}+m_{2}},
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{v}_{C}=\frac{m_{0}\boldsymbol{v}_{0}+m_{1}\boldsymbol{v}_{1}+m_{2}\boldsymbol{v}_{2}}{m_{0}+m_{1}+m_{2}}.
+\end{equation}
+
+\end_inset
+
+After running some simulations with arbitrary initial conditions we can
+ observe that the velocity of the common center of mass is constant.
+ This is in accordance with the conservation of linear momentum (i.
+ e.
+ there is no energy dissipation and there are no external forces acting
+ on the system).
+ This means, that if we observe the system from a reference frame moving
+ along with the common center of gravity, we can create a 3 DOF model of
+ the system.
+ The position vectors of each element relative to the common center of mass
+ are:
+\begin_inset Formula 
+\begin{equation}
+\bm{\rho}_{0}=\bm{r}_{0}-\bm{r}_{C},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\bm{\rho}_{1}=\bm{r}_{1}-\bm{r}_{C},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\bm{\rho}_{2}=\bm{r}_{2}-\bm{r}_{C}.
+\end{equation}
+
+\end_inset
+
+Repeating the same calculations as in the 5 DOF case, we obtain an equation
+ similar to Eq.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:eq-of-motion"
+
+\end_inset
+
+, where
+\begin_inset Formula 
+\begin{equation}
+\bm{H}=\left[\begin{array}{cc}
+0 & 0\\
+1 & 0\\
+0 & 1
+\end{array}\right]
+\end{equation}
+
+\end_inset
+
+is the input matrix and
+\begin_inset Formula 
+\begin{equation}
+\bm{u}=\left[\begin{array}{c}
+u_{1}\\
+u_{2}
+\end{array}\right]
+\end{equation}
+
+\end_inset
+
+ is the vector of actuating torques.
+ Due to their extent, the matrix of inertia 
+\begin_inset Formula $\bm{M}$
+\end_inset
+
+ and the vector of Coriolis and centripetal torques 
+\begin_inset Formula $\bm{C}$
+\end_inset
+
+ can be found in Appendix 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:System-matrices-of-3dof"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Chapter
+end
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "irodalomjegyzek"
+options "bibtotoc,plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+nocite{*}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+printbibliography[ heading=bibintoc]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\start_of_appendix
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%dummy comment inserted by tex2lyx to ensure that this paragraph is not
+ empty
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%dummy comment inserted by tex2lyx to ensure that this paragraph is not
+ empty%dummy comment inserted by tex2lyx to ensure that this paragraph is
+ not empty
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+addcontentsline{toc}{chapter}{Appendix}
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+setcounter{chapter}{1} %
+\backslash
+setcounter{equation}{0} % a fofejezet-szamlalo az angol ABC 6.
+ betuje (F) lesz 
+\backslash
+numberwithin{equation}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+numberwithin{figure}{section}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+System matrices of the 5 DOF space robot model
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:System-matrices-of-5dof"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The inertia matrix is
+\begin_inset Formula 
+\begin{equation}
+\bm{M}=\left[\begin{array}{ccccc}
+m_{11} & m_{12} & m_{13} & m_{14} & m_{15}\\
+m_{21} & m_{22} & m_{23} & m_{24} & m_{25}\\
+m_{31} & m_{32} & m_{33} & m_{34} & m_{35}\\
+m_{41} & m_{42} & m_{43} & m_{44} & m_{45}\\
+m_{51} & m_{52} & m_{53} & m_{54} & m_{55}
+\end{array}\right],
+\end{equation}
+
+\end_inset
+
+where the elements of the matrix are the following:
+\begin_inset Formula 
+\begin{equation}
+m_{11}=m_{0}+m_{1}+m_{2},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{12}=0,
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{13}=-l_{0}\sin\left(\varphi_{0}+q_{0}\right)\left(m_{1}+m_{2}\right),
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{14}=-l_{1}\sin\left(q_{1}\right)\left(\frac{m_{1}}{2}+m_{2}\right),
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{15}=-\frac{l_{2}m_{2}\sin\left(q_{2}\right)}{2},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{21}=0,
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{22}=m_{0}+m_{1}+m_{2},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{23}=l_{0}\cos\left(\varphi_{0}+q_{0}\right)\left(m_{1}+m_{2}\right),
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{24}=l_{1}\cos\left(q_{1}\right)\left(\frac{m_{1}}{2}+m_{2}\right),
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{25}=\frac{l_{2}m_{2}\cos\left(q_{2}\right)}{2},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{31}=-l_{0}\sin\left(\varphi_{0}+q_{0}\right)\left(m_{1}+m_{2}\right),
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{32}=l_{0}\cos\left(\varphi_{0}+q_{0}\right)\left(m_{1}+m_{2}\right),
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{33}=\left(m_{1}+m_{2}\right)l_{0}^{2}+\theta_{0}+\theta_{1}+\theta_{2},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{34}=\theta_{1}+\theta_{2}+l_{0}l_{1}\cos\left(\varphi_{0}+q_{0}-q_{1}\right)\left(\frac{m_{1}}{2}+m_{2}\right),
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{35}=\theta_{2}+\frac{l_{0}l_{2}m_{2}\cos\left(\varphi_{0}+q_{0}-q_{2}\right)}{2},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{41}=-l_{1}\sin\left(q_{1}\right)\left(\frac{m_{1}}{2}+m_{2}\right),
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{42}=l_{1}\cos\left(q_{1}\right)\left(\frac{m_{1}}{2}+m_{2}\right),
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{43}=\theta_{1}+\theta_{2}+l_{0}l_{1}\cos\left(\varphi_{0}+q_{0}-q_{1}\right)\left(\frac{m_{1}}{2}+m_{2}\right),
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{44}=\left(\frac{m_{1}}{4}+m_{2}\right)l_{1}^{2}+\theta_{1}+\theta_{2},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{45}=\theta_{2}+\frac{l_{1}l_{2}m_{2}\cos\left(q_{1}-q_{2}\right)}{2},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{51}=-\frac{l_{2}m_{2}\sin\left(q_{2}\right)}{2},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{52}=\frac{l_{2}m_{2}\cos\left(q_{2}\right)}{2},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{53}=\theta_{2}+\frac{l_{0}l_{2}m_{2}\cos\left(\varphi_{0}+q_{0}-q_{2}\right)}{2},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{54}=\theta_{2}+\frac{l_{1}l_{2}m_{2}\cos\left(q_{1}-q_{2}\right)}{2},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{55}=\frac{m_{2}l_{2}^{2}}{4}+\theta_{2}.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The vector of Coriolis and centripetal torques is 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\bm{C}=\left[\begin{array}{c}
+c_{11}\\
+c_{12}\\
+c_{13}\\
+c_{14}\\
+c_{15}
+\end{array}\right].
+\end{equation}
+
+\end_inset
+
+Where 
+\begin_inset Formula 
+\begin{equation}
+c_{11}=-l_{0}\cos\left(\varphi_{0}+q_{0}\right)\left(m_{1}+m_{2}\right)\mathrm{\dot{q}}_{0}^{2}-l_{1}\cos\left(q_{1}\right)\left(\frac{m_{1}}{2}+m_{2}\right)\mathrm{\dot{q}}_{1}^{2}-\frac{l_{2}m_{2}\cos\left(q_{2}\right)\mathrm{\dot{q}}_{2}^{2}}{2},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+c_{12}=-l_{0}\sin\left(\varphi_{0}+q_{0}\right)\left(m_{1}+m_{2}\right)\mathrm{\dot{q}}_{0}^{2}-l_{1}\sin\left(q_{1}\right)\left(\frac{m_{1}}{2}+m_{2}\right)\mathrm{\dot{q}}_{1}^{2}-\frac{l_{2}m_{2}\sin\left(q_{2}\right)\mathrm{\dot{q}}_{2}^{2}}{2},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+c_{13}=l_{0}\left(l_{1}\sin\left(\varphi_{0}+q_{0}-q_{1}\right)\left(\frac{m_{1}}{2}+m_{2}\right)\mathrm{\dot{q}}_{1}^{2}+\frac{l_{2}m_{2}\sin\left(\varphi_{0}+q_{0}-q_{2}\right)\mathrm{\dot{q}}_{2}^{2}}{2}\right),
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+c_{14}=l_{1}\left(\frac{\mathrm{\dot{q}}_{2}^{2}l_{2}m_{2}\sin\left(q_{1}-q_{2}\right)}{2}-\mathrm{\dot{q}}_{0}^{2}l_{0}\sin\left(\varphi_{0}+q_{0}-q_{1}\right)\left(\frac{m_{1}}{2}+m_{2}\right)\right),
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+c_{15}=-l_{2}m_{2}\left(\frac{l_{0}\sin\left(\varphi_{0}+q_{0}-q_{2}\right)\mathrm{\dot{q}}_{0}^{2}}{2}+\frac{l_{1}\sin\left(q_{1}-q_{2}\right)\mathrm{\dot{q}}_{1}^{2}}{2}\right).
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+System matrices of the 3 DOF space robot model
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:System-matrices-of-3dof"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The inertia matrix is
+\begin_inset Formula 
+\begin{equation}
+\bm{M}=\left[\begin{array}{ccc}
+m_{11} & m_{12} & m_{13}\\
+m_{21} & m_{22} & m_{23}\\
+m_{31} & m_{32} & m_{33}
+\end{array}\right],
+\end{equation}
+
+\end_inset
+
+where the elements of the matrix are the following:
+\begin_inset Formula 
+\begin{equation}
+m_{11}=I_{0}+I_{1}+I_{2}+\frac{l_{0}^{2}m_{0}\left(m_{1}+m_{2}\right)}{m_{0}+m_{1}+m_{2}},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\begin{array}{c}
+m_{12}=\frac{\left(I_{1}+I_{2}\right)\left(m_{0}^{2}+2m_{0}m_{1}+2m_{0}m_{2}+m_{1}^{2}+2m_{1}m_{2}+m_{2}^{2}\right)+}{\left(m_{0}+m_{1}+m_{2}\right)^{2}}\\
+\frac{+l_{0}l_{1}m_{0}\cos\left(\varphi_{0}+q_{0}-q_{1}\right)\left(\frac{m_{1}^{2}}{2}+\frac{3m_{1}m_{2}}{2}+\frac{m_{0}m_{1}}{2}+m_{2}^{2}+m_{0}m_{2}\right)}{\left(m_{0}+m_{1}+m_{2}\right)^{2}},
+\end{array}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\begin{array}{c}
+m_{13}=\frac{I_{2}\left(m_{0}^{2}+2m_{0}m_{1}+2m_{0}m_{2}+m_{1}^{2}+2m_{1}m_{2}+m_{2}^{2}\right)+}{\left(m_{0}+m_{1}+m_{2}\right)^{2}}\\
+\frac{+l_{0}l_{2}m_{0}m_{2}\cos\left(\varphi_{0}+q_{0}-q_{2}\right)\left(\frac{m_{0}}{2}+\frac{m_{1}}{2}+\frac{m_{2}}{2}\right)}{\left(m_{0}+m_{1}+m_{2}\right)^{2}},
+\end{array}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\begin{array}{c}
+m_{21}=\frac{\left(I_{1}+I_{2}\right)\left(m_{0}^{2}+2m_{0}m_{1}+2m_{0}m_{2}+m_{1}^{2}+2m_{1}m_{2}+m_{2}^{2}\right)+}{\left(m_{0}+m_{1}+m_{2}\right)^{2}}\\
+\frac{+l_{0}l_{1}m_{0}\cos\left(\varphi_{0}+q_{0}-q_{1}\right)\left(\frac{m_{1}^{2}}{2}+\frac{3m_{1}m_{2}}{2}+\frac{m_{0}m_{1}}{2}+m_{2}^{2}+m_{0}m_{2}\right)}{\left(m_{0}+m_{1}+m_{2}\right)^{2}},
+\end{array}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{22}=I_{1}+I_{2}+\frac{l_{1}^{2}\left(\frac{m_{0}m_{1}}{4}+m_{0}m_{2}+\frac{m_{1}m_{2}}{4}\right)}{m_{0}+m_{1}+m_{2}},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\begin{array}{c}
+m_{23}=\frac{I_{2}\left(m_{0}^{2}+2m_{0}m_{1}+2m_{0}m_{2}+m_{1}^{2}+2m_{1}m_{2}+m_{2}^{2}\right)+}{\left(m_{0}+m_{1}+m_{2}\right)^{2}}\\
+\frac{+l_{1}l_{2}m_{2}\cos\left(q_{1}-q_{2}\right)\left(\frac{m_{0}^{2}}{2}+\frac{3m_{0}m_{1}}{4}+\frac{m_{2}m_{0}}{2}+\frac{m_{1}^{2}}{4}+\frac{m_{2}m_{1}}{4}\right)}{\left(m_{0}+m_{1}+m_{2}\right)^{2}},
+\end{array}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\begin{array}{c}
+m_{31}=\frac{I_{2}\left(m_{0}^{2}+2m_{0}m_{1}+2m_{0}m_{2}+m_{1}^{2}+2m_{1}m_{2}+m_{2}^{2}\right)+}{\left(m_{0}+m_{1}+m_{2}\right)^{2}}\\
+\frac{+l_{0}l_{2}m_{0}m_{2}\cos\left(\varphi_{0}+q_{0}-q_{2}\right)\left(\frac{m_{0}}{2}+\frac{m_{1}}{2}+\frac{m_{2}}{2}\right)}{\left(m_{0}+m_{1}+m_{2}\right)^{2}},
+\end{array}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\begin{array}{c}
+m_{32}=\frac{I_{2}\left(m_{0}^{2}+2m_{0}m_{1}+2m_{0}m_{2}+m_{1}^{2}+2m_{1}m_{2}+m_{2}^{2}\right)+}{\left(m_{0}+m_{1}+m_{2}\right)^{2}}\\
+\frac{+l_{1}l_{2}m_{2}\cos\left(q_{1}-q_{2}\right)\left(\frac{m_{0}^{2}}{2}+\frac{3m_{0}m_{1}}{4}+\frac{m_{2}m_{0}}{2}+\frac{m_{1}^{2}}{4}+\frac{m_{2}m_{1}}{4}\right)}{\left(m_{0}+m_{1}+m_{2}\right)^{2}},
+\end{array}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{33}=I_{2}+\frac{l_{2}^{2}m_{2}\left(\frac{m_{0}}{4}+\frac{m_{1}}{4}\right)}{m_{0}+m_{1}+m_{2}}.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The vector of Coriolis and centripetal torques is 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\bm{C}=\left(\begin{array}{c}
+c_{11}\\
+c_{12}\\
+c_{13}
+\end{array}\right).
+\end{equation}
+
+\end_inset
+
+Where
+\begin_inset Formula 
+\begin{equation}
+\begin{array}{c}
+c_{11}=\frac{l_{0}m_{0}l_{1}\sin\left(\varphi_{0}+q_{0}-q_{1}\right)\left(\frac{m_{1}^{2}}{2}+\frac{3m_{1}m_{2}}{2}+\frac{m_{0}m_{1}}{2}+m_{2}^{2}+m_{0}m_{2}\right)\dot{q}_{2}^{2}+}{\left(m_{0}+m_{1}+m_{2}\right)^{2}}\\
+\frac{+l_{0}m_{0}l_{2}m_{2}\sin\left(\varphi_{0}+q_{0}-q_{2}\right)\left(\frac{m_{0}}{2}+\frac{m_{1}}{2}+\frac{m_{2}}{2}\right)\dot{q}_{3}^{2}}{\left(m_{0}+m_{1}+m_{2}\right)^{2}},
+\end{array}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\begin{array}{c}
+c_{12}=\frac{l_{1}\dot{q}_{3}^{2}l_{2}m_{2}\sin\left(q_{1}-q_{2}\right)\left(\frac{m_{0}^{2}}{2}+\frac{3m_{0}m_{1}}{4}+\frac{m_{2}m_{0}}{2}+\frac{m_{1}^{2}}{4}+\frac{m_{2}m_{1}}{4}\right)-}{\left(m_{0}+m_{1}+m_{2}\right)^{2}}\\
+\frac{-l_{1}\dot{q}_{1}^{2}l_{0}m_{0}\sin\left(\varphi_{0}+q_{0}-q_{1}\right)\left(\frac{m_{1}^{2}}{2}+\frac{3m_{1}m_{2}}{2}+\frac{m_{0}m_{1}}{2}+m_{2}^{2}+m_{0}m_{2}\right)}{\left(m_{0}+m_{1}+m_{2}\right)^{2}},
+\end{array}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\begin{array}{c}
+c_{13}=-\frac{l_{2}m_{2}l_{0}m_{0}\sin\left(\varphi_{0}+q_{0}-q_{2}\right)\left(\frac{m_{0}}{2}+\frac{m_{1}}{2}+\frac{m_{2}}{2}\right)\dot{q}_{1}^{2}+}{\left(m_{0}+m_{1}+m_{2}\right)^{2}}\\
+-\frac{+l_{2}m_{2}l_{1}\sin\left(q_{1}-q_{2}\right)\left(\frac{m_{0}^{2}}{2}+\frac{3m_{0}m_{1}}{4}+\frac{m_{2}m_{0}}{2}+\frac{m_{1}^{2}}{4}+\frac{m_{2}m_{1}}{4}\right)\dot{q}_{2}^{2}}{\left(m_{0}+m_{1}+m_{2}\right)^{2}}.
+\end{array}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
