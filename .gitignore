@@ -1,4 +1,4 @@
-*.m~
+*.*~
 *.asv
 tdk/saved_graphs/
 articles/
