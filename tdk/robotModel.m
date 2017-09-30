@@ -6,6 +6,16 @@ classdef robotModel < handle
         M
         C
         H
+        %symbolic variables
+        q_sym
+        qd_sym
+        qdd_sym
+        M_sym
+        C_sym
+        H_sym
+        u_sym
+        endEffector_sym
+        endEffectorVel_sym
     end
     
     properties (Constant)
@@ -34,6 +44,8 @@ classdef robotModel < handle
             obj.qd(3) = state(6);
             obj.u = [1; 0];
             refreshMatrices(obj);
+            
+            makeSymbolicVariables(obj);
         end
         
         % calculate system matrices
@@ -134,6 +146,7 @@ classdef robotModel < handle
             obj.refreshMatricesForRK4(state);
             qdd = obj.M \ (obj.H*obj.u - obj.C);
             deriv = vertcat(obj.qd, qdd);
+            obj.refreshMatrices();
         end
         
         % integrates 1 timestep
@@ -143,7 +156,6 @@ classdef robotModel < handle
             
             obj.q = newState(1:3);
             obj.qd = newState(4:6);
-            obj.refreshMatrices();
         end
         
         % state variables getter
@@ -288,6 +300,89 @@ classdef robotModel < handle
             pos = [ (l1*cos(q0 + q1)*(2*m0 + m1) + l2*cos(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2));
                     (l1*sin(q0 + q1)*(2*m0 + m1) + l2*sin(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2))];
 
+        end
+        
+        function pos = calcEndEffectorPos(obj, q)
+            global step stateVariables
+            m0 = obj.m0;
+            m1 = obj.m1;
+            m2 = obj.m2;
+            l0 = obj.l0;
+            l1 = obj.l1;
+            l2 = obj.l2;
+            I0 = obj.I0;
+            I1 = obj.I1;
+            I2 = obj.I2;
+            fi0 = obj.fi0;
+            q0 = q(1);
+            q1 = q(2);
+            q2 = q(3);
+            
+            pos = [ (l1*cos(q0 + q1)*(2*m0 + m1) + l2*cos(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2));
+                    (l1*sin(q0 + q1)*(2*m0 + m1) + l2*sin(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2))];
+        end
+        
+        % initializes symbolic variables
+        function makeSymbolicVariables(obj)
+            % state variables
+            q_sym = sym('q', [3 1]);
+            qd_sym = sym('qd', [3 1]);
+            qdd_sym = sym('qdd', [3 1]);
+            u_sym = sym('u', [2 1]);
+            
+            m0 = obj.m0;
+            m1 = obj.m1;
+            m2 = obj.m2;
+            l0 = obj.l0;
+            l1 = obj.l1;
+            l2 = obj.l2;
+            I0 = obj.I0;
+            I1 = obj.I1;
+            I2 = obj.I2;
+            fi0 = obj.fi0;
+            q0 = q_sym(1);
+            q1 = q_sym(2);
+            q2 = q_sym(3);
+            dq0 = qd_sym(1);
+            dq1 = qd_sym(2);
+            dq2 = qd_sym(3);
+            
+            m11 = (4*I0*m0 + 4*I0*m1 + 4*I1*m0 + 4*I0*m2 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + 4*l0^2*m0*m1 + 4*l0^2*m0*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 4*l0*l1*m0*cos(fi0 - q1)*(m1 + 2*m2) + 4*l0*l2*m0*m2*cos(q1 - fi0 + q2) + 4*l1*l2*m0*m2*cos(q2) + 2*l1*l2*m1*m2*cos(q2))/(4*(m0 + m1 + m2));
+            m12 = (4*I1*m0 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 2*l0*l1*m0*cos(fi0 - q1)*(m1 + 2*m2) + 2*l0*l2*m0*m2*cos(q1 - fi0 + q2) + 4*l1*l2*m0*m2*cos(q2) + 2*l1*l2*m1*m2*cos(q2))/(4*(m0 + m1 + m2));
+            m13 = (4*I2*m0 + 4*I2*m1 + 4*I2*m2 + l2^2*m0*m2 + l2^2*m1*m2 + l1*l2*m2*cos(q2)*(2*m0 + m1) + 2*l0*l2*m0*m2*cos(q1 - fi0 + q2))/(4*(m0 + m1 + m2));
+            m21 = (4*I1*m0 + 4*I1*m1 + 4*I2*m0 + 4*I1*m2 + 4*I2*m1 + 4*I2*m2 + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 2*l0*l1*m0*cos(fi0 - q1)*(m1 + 2*m2) + 2*l0*l2*m0*m2*cos(q1 - fi0 + q2) + 4*l1*l2*m0*m2*cos(q2) + 2*l1*l2*m1*m2*cos(q2))/(4*(m0 + m1 + m2));
+            m22 = (4*I2*m0 + 4*I2*m1 + 4*I2*m2 + 4*I1*(m0 + m1 + m2) + l1^2*m0*m1 + 4*l1^2*m0*m2 + l1^2*m1*m2 + l2^2*m0*m2 + l2^2*m1*m2 + 2*l1*l2*m2*cos(q2)*(2*m0 + m1))/(4*(m0 + m1 + m2));
+            m23 = (m2*(m0 + m1)*l2^2 + l1*m2*cos(q2)*(2*m0 + m1)*l2 + 4*I2*(m0 + m1 + m2))/(4*(m0 + m1 + m2));
+            m31 = (4*I2*m0 + 4*I2*m1 + 4*I2*m2 + l2^2*m0*m2 + l2^2*m1*m2 + l1*l2*m2*cos(q2)*(2*m0 + m1) + 2*l0*l2*m0*m2*cos(q1 - fi0 + q2))/(4*(m0 + m1 + m2));
+            m32 = (m2*(m0 + m1)*l2^2 + l1*m2*cos(q2)*(2*m0 + m1)*l2 + 4*I2*(m0 + m1 + m2))/(4*(m0 + m1 + m2));
+            m33 = (m2*(m0 + m1)*l2^2 + 4*I2*(m0 + m1 + m2))/(4*(m0 + m1 + m2));
+            
+            c1 = (dq0*(4*dq1*l0*m0*(l1*sin(fi0 - q1)*(m1 + 2*m2) - l2*m2*sin(q1 - fi0 + q2)) - 2*dq2*l2*m2*(l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 - fi0 + q2))) - dq2^2*l2*m2*(l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 - fi0 + q2)) + 2*dq1^2*l0*m0*(l1*sin(fi0 - q1)*(m1 + 2*m2) - l2*m2*sin(q1 - fi0 + q2)) - 2*dq1*dq2*l2*m2*(l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 - fi0 + q2)))/(4*(m0 + m1 + m2));
+            c2 = -(2*l0*m0*(l1*sin(fi0 - q1)*(m1 + 2*m2) - l2*m2*sin(q1 - fi0 + q2))*dq0^2 + 2*dq2*l1*l2*m2*sin(q2)*(2*m0 + m1)*dq0 + dq2*l1*l2*m2*sin(q2)*(2*dq1 + dq2)*(2*m0 + m1))/(4*(m0 + m1 + m2));
+            c3 = (l2*m2*((l1*sin(q2)*(2*m0 + m1) + 2*l0*m0*sin(q1 - fi0 + q2))*dq0^2 + 2*l1*sin(q2)*(2*m0 + m1)*dq0*dq1 + l1*sin(q2)*(2*m0 + m1)*dq1^2))/(4*(m0 + m1 + m2));
+
+                        
+            obj.M_sym = [m11, m12, m13;...
+                         m21, m22, m23;...
+                         m31, m32, m33];
+                
+            obj.C_sym = [c1;...
+                         c2;...
+                         c3];
+         
+            obj.H_sym = obj.H;
+            
+            obj.endEffector_sym = [ (l1*cos(q0 + q1)*(2*m0 + m1) + l2*cos(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2));
+                                    (l1*sin(q0 + q1)*(2*m0 + m1) + l2*sin(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2))];
+                                
+            obj.endEffectorVel_sym = [ -(l1*sin(q0 + q1)*(dq0 + dq1)*(2*m0 + m1) + 2*dq0*l0*m0*sin(fi0 + q0) + l2*sin(q0 + q1 + q2)*(2*m0 + 2*m1 + m2)*(dq0 + dq1 + dq2))/(2*(m0 + m1 + m2));
+                                        (l1*cos(q0 + q1)*(dq0 + dq1)*(2*m0 + m1) + 2*dq0*l0*m0*cos(fi0 + q0) + l2*cos(q0 + q1 + q2)*(2*m0 + 2*m1 + m2)*(dq0 + dq1 + dq2))/(2*(m0 + m1 + m2))];
+
+            obj.q_sym = q_sym;
+            obj.qd_sym = qd_sym;
+            obj.qdd_sym = qdd_sym;
+            obj.u_sym = u_sym;
+            
         end
     end
     
