@@ -27,8 +27,8 @@ classdef LaplaceController < handle
             obj.t = sym('t');
             obj.t0 = sym('t0');
             
-            obj.trajectory = [1.5;...
-                              0.4];
+            obj.trajectory = [1.5 + 0.1*cos(obj.t + obj.t0);...
+                              0.4 + 0.1*sin(obj.t + obj.t0)];
             for i = 1:maxStep+1
                 desiredPosition(:,i) = double(subs(obj.trajectory, [obj.t, obj.t0], [(i-1)*timeStep, 0]));
             end
