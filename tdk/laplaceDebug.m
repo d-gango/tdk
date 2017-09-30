@@ -12,7 +12,7 @@ u_pd = uVector - laplaceSolution(4:5,:);
 
 figure
 plot(xy_laplace(1,:), xy_laplace(2,:), desiredPosition(1,:), desiredPosition(2,:))
-title('end effector position')
+title('laplace calculated end effector position')
 legend('solution', 'desired')
 grid on
 axis equal
