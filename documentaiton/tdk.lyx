@@ -22,13 +22,26 @@ Műszaki Mechanikai Tanszék}}
 \newcommand{\konzulensek}{%
 \hfill%
 \parbox[t]{6cm}{\normalsize Témavezető:\\
-\hspace*{3em}Dr. Zelei Ambrus\\
+\hspace*{3em}Zelei Ambrus\\
 \hspace*{3em}tudományos munkatárs}}
 
 
 
 \usepackage{babel}
 
+
+
+
+
+
+\usepackage{babel}
+
+
+
+
+
+
+\usepackage{babel}
 \usepackage[style=numeric, backend=bibtex]{biblatex}
 \addbibresource{irodalomjegyzek.bib} 
 
@@ -36,7 +49,7 @@ Műszaki Mechanikai Tanszék}}
 \fancyfoot[CE, CO]{\thepage}
 \fancyhead[RO]{\rightmark}
 \fancyhead[LE]{\leftmark}
-%\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
 \renewcommand{\sectionmark}[1]{\markright{\ \uppercase{#1}}}
 
 
@@ -153,11 +166,11 @@ BME
 \begin_inset Newline newline
 \end_inset
 
- TDK dolgozat
+ Szakdolgozat címe
 \begin_inset Newline newline
 \end_inset
 
- Alulaktuált űrbéli robot szabályozási módszerei
+ ALULAKTUÁLT RENDSZEREK SZABÁLYOZÁSI MÓDSZEREINEK ÖSSZEHASONLÍTÁSA
 \end_layout
 
 \begin_layout Author
@@ -204,7 +217,7 @@ konzulensek
 \begin_inset VSpace 4cm
 \end_inset
 
- Budapest, 2017
+ Budapest, 2016
 \end_layout
 
 \begin_layout Standard
@@ -267,7 +280,7 @@ szerzo
 
 \end_inset
 
-, 2017
+, 2016
 \end_layout
 
 \begin_layout Standard
@@ -276,7 +289,7 @@ szerzo
 
 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -300,6 +313,22 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
 
@@ -351,91 +380,6 @@ Az űrbéli robot 2 dimenziós modellje egy robottestből és a hozzá kapcsoló
  síkbeli pozíciója) rendelkezik.
 \end_layout
 
-<<<<<<< Updated upstream
-\begin_layout Chapter
-Bevezetés
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-=======
-\begin_layout Standard
-Mivel a rendszer nem tartalmaz disszipatív elemeket, illetve nem hatnak
- rá külső erők, felírható rá a lendületmegmaradás tétele.
- Ennek következtében a két transzlációs szabadsági fok elhanyagolható, hiszen
- lendületmegmaradás értelmében a rendszer közös súlypontja nyugalomban van,
- vagy egyenes vonalú egyenletes mozgást végez.
- Tehát ha a közös súlyponthoz rögzített koordináta-rendszerből vizsgáljuk
- a rendszert, a szabadsági fokok száma 3-ra redukálódik.
- Így a robot mozgása leírható a három rész elfordulását jellemző szögkoordinátáv
-al:
-\begin_inset Formula 
-\[
-\bm{q}(t)=\left[\begin{array}{c}
-q_{0}(t)\\
-q_{1}(t)\\
-q_{2}(t)
-\end{array}\right].
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-A mozgási egyenlet felírásához a másodfajú Lagrange egyenletet használjuk
-\end_layout
->>>>>>> Stashed changes
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial\mathcal{T}}{\partial\dot{q}_{j}}-\frac{\partial\mathcal{T}}{\partial q_{j}}+\frac{\partial\mathcal{D}}{\partial\dot{q_{j}}}+\frac{\partial\mathcal{U}}{\partial q_{j}}=Q_{j},\;j=1...n,\label{lagrange}
-\end{equation}
-
-<<<<<<< Updated upstream
-
-\backslash
-pagenumbering{arabic}
-\end_layout
-
-\end_inset
-
- 
-\end_layout
-
-\begin_layout Chapter
-A szabályozási módszerek bemutatása
-\end_layout
-=======
-\end_inset
-
->>>>>>> Stashed changes
-
-\begin_layout Chapter
-A robot mozgásegyenletének felírása
-\end_layout
-
-\begin_layout Standard
-<<<<<<< Updated upstream
-Az űrbéli robot 2 dimenziós modellje egy robottestből és a hozzá kapcsolódó
- robotkarból épül fel.
- ÁBRA.
- A robot két aktuátorral rendelkezik, melyek a robotkaron találhatók.
- A robot 3 rotációs szabadsági fokkal (mindhárom rész elfordulása), és 2
- transzlációs szabadsági fokkal (a robot 
-\begin_inset Formula $x$
-\end_inset
-
- - 
-\begin_inset Formula $y$
-\end_inset
-
- síkbeli pozíciója) rendelkezik.
-\end_layout
-
 \begin_layout Standard
 Mivel a rendszer nem tartalmaz disszipatív elemeket, illetve nem hatnak
  rá külső erők, felírható rá a lendületmegmaradás tétele.
@@ -470,30 +414,9 @@ A mozgási egyenlet felírásához a másodfajú Lagrange egyenletet használjuk
 \frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial\mathcal{T}}{\partial\dot{q}_{j}}-\frac{\partial\mathcal{T}}{\partial q_{j}}+\frac{\partial\mathcal{D}}{\partial\dot{q_{j}}}+\frac{\partial\mathcal{U}}{\partial q_{j}}=Q_{j},\;j=1...n,\label{lagrange}
 \end{equation}
 
-=======
-ahol 
-\begin_inset Formula $\mathcal{T}$
 \end_inset
 
- a rendszer összes mozgási energiája, 
-\begin_inset Formula $\mathcal{D}$
-\end_inset
 
-a disszipatív potenciál, 
-\begin_inset Formula $\mathcal{U}$
-\end_inset
-
- a rendszer potenciális energiája.
- 
-\begin_inset Formula $Q_{j}$
->>>>>>> Stashed changes
-\end_inset
-
- jelöli a rendszerre ható általános erőket, 
-\begin_inset Formula $q_{j}$
-\end_inset
-
-<<<<<<< Updated upstream
 \end_layout
 
 \begin_layout Standard
@@ -518,28 +441,6 @@ a disszipatív potenciál,
 \begin_inset Formula $q_{j}$
 \end_inset
 
- pedig az 
-\begin_inset Formula $n$
-\end_inset
-
- szabadságfokú rendszer 
-\begin_inset Formula $j.$
-\end_inset
-
- általános koordinátáját.
- Az űrbáli robot esetében a disszipatív potenciál és a potenciális energia
- is azonosan nulla.
-\end_layout
-
-\begin_layout Standard
-A rendszer összes mozgási energiája
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-T=\sum_{i=0}^{2}\frac{1}{2}m_{i}\boldsymbol{v}_{i}^{2}+\frac{1}{2}\theta_{i}\omega_{i}^{2},
-=======
  pedig az 
 \begin_inset Formula $n$
 \end_inset
@@ -606,53 +507,6 @@ Az egyes részek szögsebességei a következőképpen írhatók fel:
 \begin_inset Formula 
 \begin{equation}
 \omega_{2}=\dot{q}_{0}+\dot{q}_{1}+\dot{q}_{2}.
->>>>>>> Stashed changes
-\end{equation}
-
-\end_inset
-
-ahol 
-\begin_inset Formula $m_{i}$
-\end_inset
-
- a robot egyes részeinek tömege, 
-\begin_inset Formula $\bm{v}_{i}$
-\end_inset
-
- a sebességvektora, 
-\begin_inset Formula $\theta_{i}$
-\end_inset
-
- a tehetetlenségi nyomatéka és 
-\begin_inset Formula $\omega_{i}$
-\end_inset
-
- a szögsebessége.
- 
-\end_layout
-
-\begin_layout Standard
-<<<<<<< Updated upstream
-Az egyes részek szögsebességei a következőképpen írhatók fel:
-\begin_inset Formula 
-\begin{equation}
-\omega_{0}=\dot{q}_{0},
-\end{equation}
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{equation}
-\omega_{1}=\dot{q}_{0}+\dot{q}_{1},
-\end{equation}
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{equation}
-\omega_{2}=\dot{q}_{0}+\dot{q}_{1}+\dot{q}_{2}.
 \end{equation}
 
 \end_inset
@@ -661,8 +515,6 @@ Az egyes részek szögsebességei a következőképpen írhatók fel:
 \end_layout
 
 \begin_layout Standard
-=======
->>>>>>> Stashed changes
 A sebességvektorok előállításához először fel kell írnunk az egyes részek
  súlypontjába mutató helyvektorokat, melyek a következők:
 \end_layout
@@ -839,7 +691,6 @@ Látható, hogy ezekben a vektorokban már nem szerepelnek az
  és 
 \begin_inset Formula $y_{0}$
 \end_inset
-<<<<<<< Updated upstream
 
  koordináták, tehát a rendszer valóban 3 szabadságfokúra egyszerűsödött.
 \end_layout
@@ -849,17 +700,6 @@ A sebességvektorok előállításához vegyük a fent kiszámított helyvektoro
  idő szerinti deriváltját:
 \end_layout
 
-=======
-
- koordináták, tehát a rendszer valóban 3 szabadságfokúra egyszerűsödött.
-\end_layout
-
-\begin_layout Standard
-A sebességvektorok előállításához vegyük a fent kiszámított helyvektorok
- idő szerinti deriváltját:
-\end_layout
-
->>>>>>> Stashed changes
 \begin_layout Standard
 \align center
 \begin_inset Formula 
@@ -934,7 +774,6 @@ ahol
  a rendszer tömegmátrixa, 
 \begin_inset Formula $\bm{C}$
 \end_inset
-<<<<<<< Updated upstream
 
  a centripetális és Coriolis erőket tartalmazó vektor, 
 \begin_inset Formula 
@@ -953,33 +792,6 @@ ahol
 \bm{u}=\left[\begin{array}{c}
 u_{1}\\
 u_{2}
-=======
-
- a centripetális és Coriolis erőket tartalmazó vektor, 
-\begin_inset Formula 
-\begin{equation}
-\bm{H}=\left[\begin{array}{cc}
-1 & 0\\
-0 & 1
->>>>>>> Stashed changes
-\end{array}\right]
-\end{equation}
-
-\end_inset
-
-<<<<<<< Updated upstream
- pedig a bemeneti nyomatékok vektora.
- Terjedelmük miatt az 
-\begin_inset Formula $\bm{M}$
-\end_inset
-
-=======
- a rendszer bemeneti mátrixa, 
-\begin_inset Formula 
-\begin{equation}
-\bm{u}=\left[\begin{array}{c}
-u_{1}\\
-u_{2}
 \end{array}\right]
 \end{equation}
 
@@ -990,7 +802,6 @@ u_{2}
 \begin_inset Formula $\bm{M}$
 \end_inset
 
->>>>>>> Stashed changes
  és 
 \begin_inset Formula $\bm{C}$
 \end_inset
@@ -1045,33 +856,66 @@ printbibliography[ heading=bibintoc, title={Irodalomjegyzék} ]
 \begin_layout Standard
 \start_of_appendix
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
-%
+%dummy comment inserted by tex2lyx to ensure that this paragraph is not
+ empty
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%dummy comment inserted by tex2lyx to ensure that this paragraph is not
+ empty%dummy comment inserted by tex2lyx to ensure that this paragraph is
+ not empty%dummy comment inserted by tex2lyx to ensure that this paragraph
+ is not empty
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter*
+Függelék
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
 \backslash
 addcontentsline{toc}{chapter}{Függelék}
 \end_layout
 
 \end_inset
 
-
+ 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
 
 \backslash
-setcounter{chapter}{1}
+setcounter{chapter}{6}
 \end_layout
 
 \end_inset
 
  
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1088,109 +932,6 @@ numberwithin{figure}{section}
 \begin_layout Plain Layout
 
 \end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Chapter
-A robot mozgásegyenletének mátrixai
-\begin_inset CommandInset label
-LatexCommand label
-name "chap:A-robot-mozgásegyenletének"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Az űrbéli robot mozgásegyenletének tömegmátrixa
-\begin_inset Formula 
-\begin{equation}
-\bm{M}=\left[\begin{array}{ccc}
-m_{11} & m_{12} & m_{13}\\
-m_{21} & m_{22} & m_{23}\\
-m_{31} & m_{32} & m_{33}
-\end{array}\right],
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-ahol
-\begin_inset Formula 
-\begin{equation}
-m_{11}=,
-\end{equation}
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{equation}
-m_{12}=,
-\end{equation}
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{equation}
-m_{13}=,
-\end{equation}
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{equation}
-m_{21}=,
-\end{equation}
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{equation}
-m_{22}=,
-\end{equation}
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{equation}
-m_{23}=,
-\end{equation}
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{equation}
-m_{31}=,
-\end{equation}
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{equation}
-m_{32}=,
-\end{equation}
-
-\end_inset
-
-
-\begin_inset Formula 
-\begin{equation}
-m_{33}=,
-\end{equation}
 
 \end_inset
 
@@ -1290,7 +1031,18 @@ m_{23}=\frac{4\theta_{2}(m_{0}+m_{1}+m_{2})+l_{1}l_{2}m_{2}(2m_{0}+m_{1})\cos(q_
 
 \begin_inset Formula 
 \begin{equation}
-m_{32}=valami,
+\begin{array}{cc}
+m_{31}= & \frac{2l_{0}l_{2}m_{0}m_{2}\cos(\varphi_{0}-q_{1}-q_{2})+4\theta_{2}m_{0}+4\theta_{2}m_{1}+4\theta_{2}m_{2}}{4(m_{0}+m_{1}+m_{2})}+\\
+ & \frac{l_{1}l_{2}m_{2}(2m_{0}+m_{1})\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})}
+\end{array},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+m_{32}=\frac{4\theta_{2}(m_{0}+m_{1}+m_{2})+l_{1}l_{2}m_{2}(2m_{0}+m_{1})\cos(q_{2})+l_{2}^{2}m_{2}(m_{0}+m_{1})}{4(m_{0}+m_{1}+m_{2})},
 \end{equation}
 
 \end_inset
@@ -1304,13 +1056,6 @@ m_{33}=\frac{4\theta_{2}(m_{0}+m_{1}+m_{2})+l_{2}^{2}m_{2}(m_{0}+m_{1})}{4(m_{0}
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-h
 \end_layout
 
 \end_body
