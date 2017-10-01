@@ -10,6 +10,7 @@
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
 \usepackage{verbatim}
+\usepackage{bm}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{graphicx}
@@ -34,7 +35,7 @@ Mûszaki Mechanikai Tanszék}}
 \newcommand{\konzulensek}{%
 \hfill%
 \parbox[t]{6cm}{\normalsize Témavezetõ:\\
-\hspace*{3em}Zelei Ambrus\\
+\hspace*{3em}Dr. Zelei Ambrus\\
 \hspace*{3em}tudományos munkatárs}}
 
 
@@ -61,7 +62,7 @@ Mûszaki Mechanikai Tanszék}}
 \fancyfoot[CE, CO]{\thepage}
 \fancyhead[RO]{\rightmark}
 \fancyhead[LE]{\leftmark}
-\renewcommand{\footrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0.4pt}
 \renewcommand{\sectionmark}[1]{\markright{\ \uppercase{#1}}}
 
 
@@ -77,20 +78,20 @@ Mûszaki Mechanikai Tanszék}}
  \includegraphics[width=0.4\textwidth,keepaspectratio]{bme_skyline}\\
  \BME\vspace{5cm}
  \\
- Szakdolgozat címe\\
- ALULAKTUÁLT RENDSZEREK SZABÁLYOZÁSI MÓDSZEREINEK ÖSSZEHASONLÍTÁSA}
+ TDK dolgozat címe\\
+ ALULAKTUÁLT ÛRBÉLI ROBOT SZABÁLYOZÁSI MÓDSZEREI}
 
 \author{Készítette: \textsc{\szerzo}}
 
 \date{\vspace{3cm}
  \konzulensek\\
  \vspace{4cm}
- Budapest, 2016}
+ Budapest, 2017}
 
 \maketitle
 \pagenumbering{roman}\thispagestyle{empty}
 
-Szerzõi jog \copyright~\szerzo, 2016
+Szerzõi jog \copyright~\szerzo, 2017
 
 \newpage{}\thispagestyle{empty}
 
@@ -100,74 +101,209 @@ Szerzõi jog \copyright~\szerzo, 2016
 
 \newpage{}
 
-\chapter{Valami}
+\chapter{Bevezetés}
 
-%\markboth{\MakeUppercase{Bevezet\H{o}}}{}%\addcontentsline{toc}{chapter}{Bevezet\H{o}}
-\pagenumbering{arabic} \thispagestyle{empty}
+\pagenumbering{arabic} 
 
-\section{Garbage collector equation of motion}
+\chapter{A szabályozási módszerek bemutatása}
 
-Position vectors: 
+\chapter{A robot mozgásegyenletének felírása}
+
+Az ûrbéli robot 2 dimenziós modellje egy robottestbõl és a hozzá kapcsolódó
+robotkarból épül fel. ÁBRA. A robot két aktuátorral rendelkezik, melyek
+a robotkaron találhatók. A robot 3 rotációs szabadsági fokkal (mindhárom
+rész elfordulása), és 2 transzlációs szabadsági fokkal (a robot $x$
+- $y$ síkbeli pozíciója) rendelkezik.
+
+\begin{figure}[h]
+\begin{centering}
+\includegraphics[scale=0.3]{image/robot}
+\par\end{centering}
+\caption{robot}
+
+\end{figure}
+
+Mivel a rendszer nem tartalmaz disszipatív elemeket, illetve nem hatnak
+rá külsõ erõk, felírható rá a lendületmegmaradás tétele. Ennek következtében
+a két transzlációs szabadsági fok elhanyagolható, hiszen lendületmegmaradás
+értelmében a rendszer közös súlypontja nyugalomban van, vagy egyenes
+vonalú egyenletes mozgást végez. Tehát ha a közös súlyponthoz rögzített
+koordináta-rendszerbõl vizsgáljuk a rendszert, a szabadsági fokok
+száma 3-ra redukálódik. Így a robot mozgása leírható a három rész
+elfordulását jellemzõ szögkoordinátával:
+\[
+\bm{q}(t)=\left[\begin{array}{c}
+q_{0}(t)\\
+q_{1}(t)\\
+q_{2}(t)
+\end{array}\right].
+\]
+
+A mozgási egyenlet felírásához a másodfajú Lagrange egyenletet használjuk
+
+\begin{equation}
+\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial\mathcal{T}}{\partial\dot{q}_{j}}-\frac{\partial\mathcal{T}}{\partial q_{j}}+\frac{\partial\mathcal{D}}{\partial\dot{q_{j}}}+\frac{\partial\mathcal{U}}{\partial q_{j}}=Q_{j},\;j=1...n,\label{lagrange}
+\end{equation}
+
+ahol $\mathcal{T}$ a rendszer összes mozgási energiája, $\mathcal{D}$a
+disszipatív potenciál, $\mathcal{U}$ a rendszer potenciális energiája.
+$Q_{j}$ jelöli a rendszerre ható általános erõket, $q_{j}$ pedig
+az $n$ szabadságfokú rendszer $j.$ általános koordinátáját. Az ûrbáli
+robot esetében a disszipatív potenciál és a potenciális energia is
+azonosan nulla.
+
+A rendszer összes mozgási energiája
+
+\begin{equation}
+T=\sum_{i=0}^{2}\frac{1}{2}m_{i}\boldsymbol{v}_{i}^{2}+\frac{1}{2}\theta_{i}\omega_{i}^{2},
+\end{equation}
+ahol $m_{i}$ a robot egyes részeinek tömege, $\bm{v}_{i}$ a sebességvektora,
+$\theta_{i}$ a tehetetlenségi nyomatéka és $\omega_{i}$ a szögsebessége. 
+
+Az egyes részek szögsebességei a következõképpen írhatók fel:
+\begin{equation}
+\omega_{0}=\dot{q}_{0},
+\end{equation}
+\begin{equation}
+\omega_{1}=\dot{q}_{0}+\dot{q}_{1},
+\end{equation}
+\begin{equation}
+\omega_{2}=\dot{q}_{0}+\dot{q}_{1}+\dot{q}_{2}.
+\end{equation}
+
+A sebességvektorok elõállításához elõször fel kell írnunk az egyes
+részek súlypontjába mutató helyvektorokat, melyek a következõk:
+
 \begin{equation}
 \boldsymbol{r}_{0}=\left[\begin{array}{c}
 x_{0}\\
 y_{0}
-\end{array}\right]
+\end{array}\right],
 \end{equation}
 \begin{equation}
 \boldsymbol{r}_{1}=\left[\begin{array}{c}
-x_{0}+l_{0}\cos(\varphi_{0}+q_{0})+\frac{l_{1}}{2}\cos(q_{1})\\
-y_{0}+l_{0}\sin(\varphi_{0}+q_{0})+\frac{l_{1}}{2}\sin(q_{1})
-\end{array}\right]
+x_{0}+l_{0}\cos(\varphi_{0}+q_{0})+\frac{l_{1}}{2}\cos(q_{0}+q_{1})\\
+y_{0}+l_{0}\sin(\varphi_{0}+q_{0})+\frac{l_{1}}{2}\sin(q_{0}+q_{1})
+\end{array}\right],
 \end{equation}
 
 \begin{equation}
 \boldsymbol{r}_{2}=\left[\begin{array}{c}
-x_{0}+l_{0}\cos(\varphi_{0}+q_{0})+l_{1}\cos(q_{1})+\frac{l_{2}}{2}\cos(q_{2})\\
-y_{0}+l_{0}\sin(\varphi_{0}+q_{0})+l_{1}\sin(q_{1})+\frac{l_{2}}{2}\sin(q_{2})
-\end{array}\right]
-\end{equation}
-Velocities: 
-\begin{equation}
-\boldsymbol{v}_{0}=\left[\begin{array}{c}
-\dot{x}_{0}\\
-\dot{y}_{0}
-\end{array}\right]
-\end{equation}
-\begin{equation}
-\boldsymbol{v}_{1}=\left[\begin{array}{c}
-\dot{x}_{0}-l_{0}\dot{q}_{0}\sin(\varphi_{0}+q_{0})-\frac{l_{1}}{2}\dot{q}_{1}\sin(q_{1})\\
-\dot{y}_{0}+l_{0}\dot{q}_{0}\cos(\varphi_{0}+q_{0})+\frac{l_{1}}{2}\dot{q}_{1}\cos(q_{1})
-\end{array}\right]
-\end{equation}
-\begin{equation}
-\boldsymbol{v}_{2}=\left[\begin{array}{c}
-\dot{x}_{0}-l_{0}\dot{q}_{0}\sin(\varphi_{0}+q_{0})-l_{1}\dot{q}_{1}\sin(q_{1})-\frac{l_{2}}{2}\dot{q}_{2}\sin(q_{2})\\
-\dot{y}_{0}+l_{0}\dot{q}_{0}\cos(\varphi_{0}+q_{0})+l_{1}\dot{q}_{1}\cos(q_{1})+\frac{l_{2}}{2}\dot{q}_{2}\cos(q_{2})
-\end{array}\right]
-\end{equation}
-Angular velocities: 
-\begin{equation}
-\omega_{0}=\dot{q}_{0}
-\end{equation}
-\begin{equation}
-\omega_{1}=\dot{q}_{0}+\dot{q}_{1}
-\end{equation}
-\begin{equation}
-\omega_{2}=\dot{q}_{0}+\dot{q}_{1}+\dot{q}_{2}
-\end{equation}
-Kinetic energy: 
-\begin{equation}
-T=\sum_{i=0}^{2}\frac{1}{2}m_{i}\boldsymbol{v}_{i}^{2}+\frac{1}{2}\theta_{i}\omega_{i}^{2}
-\end{equation}
-Center of mass: 
-\begin{equation}
-\boldsymbol{r}_{C}=\frac{m_{0}\boldsymbol{r}_{0}+m_{1}\boldsymbol{r}_{1}+m_{2}\boldsymbol{r}_{2}}{m_{0}+m_{1}+m_{2}}
-\end{equation}
-\begin{equation}
-\boldsymbol{v}_{C}=\frac{m_{0}\boldsymbol{v}_{0}+m_{1}\boldsymbol{v}_{1}+m_{2}\boldsymbol{v}_{2}}{m_{0}+m_{1}+m_{2}}
+x_{0}+l_{0}\cos(\varphi_{0}+q_{0})+l_{1}\cos(q_{0}+q_{1})+\frac{l_{2}}{2}\cos(q_{0}+q_{1}+q_{2})\\
+y_{0}+l_{0}\sin(\varphi_{0}+q_{0})+l_{1}\sin(q_{0}+q_{1})+\frac{l_{2}}{2}\sin(q_{0}+q_{1}+q_{2})
+\end{array}\right].
 \end{equation}
 
+A különálló részek súlypontjába mutató helyvektorokból kiszámítható
+a rendszer közös súlypontja
+\begin{equation}
+\boldsymbol{r}_{S}=\frac{m_{0}\boldsymbol{r}_{0}+m_{1}\boldsymbol{r}_{1}+m_{2}\boldsymbol{r}_{2}}{m_{0}+m_{1}+m_{2}},
+\end{equation}
+\resizebox{\textwidth}{!}{%
+\tiny%%
+\noindent\begin{minipage}[t]{1\columnwidth}%
+\begin{equation}
+\bm{r}_{S}=\left[\begin{array}{c}
+\frac{2l_{0}(m_{1}+m_{2})\cos(\varphi_{0}+q_{0})+l_{1}m_{1}\cos(q_{0}+q_{1})+2l_{1}m_{2}\cos(q_{0}+q_{1})+l_{2}m_{2}\cos(q_{0}+q_{1}+q_{2})+2x_{0}(m_{0}+m_{1}+m_{2})}{2(m_{0}+m_{1}+m_{2})}\\
+\frac{2l_{0}(m_{1}+m_{2})\sin(\varphi_{0}+q_{0})+l_{1}m_{1}\sin(q_{0}+q_{1})+2l_{1}m_{2}\sin(q_{0}+q_{1})+l_{2}m_{2}\sin(q_{0}+q_{1}+q_{2})+2y_{0}(m_{0}+m_{1}+m_{2})}{2(m_{0}+m_{1}+m_{2})}
+\end{array}\right].
+\end{equation}
+%
+\end{minipage}}
+
+Ahhoz, hogy a közös súlyponthoz rögzített koordináta-rendszerbõl vizsgáljuk
+a rendszert, fel kell írnunk a közös súlypontból az egyes részek súlypontjaiba
+mutató helyvektorokat ÁBRA
+\begin{equation}
+\begin{array}{c}
+\bm{\rho}_{0}=\bm{r}_{0}-\bm{r}_{S}=\\
+\left[\begin{array}{c}
+-\frac{2l_{0}(m_{1}+m_{2})\cos(\varphi_{0}+q_{0})+l_{1}(m_{1}+2m_{2})\cos(q_{0}+q_{1})+l_{2}m_{2}\cos(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}\\
+-\frac{2l_{0}(m_{1}+m_{2})\sin(\varphi_{0}+q_{0})+l_{1}(m_{1}+2m_{2})\sin(q_{0}+q_{1})+l_{2}m_{2}\sin(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}
+\end{array}\right],
+\end{array}
+\end{equation}
+\begin{equation}
+\begin{array}{c}
+\bm{\rho}_{1}=\bm{r}_{1}-\bm{r}_{S}=\\
+\left[\begin{array}{c}
+\frac{2l_{0}m_{0}\cos(\varphi_{0}+q_{0})+l_{1}(m_{0}-m_{2})\cos(q_{0}+q_{1})-l_{2}m_{2}\cos(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}\\
+\frac{2l_{0}m_{0}\sin(\varphi_{0}+q_{0})+l_{1}(m_{0}-m_{2})\sin(q_{0}+q_{1})-l_{2}m_{2}\sin(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}
+\end{array}\right],
+\end{array}
+\end{equation}
+\begin{equation}
+\begin{array}{c}
+\bm{\rho}_{2}=\bm{r}_{2}-\bm{r}_{S}=\\
+\left[\begin{array}{c}
+\frac{2l_{0}m_{0}\cos(\varphi_{0}+q_{0})+l_{1}(2m_{0}+m_{1})\cos(q_{0}+q_{1})+l_{2}(m_{0}+m_{1})\cos(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}\\
+\frac{2l_{0}m_{0}\sin(\varphi_{0}+q_{0})+l_{1}(2m_{0}+m_{1})\sin(q_{0}+q_{1})+l_{2}(m_{0}+m_{1})\sin(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}
+\end{array}\right].
+\end{array}
+\end{equation}
+Látható, hogy ezekben a vektorokban már nem szerepelnek az $x_{0}$
+és $y_{0}$ koordináták, tehát a rendszer valóban 3 szabadságfokúra
+egyszerûsödött.
+
+A sebességvektorok elõállításához vegyük a fent kiszámított helyvektorok
+idõ szerinti deriváltját:
+\begin{center}
+\begin{equation}
+\begin{array}{c}
+\bm{v}_{0}=\frac{d\bm{\rho}_{0}}{dt}=\\
+\left[\begin{array}{c}
+-\frac{-2l_{0}(m_{1}+m_{2})\dot{q}_{0}\sin(\varphi_{0}+q_{0})-l_{1}(m_{1}+2m_{2})\left(\dot{q}_{0}+\dot{q}_{1}\right)\sin(q_{0}+q_{1})-l_{2}m_{2}\left(\dot{q}_{0}+\dot{q}_{1}+\dot{q}_{2}\right)\sin(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}\\
+-\frac{2l_{0}(m_{1}+m_{2})\dot{q}_{0}\cos(\varphi_{0}+q_{0})+l_{1}(m_{1}+2m_{2})\left(\dot{q}_{0}+\dot{q}_{1}\right)\cos(q_{0}+q_{1})+l_{2}m_{2}\left(\dot{q}_{0}+\dot{q}_{1}+\dot{q}_{2}\right)\cos(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}
+\end{array}\right],
+\end{array}
+\end{equation}
+\par\end{center}
+
+\begin{center}
+\begin{equation}
+\begin{array}{c}
+\bm{v}_{1}=\frac{d\bm{\rho}_{1}}{dt}=\\
+\left[\begin{array}{c}
+\frac{-2l_{0}m_{0}\dot{q}_{0}\sin(\varphi_{0}+q_{0})-l_{1}(m_{0}-m_{2})\left(\dot{q}_{0}+\dot{q}_{1}\right)\sin(q_{0}+q_{1})+l_{2}m_{2}\left(\dot{q}_{0}+\dot{q}_{1}+\dot{q}_{2}\right)\sin(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}\\
+\frac{2l_{0}m_{0}\dot{q}_{0}\cos(\varphi_{0}+q_{0})+l_{1}(m_{0}-m_{2})\left(\dot{q}_{0}+\dot{q}_{1}\right)\cos(q_{0}+q_{1})-l_{2}m_{2}\left(\dot{q}_{0}+\dot{q}_{1}+\dot{q}_{2}\right)\cos(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}
+\end{array}\right],
+\end{array}
+\end{equation}
+\begin{equation}
+\begin{array}{c}
+\bm{v}_{2}=\frac{d\bm{\rho}_{2}}{dt}=\\
+\left[\begin{array}{c}
+\frac{-2l_{0}m_{0}\dot{q}_{0}\sin(\varphi_{0}+q_{0})-l_{1}(2m_{0}+m_{1})\left(\dot{q}_{0}+\dot{q}_{1}\right)\sin(q_{0}+q_{1})-l_{2}(m_{0}+m_{1})\left(\dot{q}_{0}+\dot{q}_{1}+\dot{q}_{2}\right)\sin(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}\\
+\frac{2l_{0}m_{0}\dot{q}_{0}\cos(\varphi_{0}+q_{0})+l_{1}(2m_{0}+m_{1})\left(\dot{q}_{0}+\dot{q}_{1}\right)\cos(q_{0}+q_{1})+l_{2}(m_{0}+m_{1})\left(\dot{q}_{0}+\dot{q}_{1}+\dot{q}_{2}\right)\cos(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}
+\end{array}\right].
+\end{array}
+\end{equation}
+\par\end{center}
+
+Ezek után a másodfajú Lagrange egyenlet \eqref{lagrange} segítségével
+felírhatjuk a rendszer mozgásegyenletét, ami a következõ alakban írható
+fel:
+\begin{equation}
+\bm{M}(\bm{q})\ddot{\bm{q}}+\bm{C}(\bm{q},\dot{\bm{q}})=\bm{Hu},
+\end{equation}
+ahol $\bm{M}$ a rendszer tömegmátrixa, $\bm{C}$ a centripetális
+és Coriolis erõket tartalmazó vektor, 
+\begin{equation}
+\bm{H}=\left[\begin{array}{cc}
+1 & 0\\
+0 & 1
+\end{array}\right]
+\end{equation}
+ a rendszer bemeneti mátrixa, 
+\begin{equation}
+\bm{u}=\left[\begin{array}{c}
+u_{1}\\
+u_{2}
+\end{array}\right]
+\end{equation}
+ pedig a bemeneti nyomatékok vektora. Terjedelmük miatt az $\bm{M}$
+és $\bm{C}$ mátrixok az \ref{chap:A-robot-mozg=0000E1segyenlet=0000E9nek}
+függelékben találhatók.
 
 \chapter{vége}
 
@@ -186,5 +322,95 @@ Center of mass:
 
 \addcontentsline{toc}{chapter}{Függelék} \setcounter{chapter}{6}
 %\setcounter{equation}{0} % a fofejezet-szamlalo az angol ABC 6. betuje (F) lesz \numberwithin{equation}{section} \numberwithin{figure}{section}
+
+
+\section{A robot mozgásegyenletének mátrixai\label{chap:A-robot-mozg=0000E1segyenlet=0000E9nek}}
+
+Az ûrbéli robot mozgásegyenletének tömegmátrixa
+\begin{equation}
+\bm{M}=\left[\begin{array}{ccc}
+m_{11} & m_{12} & m_{13}\\
+m_{21} & m_{22} & m_{23}\\
+m_{31} & m_{32} & m_{33}
+\end{array}\right],
+\end{equation}
+ahol
+\begin{equation}
+\begin{array}{cc}
+m_{11}= & \frac{4l_{0}l_{1}m_{0}(m_{1}+2m_{2})\cos(\varphi_{0}-q_{1})+4l_{0}l_{2}m_{0}m_{2}\cos(\varphi_{0}-q_{1}-q_{2})+4\theta_{0}m_{0}+4\theta_{0}m_{1}+4\theta_{0}m_{2}}{4(m_{0}+m_{1}+m_{2})}+\\
+ & \frac{4\theta_{1}m_{0}+4\theta_{1}m_{1}+4\theta_{1}m_{2}+4\theta_{2}m_{0}+4\theta_{2}m_{1}+4\theta_{2}m_{2}+4l_{0}^{2}m_{0}m_{1}+4l_{0}^{2}m_{0}m_{2}+l_{1}^{2}m_{0}m_{1}}{4(m_{0}+m_{1}+m_{2})}+\\
+ & \frac{4l_{1}^{2}m_{0}m_{2}+l_{1}^{2}m_{1}m_{2}+4l_{1}l_{2}m_{0}m_{2}\cos(q_{2})+2l_{1}l_{2}m_{1}m_{2}\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})},
+\end{array}
+\end{equation}
+\begin{equation}
+\begin{array}{cc}
+m_{12}= & \frac{2l_{0}l_{1}m_{0}(m_{1}+2m_{2})\cos(\varphi_{0}-q_{1})+2l_{0}l_{2}m_{0}m_{2}\cos(\varphi_{0}-q_{1}-q_{2})+4\theta_{1}m_{0}}{4(m_{0}+m_{1}+m_{2})}+\\
+ & \frac{4\theta_{1}m_{1}+4\theta_{1}m_{2}+4\theta_{2}m_{0}+4\theta_{2}m_{1}+4\theta_{2}m_{2}+l_{1}^{2}m_{0}m_{1}+4l_{1}^{2}m_{0}m_{2}+}{4(m_{0}+m_{1}+m_{2})}+\\
+ & \frac{l_{1}^{2}m_{1}m_{2}+4l_{1}l_{2}m_{0}m_{2}\cos(q_{2})+2l_{1}l_{2}m_{1}m_{2}\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})},
+\end{array}
+\end{equation}
+\begin{equation}
+\begin{array}{cc}
+m_{13}= & \frac{2l_{0}l_{2}m_{0}m_{2}\cos(\varphi_{0}-q_{1}-q_{2})+4\theta_{2}m_{0}+4\theta_{2}m_{1}+4\theta_{2}m_{2}}{4(m_{0}+m_{1}+m_{2})}+\\
+ & \frac{l_{1}l_{2}m_{2}(2m_{0}+m_{1})\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})},
+\end{array}
+\end{equation}
+\begin{equation}
+\begin{array}{cc}
+m_{21}= & \frac{2l_{0}l_{1}m_{0}(m_{1}+2m_{2})\cos(\varphi_{0}-q_{1})+2l_{0}l_{2}m_{0}m_{2}\cos(\varphi_{0}-q_{1}-q_{2})+4\theta_{1}m_{0}}{4(m_{0}+m_{1}+m_{2})}+\\
+ & \frac{4\theta_{1}m_{1}+4\theta_{1}m_{2}+4\theta_{2}m_{0}+4\theta_{2}m_{1}+4\theta_{2}m_{2}+l_{1}^{2}m_{0}m_{1}+4l_{1}^{2}m_{0}m_{2}+}{4(m_{0}+m_{1}+m_{2})}+\\
+ & \frac{l_{1}^{2}m_{1}m_{2}+4l_{1}l_{2}m_{0}m_{2}\cos(q_{2})+2l_{1}l_{2}m_{1}m_{2}\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})},
+\end{array}
+\end{equation}
+\begin{equation}
+\begin{array}{cc}
+m_{22}= & \frac{4\theta_{1}(m_{0}+m_{1}+m_{2})+4\theta_{2}m_{0}+4\theta_{2}m_{1}+4\theta_{2}m_{2}+l_{1}^{2}m_{0}m_{1}4l_{1}^{2}m_{0}m_{2}}{4(m_{0}+m_{1}+m_{2})}+\\
+ & \frac{l_{1}^{2}m_{1}m_{2}+2l_{1}l_{2}m_{2}(2m_{0}+m_{1})\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})},
+\end{array}
+\end{equation}
+\begin{equation}
+m_{23}=\frac{4\theta_{2}(m_{0}+m_{1}+m_{2})+l_{1}l_{2}m_{2}(2m_{0}+m_{1})\cos(q_{2})+l_{2}^{2}m_{2}(m_{0}+m_{1})}{4(m_{0}+m_{1}+m_{2})},
+\end{equation}
+\begin{equation}
+\begin{array}{cc}
+m_{31}= & \frac{2l_{0}l_{2}m_{0}m_{2}\cos(\varphi_{0}-q_{1}-q_{2})+4\theta_{2}m_{0}+4\theta_{2}m_{1}+4\theta_{2}m_{2}}{4(m_{0}+m_{1}+m_{2})}+\\
+ & \frac{l_{1}l_{2}m_{2}(2m_{0}+m_{1})\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})},
+\end{array}
+\end{equation}
+\begin{equation}
+m_{32}=\frac{4\theta_{2}(m_{0}+m_{1}+m_{2})+l_{1}l_{2}m_{2}(2m_{0}+m_{1})\cos(q_{2})+l_{2}^{2}m_{2}(m_{0}+m_{1})}{4(m_{0}+m_{1}+m_{2})},
+\end{equation}
+\begin{equation}
+m_{33}=\frac{4\theta_{2}(m_{0}+m_{1}+m_{2})+l_{2}^{2}m_{2}(m_{0}+m_{1})}{4(m_{0}+m_{1}+m_{2})}.
+\end{equation}
+
+A centripetális és Coriolis erõket tartalmazó vektor
+\begin{equation}
+\bm{C}=\left[\begin{array}{c}
+c_{1}\\
+c_{2}\\
+c_{3}
+\end{array}\right],
+\end{equation}
+ ahol
+\begin{equation}
+\begin{array}{cc}
+c_{1}= & -\frac{2l_{2}m_{2}\dot{q}_{2}\left(\dot{q}_{0}+\dot{q}_{1}\right)(l_{1}(2m_{0}+m_{1})\sin(q_{2})-2l_{0}m_{0}\sin(\varphi_{0}-q_{1}-q_{2}))}{4(m_{0}+m_{1}+m_{2})}+\\
+ & \frac{-2l_{0}m_{0}\dot{q}_{1}\left(2\dot{q}_{0}+\dot{q}_{1}\right)(l_{1}(m_{1}+2m_{2})\sin(\varphi_{0}-q_{1})+l_{2}m_{2}\sin(\varphi_{0}-q_{1}-q_{2}))}{4(m_{0}+m_{1}+m_{2})}+\\
+ & \frac{l_{2}m_{2}\dot{q}_{2}^{2}(l_{1}(2m_{0}+m_{1})\sin(q_{2})-2l_{0}m_{0}\sin(\varphi_{0}-q_{1}-q_{2}))}{4(m_{0}+m_{1}+m_{2})},
+\end{array}
+\end{equation}
+\begin{equation}
+\begin{array}{cc}
+c_{2}= & -\frac{2l_{0}m_{0}\dot{q}_{0}^{2}(l_{1}(m_{1}+2m_{2})\sin(\varphi_{0}-q_{1})+l_{2}m_{2}\sin(\varphi_{0}-q_{1}-q_{2}))}{4(m_{0}+m_{1}+m_{2})}\\
+ & \frac{+2l_{1}l_{2}m_{2}(2m_{0}+m_{1})\dot{q}_{0}\dot{q}_{2}\sin(q_{2})+l_{1}l_{2}m_{2}(2m_{0}+m_{1})\dot{q}_{2}\sin(q_{2})\left(2\dot{q}_{1}+\dot{q}_{2}\right)}{4(m_{0}+m_{1}+m_{2})}+
+\end{array}
+\end{equation}
+\begin{equation}
+\begin{array}{cc}
+c_{3}= & \frac{l_{2}m_{2}\dot{q}_{0}^{2}(l_{1}(2m_{0}+m_{1})\sin(q_{2})-2l_{0}m_{0}\sin(\varphi_{0}-q_{1}-q_{2}))}{4(m_{0}+m_{1}+m_{2})}+\\
+ & \frac{l_{2}m_{2}\left(2l_{1}(2m_{0}+m_{1})\dot{q}_{0}\dot{q}_{1}\sin(q_{2})+l_{1}(2m_{0}+m_{1})\dot{q}_{1}^{2}\sin(q_{2})\right)}{4(m_{0}+m_{1}+m_{2})}.
+\end{array}
+\end{equation}
 
 \end{document}

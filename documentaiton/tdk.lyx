@@ -22,7 +22,7 @@ Műszaki Mechanikai Tanszék}}
 \newcommand{\konzulensek}{%
 \hfill%
 \parbox[t]{6cm}{\normalsize Témavezető:\\
-\hspace*{3em}Zelei Ambrus\\
+\hspace*{3em}Dr. Zelei Ambrus\\
 \hspace*{3em}tudományos munkatárs}}
 
 
@@ -49,7 +49,7 @@ Műszaki Mechanikai Tanszék}}
 \fancyfoot[CE, CO]{\thepage}
 \fancyhead[RO]{\rightmark}
 \fancyhead[LE]{\leftmark}
-\renewcommand{\footrulewidth}{0.4pt}
+%\renewcommand{\footrulewidth}{0.4pt}
 \renewcommand{\sectionmark}[1]{\markright{\ \uppercase{#1}}}
 
 
@@ -166,11 +166,11 @@ BME
 \begin_inset Newline newline
 \end_inset
 
- Szakdolgozat címe
+ TDK dolgozat címe
 \begin_inset Newline newline
 \end_inset
 
- ALULAKTUÁLT RENDSZEREK SZABÁLYOZÁSI MÓDSZEREINEK ÖSSZEHASONLÍTÁSA
+ ALULAKTUÁLT ŰRBÉLI ROBOT SZABÁLYOZÁSI MÓDSZEREI
 \end_layout
 
 \begin_layout Author
@@ -217,7 +217,7 @@ konzulensek
 \begin_inset VSpace 4cm
 \end_inset
 
- Budapest, 2016
+ Budapest, 2017
 \end_layout
 
 \begin_layout Standard
@@ -280,7 +280,7 @@ szerzo
 
 \end_inset
 
-, 2016
+, 2017
 \end_layout
 
 \begin_layout Standard
@@ -365,8 +365,14 @@ A robot mozgásegyenletének felírása
 
 \begin_layout Standard
 Az űrbéli robot 2 dimenziós modellje egy robottestből és a hozzá kapcsolódó
- robotkarból épül fel.
- ÁBRA.
+ robotkarból épül fel (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Az-űrbéli-robot-felépítése"
+
+\end_inset
+
+ ábra).
  A robot két aktuátorral rendelkezik, melyek a robotkaron találhatók.
  A robot 3 rotációs szabadsági fokkal (mindhárom rész elfordulása), és 2
  transzlációs szabadsági fokkal (a robot 
@@ -378,6 +384,53 @@ Az űrbéli robot 2 dimenziós modellje egy robottestből és a hozzá kapcsoló
 \end_inset
 
  síkbeli pozíciója) rendelkezik.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/robot.eps
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Az űrbéli robot felépítése
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Az-űrbéli-robot-felépítése"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -642,7 +695,57 @@ status open
 \begin_layout Standard
 Ahhoz, hogy a közös súlyponthoz rögzített koordináta-rendszerből vizsgáljuk
  a rendszert, fel kell írnunk a közös súlypontból az egyes részek súlypontjaiba
- mutató helyvektorokat ÁBRA
+ mutató helyvektorokat a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:súlypont"
+
+\end_inset
+
+ ábrának megfelelően.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/robot_com.eps
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Az egyes részek súlypontjai és a közös súlypont
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:súlypont"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset Formula 
 \begin{equation}
 \begin{array}{c}
@@ -806,7 +909,14 @@ u_{2}
 \begin_inset Formula $\bm{C}$
 \end_inset
 
- mátrixok a REF találhatók.
+ mátrixok az 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:A-robot-mozgásegyenletének"
+
+\end_inset
+
+ függelékben találhatók.
 \end_layout
 
 \begin_layout Chapter
@@ -968,8 +1078,8 @@ ahol
 \begin{array}{cc}
 m_{11}= & \frac{4l_{0}l_{1}m_{0}(m_{1}+2m_{2})\cos(\varphi_{0}-q_{1})+4l_{0}l_{2}m_{0}m_{2}\cos(\varphi_{0}-q_{1}-q_{2})+4\theta_{0}m_{0}+4\theta_{0}m_{1}+4\theta_{0}m_{2}}{4(m_{0}+m_{1}+m_{2})}+\\
  & \frac{4\theta_{1}m_{0}+4\theta_{1}m_{1}+4\theta_{1}m_{2}+4\theta_{2}m_{0}+4\theta_{2}m_{1}+4\theta_{2}m_{2}+4l_{0}^{2}m_{0}m_{1}+4l_{0}^{2}m_{0}m_{2}+l_{1}^{2}m_{0}m_{1}}{4(m_{0}+m_{1}+m_{2})}+\\
- & \frac{4l_{1}^{2}m_{0}m_{2}+l_{1}^{2}m_{1}m_{2}+4l_{1}l_{2}m_{0}m_{2}\cos(q_{2})+2l_{1}l_{2}m_{1}m_{2}\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})}
-\end{array},
+ & \frac{4l_{1}^{2}m_{0}m_{2}+l_{1}^{2}m_{1}m_{2}+4l_{1}l_{2}m_{0}m_{2}\cos(q_{2})+2l_{1}l_{2}m_{1}m_{2}\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})},
+\end{array}
 \end{equation}
 
 \end_inset
@@ -980,8 +1090,8 @@ m_{11}= & \frac{4l_{0}l_{1}m_{0}(m_{1}+2m_{2})\cos(\varphi_{0}-q_{1})+4l_{0}l_{2
 \begin{array}{cc}
 m_{12}= & \frac{2l_{0}l_{1}m_{0}(m_{1}+2m_{2})\cos(\varphi_{0}-q_{1})+2l_{0}l_{2}m_{0}m_{2}\cos(\varphi_{0}-q_{1}-q_{2})+4\theta_{1}m_{0}}{4(m_{0}+m_{1}+m_{2})}+\\
  & \frac{4\theta_{1}m_{1}+4\theta_{1}m_{2}+4\theta_{2}m_{0}+4\theta_{2}m_{1}+4\theta_{2}m_{2}+l_{1}^{2}m_{0}m_{1}+4l_{1}^{2}m_{0}m_{2}+}{4(m_{0}+m_{1}+m_{2})}+\\
- & \frac{l_{1}^{2}m_{1}m_{2}+4l_{1}l_{2}m_{0}m_{2}\cos(q_{2})+2l_{1}l_{2}m_{1}m_{2}\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})}
-\end{array},
+ & \frac{l_{1}^{2}m_{1}m_{2}+4l_{1}l_{2}m_{0}m_{2}\cos(q_{2})+2l_{1}l_{2}m_{1}m_{2}\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})},
+\end{array}
 \end{equation}
 
 \end_inset
@@ -991,8 +1101,8 @@ m_{12}= & \frac{2l_{0}l_{1}m_{0}(m_{1}+2m_{2})\cos(\varphi_{0}-q_{1})+2l_{0}l_{2
 \begin{equation}
 \begin{array}{cc}
 m_{13}= & \frac{2l_{0}l_{2}m_{0}m_{2}\cos(\varphi_{0}-q_{1}-q_{2})+4\theta_{2}m_{0}+4\theta_{2}m_{1}+4\theta_{2}m_{2}}{4(m_{0}+m_{1}+m_{2})}+\\
- & \frac{l_{1}l_{2}m_{2}(2m_{0}+m_{1})\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})}
-\end{array},
+ & \frac{l_{1}l_{2}m_{2}(2m_{0}+m_{1})\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})},
+\end{array}
 \end{equation}
 
 \end_inset
@@ -1003,8 +1113,8 @@ m_{13}= & \frac{2l_{0}l_{2}m_{0}m_{2}\cos(\varphi_{0}-q_{1}-q_{2})+4\theta_{2}m_
 \begin{array}{cc}
 m_{21}= & \frac{2l_{0}l_{1}m_{0}(m_{1}+2m_{2})\cos(\varphi_{0}-q_{1})+2l_{0}l_{2}m_{0}m_{2}\cos(\varphi_{0}-q_{1}-q_{2})+4\theta_{1}m_{0}}{4(m_{0}+m_{1}+m_{2})}+\\
  & \frac{4\theta_{1}m_{1}+4\theta_{1}m_{2}+4\theta_{2}m_{0}+4\theta_{2}m_{1}+4\theta_{2}m_{2}+l_{1}^{2}m_{0}m_{1}+4l_{1}^{2}m_{0}m_{2}+}{4(m_{0}+m_{1}+m_{2})}+\\
- & \frac{l_{1}^{2}m_{1}m_{2}+4l_{1}l_{2}m_{0}m_{2}\cos(q_{2})+2l_{1}l_{2}m_{1}m_{2}\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})}
-\end{array},
+ & \frac{l_{1}^{2}m_{1}m_{2}+4l_{1}l_{2}m_{0}m_{2}\cos(q_{2})+2l_{1}l_{2}m_{1}m_{2}\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})},
+\end{array}
 \end{equation}
 
 \end_inset
@@ -1014,8 +1124,8 @@ m_{21}= & \frac{2l_{0}l_{1}m_{0}(m_{1}+2m_{2})\cos(\varphi_{0}-q_{1})+2l_{0}l_{2
 \begin{equation}
 \begin{array}{cc}
 m_{22}= & \frac{4\theta_{1}(m_{0}+m_{1}+m_{2})+4\theta_{2}m_{0}+4\theta_{2}m_{1}+4\theta_{2}m_{2}+l_{1}^{2}m_{0}m_{1}4l_{1}^{2}m_{0}m_{2}}{4(m_{0}+m_{1}+m_{2})}+\\
- & \frac{l_{1}^{2}m_{1}m_{2}+2l_{1}l_{2}m_{2}(2m_{0}+m_{1})\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})}
-\end{array},
+ & \frac{l_{1}^{2}m_{1}m_{2}+2l_{1}l_{2}m_{2}(2m_{0}+m_{1})\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})},
+\end{array}
 \end{equation}
 
 \end_inset
@@ -1033,8 +1143,8 @@ m_{23}=\frac{4\theta_{2}(m_{0}+m_{1}+m_{2})+l_{1}l_{2}m_{2}(2m_{0}+m_{1})\cos(q_
 \begin{equation}
 \begin{array}{cc}
 m_{31}= & \frac{2l_{0}l_{2}m_{0}m_{2}\cos(\varphi_{0}-q_{1}-q_{2})+4\theta_{2}m_{0}+4\theta_{2}m_{1}+4\theta_{2}m_{2}}{4(m_{0}+m_{1}+m_{2})}+\\
- & \frac{l_{1}l_{2}m_{2}(2m_{0}+m_{1})\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})}
-\end{array},
+ & \frac{l_{1}l_{2}m_{2}(2m_{0}+m_{1})\cos(q_{2})+l_{2}^{2}m_{0}m_{2}+l_{2}^{2}m_{1}m_{2}}{4(m_{0}+m_{1}+m_{2})},
+\end{array}
 \end{equation}
 
 \end_inset
@@ -1051,6 +1161,56 @@ m_{32}=\frac{4\theta_{2}(m_{0}+m_{1}+m_{2})+l_{1}l_{2}m_{2}(2m_{0}+m_{1})\cos(q_
 \begin_inset Formula 
 \begin{equation}
 m_{33}=\frac{4\theta_{2}(m_{0}+m_{1}+m_{2})+l_{2}^{2}m_{2}(m_{0}+m_{1})}{4(m_{0}+m_{1}+m_{2})}.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A centripetális és Coriolis erőket tartalmazó vektor
+\begin_inset Formula 
+\begin{equation}
+\bm{C}=\left[\begin{array}{c}
+c_{1}\\
+c_{2}\\
+c_{3}
+\end{array}\right],
+\end{equation}
+
+\end_inset
+
+ ahol
+\begin_inset Formula 
+\begin{equation}
+\begin{array}{cc}
+c_{1}= & -\frac{2l_{2}m_{2}\dot{q}_{2}\left(\dot{q}_{0}+\dot{q}_{1}\right)(l_{1}(2m_{0}+m_{1})\sin(q_{2})-2l_{0}m_{0}\sin(\varphi_{0}-q_{1}-q_{2}))}{4(m_{0}+m_{1}+m_{2})}+\\
+ & \frac{-2l_{0}m_{0}\dot{q}_{1}\left(2\dot{q}_{0}+\dot{q}_{1}\right)(l_{1}(m_{1}+2m_{2})\sin(\varphi_{0}-q_{1})+l_{2}m_{2}\sin(\varphi_{0}-q_{1}-q_{2}))}{4(m_{0}+m_{1}+m_{2})}+\\
+ & \frac{l_{2}m_{2}\dot{q}_{2}^{2}(l_{1}(2m_{0}+m_{1})\sin(q_{2})-2l_{0}m_{0}\sin(\varphi_{0}-q_{1}-q_{2}))}{4(m_{0}+m_{1}+m_{2})},
+\end{array}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\begin{array}{cc}
+c_{2}= & -\frac{2l_{0}m_{0}\dot{q}_{0}^{2}(l_{1}(m_{1}+2m_{2})\sin(\varphi_{0}-q_{1})+l_{2}m_{2}\sin(\varphi_{0}-q_{1}-q_{2}))}{4(m_{0}+m_{1}+m_{2})}\\
+ & \frac{+2l_{1}l_{2}m_{2}(2m_{0}+m_{1})\dot{q}_{0}\dot{q}_{2}\sin(q_{2})+l_{1}l_{2}m_{2}(2m_{0}+m_{1})\dot{q}_{2}\sin(q_{2})\left(2\dot{q}_{1}+\dot{q}_{2}\right)}{4(m_{0}+m_{1}+m_{2})}+
+\end{array}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\begin{array}{cc}
+c_{3}= & \frac{l_{2}m_{2}\dot{q}_{0}^{2}(l_{1}(2m_{0}+m_{1})\sin(q_{2})-2l_{0}m_{0}\sin(\varphi_{0}-q_{1}-q_{2}))}{4(m_{0}+m_{1}+m_{2})}+\\
+ & \frac{l_{2}m_{2}\left(2l_{1}(2m_{0}+m_{1})\dot{q}_{0}\dot{q}_{1}\sin(q_{2})+l_{1}(2m_{0}+m_{1})\dot{q}_{1}^{2}\sin(q_{2})\right)}{4(m_{0}+m_{1}+m_{2})}.
+\end{array}
 \end{equation}
 
 \end_inset
