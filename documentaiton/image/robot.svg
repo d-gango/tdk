@@ -317,7 +317,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="341.74258"
+     inkscape:cx="131.02829"
      inkscape:cy="372.03115"
      inkscape:document-units="px"
      inkscape:current-layer="g6839"
@@ -336,7 +336,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -565,12 +565,6 @@
    style="font-size:64.99999762%;baseline-shift:sub"
    id="tspan4195-7-1">2</tspan></tspan></text>
         </g>
-        <path
-           sodipodi:nodetypes="cc"
-           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           d="M 186.92676,929.16707 314.19942,837.88405"
-           id="path4150-2-4-2"
-           inkscape:connector-curvature="0" />
         <ellipse
            ry="3.9081981"
            rx="3.9242117"
@@ -579,40 +573,6 @@
            style="opacity:1;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.84107804;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
            id="path4152-0-7"
            transform="matrix(0.98493644,-0.17291679,0.17438246,0.984678,0,0)" />
-        <path
-           sodipodi:nodetypes="cc"
-           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           d="m 187.07581,929.77576 c 49.68612,-8.76101 99.37225,-17.52201 149.05837,-26.28302"
-           id="path4150-2-4"
-           inkscape:connector-curvature="0" />
-        <path
-           d="m 287.43258,862.4404 a 121.48066,121.48066 0 0 1 18.92307,46.83623"
-           sodipodi:open="true"
-           sodipodi:end="6.1086524"
-           sodipodi:start="5.6897734"
-           sodipodi:ry="121.48066"
-           sodipodi:rx="121.48066"
-           sodipodi:cy="930.37152"
-           sodipodi:cx="186.72055"
-           sodipodi:type="arc"
-           id="path5267"
-           style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#marker6218)" />
-        <text
-           sodipodi:linespacing="125%"
-           id="text6151-9-8-7-2-8-2-0-0-3-3-8"
-           y="896.12701"
-           x="259.04031"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.85375977px;line-height:125%;font-family:'Latin Modern Math';-inkscape-font-specification:'Latin Modern Math';letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           xml:space="preserve"><tspan
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:cmmi10;-inkscape-font-specification:cmmi10;fill:#333333;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none"
-             y="896.12701"
-             x="259.04031"
-             id="tspan6153-5-39-2-5-7-8-9-0-5-6-1"
-             sodipodi:role="line"><tspan
-               id="tspan6651"
-               style="-inkscape-font-specification:'Latin Modern Math';font-family:'Latin Modern Math';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal">φ</tspan><tspan
-               style="font-size:64.99999762%;baseline-shift:sub"
-               id="tspan4195-7-3">0</tspan></tspan></text>
         <text
            sodipodi:linespacing="125%"
            id="text6151-9-8-7-2-8-2-0-0-3-0"
