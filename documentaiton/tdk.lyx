@@ -394,6 +394,284 @@ A második szabályozási módszer a Wen-Bayard szabályozó algoritmuson alapsz
 A szabályozási módszerek bemutatása
 \end_layout
 
+\begin_layout Section
+Analitikus megoldás Laplace transzformációval
+\end_layout
+
+\begin_layout Standard
+A szabályozó bemutatása néhány módosítással 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gango2016"
+
+\end_inset
+
+ forrásból került átvételre..
+\end_layout
+
+\begin_layout Standard
+Tegyük fel, hogy egy 
+\begin_inset Formula $n$
+\end_inset
+
+ szabadságfokú rendszer mozgásegyenlete lineáris az általános koordináták
+ 
+\begin_inset Formula $\bm{q}(t)$
+\end_inset
+
+ vektorára , és annak első és második idő szerinti deriváltjaira, 
+\begin_inset Formula $\dot{\bm{q}}(t)$
+\end_inset
+
+-re és 
+\begin_inset Formula $\ddot{\bm{q}}(t)$
+\end_inset
+
+-re nézve.
+ Ekkor a mozgásegyenlet felírható 
+\begin_inset Formula 
+\begin{equation}
+\bm{M}\ddot{\bm{q}}+\bm{B}\dot{\bm{q}}+\bm{Kq}+\bm{G}=\bm{Hu}\label{eq:lin-mozgasegyenlet}
+\end{equation}
+
+\end_inset
+
+alakban, ahol 
+\begin_inset Formula $\bm{M}\in\mathbb{R}^{n\times n}$
+\end_inset
+
+ a rendszer tömegmátrixa, 
+\begin_inset Formula $\bm{B}\in\mathbb{R}^{n\times n}$
+\end_inset
+
+ a rendszer csillapításait tartalmazó mátrix, 
+\begin_inset Formula $\bm{K}\in\mathbb{R}^{n\times n}$
+\end_inset
+
+ a rendszer merevségi mátrixa, 
+\begin_inset Formula $\bm{G}\in\mathbb{R}^{n}$
+\end_inset
+
+ a rendszerre ható gravitációs erők vektora, 
+\begin_inset Formula $\bm{H}\in\mathbb{R}^{n\times m}$
+\end_inset
+
+ a rendszer bemeneti mátrixa, 
+\begin_inset Formula $\bm{u}\in\mathbb{R}^{m}$
+\end_inset
+
+ a rendszerre ható bemenetek vektora.
+ Írjuk elő, hogy a rendszer aktuátorainak száma legyen kevesebb a szabadságfokok
+ számánál (
+\begin_inset Formula $m<n$
+\end_inset
+
+), ezáltal a rendszer alulaktuálttá válik.
+\end_layout
+
+\begin_layout Standard
+A rendszer mozgásának előírásához vezessünk be egy ún.
+ szervo-kényszert:
+\begin_inset Formula 
+\begin{equation}
+\bm{\sigma}(\bm{q},t)=\bm{f}(\bm{q},t)-\bm{y}_{d}(t)=0,\label{eq:szervo}
+\end{equation}
+
+\end_inset
+
+ahol 
+\begin_inset Formula $\bm{f}(\bm{q},t)\in\mathbb{R}^{m}$
+\end_inset
+
+ egy tetszőleges függvény, 
+\begin_inset Formula $\bm{y}_{d}(\bm{q},t)\in\mathbb{R}^{m}$
+\end_inset
+
+ pedig 
+\begin_inset Formula $\bm{f}$
+\end_inset
+
+ előírt értéke.
+ Ahhoz, hogy a Laplace transzformációt alkalmazhassuk, írjuk fel 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:szervo"
+
+\end_inset
+
+ szervo-kényszert egy köttebb, lineáris alakban:
+\begin_inset Formula 
+\begin{equation}
+\boldsymbol{\sigma}(\bm{q},t)=\bm{Aq}(t)-\bm{y}_{d}(t)=\mathbf{0}\label{eq:szervo-lin}
+\end{equation}
+
+\end_inset
+
+alakban.
+\end_layout
+
+\begin_layout Standard
+Ezek után állítsuk elő 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:lin-mozgasegyenlet"
+
+\end_inset
+
+ és 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:szervo-lin"
+
+\end_inset
+
+ egyenletek Laplace-transzformáltját : 
+\begin_inset Formula 
+\begin{equation}
+\begin{array}{rcl}
+(\bm{M}s^{2}+\bm{B}s+\bm{K})\bm{Q}(s)-\dot{\bm{q}}_{0}-s\bm{q}_{0}-\bm{q}_{0}+\bm{G} & = & \bm{HU}(s),\\
+\bm{AQ}(s)+\bm{Y}_{d}(s) & = & \mathbf{0},
+\end{array}
+\end{equation}
+
+\end_inset
+
+ahol 
+\begin_inset Formula $\bm{Q}(s)$
+\end_inset
+
+ az általános koordináták, 
+\begin_inset Formula $\bm{U}(s)$
+\end_inset
+
+ a beavatkozó erők, 
+\begin_inset Formula $\bm{Y}_{d}(s)$
+\end_inset
+
+ az előírt pálya Laplace-transzformáltja, 
+\begin_inset Formula $\bm{q}$
+\end_inset
+
+ és 
+\begin_inset Formula $\dot{\bm{q}}_{0}$
+\end_inset
+
+ a rendszer általános koordinátáinak és azok deriváltjának a 
+\begin_inset Formula $t=0$
+\end_inset
+
+ időpillanatban vett kezdeti értékei.
+ Az így kapott lineáris egyenletrendszert
+\begin_inset Formula 
+\begin{equation}
+\left[\begin{array}{cc}
+(\bm{M}s^{2}+\bm{B}s+\bm{K}) & -\bm{H}\\
+\bm{A} & \bm{0}
+\end{array}\right]\left[\begin{array}{c}
+\bm{Q}(s)\\
+\bm{U}(s)
+\end{array}\right]=\left[\begin{array}{c}
+\dot{\bm{q}}_{0}+s\bm{q}_{0}+\bm{q}_{0}-\bm{G}\\
+-\bm{Y}_{d}(s)
+\end{array}\right]
+\end{equation}
+
+\end_inset
+
+hipermátrixos alakba rendezve, amennyiben a hipermátrix invertálható, megoldást
+ kapunk 
+\begin_inset Formula $\bm{Q}(s)$
+\end_inset
+
+-ra és 
+\begin_inset Formula $\bm{U}(s)$
+\end_inset
+
+-ra.
+ A megoldások inverz Laplace transzformációját elvégezve megkapjuk a rendszer
+ által leírt 
+\begin_inset Formula $\bm{q}(t)=\bm{y}_{d}(t)$
+\end_inset
+
+ pályát, és a pálya kövezéséhez szükséges 
+\begin_inset Formula $\bm{u}(t)$
+\end_inset
+
+ beavatkozó erőt.
+ A kapott 
+\begin_inset Formula $\bm{u}$
+\end_inset
+
+ beavatkozó erő azonban csak akkor tartja az előírt 
+\begin_inset Formula $\bm{y}_{d}$
+\end_inset
+
+ pályán a rendszert, ha a rendszer kezdeti 
+\begin_inset Formula $\bm{q}_{0}$
+\end_inset
+
+ állapota és annak 
+\begin_inset Formula $\dot{\bm{q}}_{0}$
+\end_inset
+
+ deriváltja rendre megegyezik 
+\begin_inset Formula $\bm{y}_{d}$
+\end_inset
+
+ és 
+\begin_inset Formula $\dot{\bm{y}}_{d}$
+\end_inset
+
+ 
+\begin_inset Formula $t=0$
+\end_inset
+
+ időpontban vett értékével.
+\end_layout
+
+\begin_layout Standard
+Ahhoz, hogy a rendszer tetszőleges kezdeti értékekkel is az előírt pályát
+ kövesse, ki kell egészítenünk egy PD szabályozóval.
+ Ehhez elő kell állítanunk a rendszer pályakövetési hibáját:
+\begin_inset Formula 
+\begin{equation}
+\bm{e}=\bm{y}_{d}-\bm{q},
+\end{equation}
+
+\end_inset
+
+és annak idő szerinti deriváltját:
+\begin_inset Formula 
+\begin{equation}
+\dot{\bm{e}}=\dot{\bm{y}}_{d}-\dot{\bm{q}},
+\end{equation}
+
+\end_inset
+
+melyekből kiszámíthatjuk a rendszerre beavatkozó erőinek új vektorát az
+ alábbi módon:
+\begin_inset Formula 
+\[
+\hat{\bm{u}}(t)=\bm{u}(t)+\bm{Pe}(t)+\bm{D}\dot{\bm{e}}(t).
+\]
+
+\end_inset
+
+ Megfelelően megválasztott 
+\begin_inset Formula $\bm{P}=\text{diag}(p_{1},p_{2},\ldots,p_{m}),\,p_{i}>0$
+\end_inset
+
+ és 
+\begin_inset Formula $\bm{D}=\text{diag}(d_{1},d_{2},\ldots,d_{m}),\,d_{i}>0$
+\end_inset
+
+ mátrixokkal a rendszer véges időn belül beáll az előírt 
+\begin_inset Formula $\bm{y}_{d}$
+\end_inset
+
+ pályára.
+\end_layout
+
 \begin_layout Chapter
 A robot mozgásegyenletének felírása
 \end_layout
