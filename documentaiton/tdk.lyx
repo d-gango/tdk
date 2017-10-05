@@ -406,7 +406,7 @@ key "Gango2016"
 
 \end_inset
 
- forrásból került átvételre..
+ forrásból került átvételre.
 \end_layout
 
 \begin_layout Standard
@@ -651,18 +651,26 @@ Ahhoz, hogy a rendszer tetszőleges kezdeti értékekkel is az előírt pályát
 melyekből kiszámíthatjuk a rendszerre beavatkozó erőinek új vektorát az
  alábbi módon:
 \begin_inset Formula 
-\[
-\hat{\bm{u}}(t)=\bm{u}(t)+\bm{Pe}(t)+\bm{D}\dot{\bm{e}}(t).
-\]
+\begin{equation}
+\hat{\bm{u}}(t)=\bm{u}(t)+\bm{Pe}(t)+\bm{D}\dot{\bm{e}}(t).\label{eq:input-vector}
+\end{equation}
 
 \end_inset
 
  Megfelelően megválasztott 
-\begin_inset Formula $\bm{P}=\text{diag}(p_{1},p_{2},\ldots,p_{m}),\,p_{i}>0$
+\begin_inset Formula 
+\begin{equation}
+\bm{P}=\text{diag}\left\{ (p_{i})\right\} ,\,p_{i}>0,\,i=1,\ldots,m,
+\end{equation}
+
 \end_inset
 
- és 
-\begin_inset Formula $\bm{D}=\text{diag}(d_{1},d_{2},\ldots,d_{m}),\,d_{i}>0$
+ 
+\begin_inset Formula 
+\begin{equation}
+\bm{D}=\text{diag}\left\{ (d_{i})\right\} ,\,d_{i}>0,\,i=1,\ldots,m
+\end{equation}
+
 \end_inset
 
  mátrixokkal a rendszer véges időn belül beáll az előírt 
@@ -670,6 +678,127 @@ melyekből kiszámíthatjuk a rendszerre beavatkozó erőinek új vektorát az
 \end_inset
 
  pályára.
+\end_layout
+
+\begin_layout Standard
+Könnyen látható, hogy 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:input-vector"
+
+\end_inset
+
+ egyenlet két részből épül fel.
+ Az 
+\begin_inset Formula $\bm{u}(t)$
+\end_inset
+
+ tag, ami a pályán való haladást biztosítja, valójában egy referenciajel,
+ a 
+\begin_inset Formula $\bm{Pe}(t)+\bm{D}\dot{\bm{e}}(t)$
+\end_inset
+
+ tagok pedig a hibák korrigálásáért felelnek.
+\end_layout
+
+\begin_layout Section
+Wen-Bayard szabályozó
+\end_layout
+
+\begin_layout Standard
+Az itt bemutatott szabályozó 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "mazur1996universal,Gango2016"
+
+\end_inset
+
+ eredetileg nem alulaktuált rendszerek irányítására lett kifejlesztve, de
+ ahogy később REF-ben láthatjuk, kiegészíthető úgy, hogy bizonyos alulaktuált
+ rendszerekhez is alkalmazható legyen.
+\end_layout
+
+\begin_layout Standard
+A szabályozó alapgondolata, hogy az előírt 
+\begin_inset Formula $\bm{y}_{d}=\bm{q}_{d}$
+\end_inset
+
+ pályát a mozgásegyenletbe behelyettesítve állítjuk elő a beavatkozó erők
+ alapjelét,
+\begin_inset Formula 
+\begin{equation}
+\bm{u}=\bm{M}(\bm{q}_{d})\ddot{\bm{q}}_{d}+\bm{C}(\dot{\bm{q}}_{d},\bm{q}_{d})\dot{\bm{q}}_{d}+\bm{G}(\bm{q}).\label{eq:wen-bayard}
+\end{equation}
+
+\end_inset
+
+ 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:input-vector"
+
+\end_inset
+
+ egyenlethez hasonlóan, 
+\begin_inset Formula 
+\begin{equation}
+\bm{e}=\bm{q}_{d}-\bm{q},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\dot{\bm{e}}=\dot{\bm{q}}_{d}-\dot{\bm{q}}
+\end{equation}
+
+\end_inset
+
+hibavektorokat bevezetve 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:wen-bayard"
+
+\end_inset
+
+ is kiegészíthető egy korrigáló PD szabályozóval:
+\begin_inset Formula 
+\begin{equation}
+\hat{\bm{u}}=\bm{M}(\bm{q}_{d})\ddot{\bm{q}}_{d}+\bm{C}(\dot{\bm{q}}_{d},\bm{q}_{d})\dot{\bm{q}}_{d}+\bm{G}(\bm{q})+\bm{Pe}(t)+\bm{D}\dot{\bm{e}}(t).\label{eq:wen-bayard-pd}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Fontos megjegyezni, hogy alulaktuált rendszereknél 
+\begin_inset Formula $m$
+\end_inset
+
+ beavatkozó esetén 
+\begin_inset Formula $m$
+\end_inset
+
+ kényszer írható elő, ami kevesebb, mint a 
+\begin_inset Formula $\bm{q}$
+\end_inset
+
+ vektor 
+\begin_inset Formula $n$
+\end_inset
+
+ dimenziója.
+ Következésképp alulaktuált rendszerek szabályozására 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:wen-bayard-pd"
+
+\end_inset
+
+ önmagában nem alkalmazható.
 \end_layout
 
 \begin_layout Chapter
