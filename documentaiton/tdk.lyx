@@ -762,7 +762,7 @@ reference "eq:wen-bayard"
 
 \end_inset
 
- is kiegészíthető egy korrigáló PD szabályozóval:
+ is kiegészíthető egy korrigáló PD szabályozóval,
 \begin_inset Formula 
 \begin{equation}
 \hat{\bm{u}}=\bm{M}(\bm{q}_{d})\ddot{\bm{q}}_{d}+\bm{C}(\dot{\bm{q}}_{d},\bm{q}_{d})\dot{\bm{q}}_{d}+\bm{G}(\bm{q})+\bm{Pe}(t)+\bm{D}\dot{\bm{e}}(t).\label{eq:wen-bayard-pd}
@@ -802,7 +802,7 @@ reference "eq:wen-bayard-pd"
 \end_layout
 
 \begin_layout Chapter
-A robot mozgásegyenletének felírása
+Az űrbéli robot mozgásegyenletének felírása
 \end_layout
 
 \begin_layout Standard
@@ -1456,76 +1456,8 @@ A különálló részek súlypontjába mutató helyvektorokból kiszámítható 
  közös súlypontja
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{r}_{S}=\frac{m_{0}\boldsymbol{r}_{0}+m_{1}\boldsymbol{r}_{1}+m_{2}\boldsymbol{r}_{2}}{m_{0}+m_{1}+m_{2}},
+\boldsymbol{r}_{S}=\frac{m_{0}\boldsymbol{r}_{0}+m_{1}\boldsymbol{r}_{1}+m_{2}\boldsymbol{r}_{2}}{m_{0}+m_{1}+m_{2}}.
 \end{equation}
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-resizebox{
-\backslash
-textwidth}{!}{%
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-tiny%
-\end_layout
-
-\end_inset
-
-
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
-status open
-
-\begin_layout Plain Layout
-\begin_inset Formula 
-\begin{equation}
-\bm{r}_{S}=\left[\begin{array}{c}
-\frac{2l_{0}(m_{1}+m_{2})\cos(\varphi_{0}+q_{0})+l_{1}m_{1}\cos(q_{0}+q_{1})+2l_{1}m_{2}\cos(q_{0}+q_{1})+l_{2}m_{2}\cos(q_{0}+q_{1}+q_{2})+2x_{0}(m_{0}+m_{1}+m_{2})}{2(m_{0}+m_{1}+m_{2})}\\
-\frac{2l_{0}(m_{1}+m_{2})\sin(\varphi_{0}+q_{0})+l_{1}m_{1}\sin(q_{0}+q_{1})+2l_{1}m_{2}\sin(q_{0}+q_{1})+l_{2}m_{2}\sin(q_{0}+q_{1}+q_{2})+2y_{0}(m_{0}+m_{1}+m_{2})}{2(m_{0}+m_{1}+m_{2})}
-\end{array}\right].
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-}
-\end_layout
 
 \end_inset
 
@@ -1757,6 +1689,263 @@ reference "chap:A-robot-mozgásegyenletének"
 \end_inset
 
  függelékben találhatók.
+\end_layout
+
+\begin_layout Chapter
+A rendszer relatív foka
+\end_layout
+
+\begin_layout Section
+Definíció
+\end_layout
+
+\begin_layout Standard
+Az ún.
+ relatív fok (relative degree) fontos szerepet játszik a nemlineáris rendszerek
+ szabályozásában.
+ Használatával leírhatjuk a bemenetek és kimenetek közt fellépő kapcsolatot.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "bencsik2017dynamic,hangos2006analysis"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A relatív fok definiálásához vegyünk egy általános egy bemenetű, egy kimenetű
+ (SISO) rendszert:
+\begin_inset Formula 
+\begin{equation}
+\dot{\bm{x}}=\bm{f}(\bm{x})+\bm{g}(\bm{x})u,\label{eq:rel-deg-xdot}
+\end{equation}
+
+\end_inset
+
+ahol 
+\begin_inset Formula $\bm{x}=\left[\bm{q}\,\dot{\bm{q}}\right]^{\mathrm{T}},\,\bm{x}\in\mathbb{R}^{2n}$
+\end_inset
+
+ a rendszer állapotvektora.
+ A rendszer kimenete pedig legyen
+\begin_inset Formula 
+\begin{equation}
+y=h(\bm{x}).\label{eq:rel-deg-output}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ha a rendszer kimenetét 
+\begin_inset Formula $r$
+\end_inset
+
+-szer differenciáljuk az idő szerint addig, amíg az 
+\begin_inset Formula $u$
+\end_inset
+
+ bemenet explicit módon meg nem jelenik a kifejezésben, akkor 
+\begin_inset Formula $r$
+\end_inset
+
+ a rendszer bemenete és kimenete közti relatív fok.
+ Behelyettesítve 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:rel-deg-xdot"
+
+\end_inset
+
+ egyenletet, 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:rel-deg-output"
+
+\end_inset
+
+ idő szerinti deriváltja a következő:
+\begin_inset Formula 
+\begin{equation}
+\frac{dy}{dt}=\frac{\partial h(\bm{x})}{\partial\bm{x}}\dot{\bm{x}}=\frac{\partial h(\bm{x})}{\partial\bm{x}}\bm{f}(\bm{x})+\frac{\partial h(\bm{x})}{\partial\bm{x}}\bm{g}(\bm{x})u.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A jelölések egyszerűsítésének érdekében vezessük be az ún.
+ Lie-derivált fogalmát:
+\begin_inset Formula 
+\[
+\frac{\partial h(\bm{x})}{\partial\bm{x}}\bm{f}(\bm{x})=L_{f}h.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A következőkben számítsuk ki a kimenet 
+\begin_inset Formula $k.$
+\end_inset
+
+ idő szerinti deriváltját 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "hangos2006analysis"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=0$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+y=h(\bm{x})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=1$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{dy}{dt}=\frac{\partial h(\bm{x})}{\partial\bm{x}}\dot{\bm{x}}=\frac{\partial h(\bm{x})}{\partial\bm{x}}(\bm{f}(\bm{x})+\bm{g}(\bm{x})u)=L_{f}h+L_{g}h\cdot u
+\]
+
+\end_inset
+
+Feltételezzük, hogy 
+\begin_inset Formula $L_{g}h=0$
+\end_inset
+
+, így 
+\begin_inset Formula $\dot{y}=L_{f}h$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=2$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{d^{2}y}{dt^{2}}==\frac{\partial(L_{f}h)}{\partial\bm{x}}(\bm{f}(\bm{x})+\bm{g}(\bm{x})u)=L_{f}^{2}h+L_{g}L_{f}h\cdot u
+\]
+
+\end_inset
+
+Ha 
+\begin_inset Formula $L_{g}L_{f}h\neq0$
+\end_inset
+
+, akkor 
+\begin_inset Formula $r=2$
+\end_inset
+
+, ellenkező esetben folytatjuk a differenciálást, amíg a feltétel nem teljesül.
+\end_layout
+
+\begin_layout Standard
+A relatív fok általános definíciója tehát a következő 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "hangos2006analysis"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+Egy nemlineáris, egy bemenetű, egy kimenetű (SISO) rendszer
+\begin_inset Formula 
+\begin{align*}
+\dot{\bm{x}} & =\bm{f}(\bm{x})+\bm{g}(\bm{x})u\\
+y & =h(\bm{x})
+\end{align*}
+
+\end_inset
+
+relatív foka 
+\begin_inset Formula $r$
+\end_inset
+
+ az 
+\begin_inset Formula $\bm{x}^{0}$
+\end_inset
+
+ pontban, ha
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $L_{g}L_{f}^{k}h(\bm{x})=0$
+\end_inset
+
+ minden 
+\begin_inset Formula $\bm{x}$
+\end_inset
+
+-re az 
+\begin_inset Formula $\bm{x}^{0}$
+\end_inset
+
+ pont környezetében minden 
+\begin_inset Formula $k$
+\end_inset
+
+-ra úgy, hogy 
+\begin_inset Formula $k<r-1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $L_{g}L_{f}^{r-1}h(\bm{x}^{0})\neq0.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Fontos megjegyezni, hogy a relatív fok értelmezhető több bemenetű, több
+ kimenetű (MIMO) rendszerekre is.
+ Ekkor a relatív fokokat páronként, az összes lehetséges bemenet-kimenet
+ kombinációra számítjuk 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "hangos2006analysis"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Az űrbéli robot relatív fokai
 \end_layout
 
 \begin_layout Chapter
