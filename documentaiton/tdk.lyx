@@ -1637,7 +1637,7 @@ reference "lagrange"
  írható fel:
 \begin_inset Formula 
 \begin{equation}
-\bm{M}(\bm{q})\ddot{\bm{q}}+\bm{C}(\bm{q},\dot{\bm{q}})=\bm{Hu},
+\bm{M}(\bm{q})\ddot{\bm{q}}+\bm{C}(\bm{q},\dot{\bm{q}})=\bm{Hu},\label{eq:eq-of-motion}
 \end{equation}
 
 \end_inset
@@ -1725,7 +1725,7 @@ A relatív fok definiálásához vegyünk egy általános egy bemenetű, egy kim
 \end_inset
 
 ahol 
-\begin_inset Formula $\bm{x}=\left[\bm{q}\,\dot{\bm{q}}\right]^{\mathrm{T}},\,\bm{x}\in\mathbb{R}^{2n}$
+\begin_inset Formula $\bm{x}=\left[\bm{q},\,\dot{\bm{q}}\right]^{\mathrm{T}},\,\bm{x}\in\mathbb{R}^{2n}$
 \end_inset
 
  a rendszer állapotvektora.
@@ -1783,9 +1783,9 @@ reference "eq:rel-deg-output"
 A jelölések egyszerűsítésének érdekében vezessük be az ún.
  Lie-derivált fogalmát:
 \begin_inset Formula 
-\[
+\begin{equation}
 \frac{\partial h(\bm{x})}{\partial\bm{x}}\bm{f}(\bm{x})=L_{f}h.
-\]
+\end{equation}
 
 \end_inset
 
@@ -1793,11 +1793,12 @@ A jelölések egyszerűsítésének érdekében vezessük be az ún.
 \end_layout
 
 \begin_layout Standard
-A következőkben számítsuk ki a kimenet 
-\begin_inset Formula $k.$
+A következőkben számítsuk ki a kimenet idő szerinti deriváltjait, és vezessük
+ be a 
+\begin_inset Formula $k$
 \end_inset
 
- idő szerinti deriváltját 
+ indexet, melynek szerepét később a definícióban láthatjuk 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "hangos2006analysis"
@@ -1808,14 +1809,11 @@ key "hangos2006analysis"
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $k=0$
-\end_inset
-
-:
+a kimenet (nulladik derivált)
 \begin_inset Formula 
-\[
+\begin{equation}
 y=h(\bm{x})
-\]
+\end{equation}
 
 \end_inset
 
@@ -1823,14 +1821,15 @@ y=h(\bm{x})
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $k=1$
+első derivált,
+\begin_inset Formula $k=0$
 \end_inset
 
 
 \begin_inset Formula 
-\[
+\begin{equation}
 \frac{dy}{dt}=\frac{\partial h(\bm{x})}{\partial\bm{x}}\dot{\bm{x}}=\frac{\partial h(\bm{x})}{\partial\bm{x}}(\bm{f}(\bm{x})+\bm{g}(\bm{x})u)=L_{f}h+L_{g}h\cdot u
-\]
+\end{equation}
 
 \end_inset
 
@@ -1846,26 +1845,56 @@ Feltételezzük, hogy
 \end_layout
 
 \begin_layout Itemize
+második derivált,
+\begin_inset Formula $k=1$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\frac{d^{2}y}{dt^{2}}==\frac{\partial(L_{f}h)}{\partial\bm{x}}(\bm{f}(\bm{x})+\bm{g}(\bm{x})u)=L_{f}^{2}h+L_{g}L_{f}h\cdot u
+\end{equation}
+
+\end_inset
+
+Feltételezzük, hogy 
+\begin_inset Formula $L_{g}L_{f}h=0$
+\end_inset
+
+, így 
+\begin_inset Formula $\ddot{y}=L_{f}^{2}h$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+harmadik derivált,
 \begin_inset Formula $k=2$
 \end_inset
 
 
 \begin_inset Formula 
-\[
-\frac{d^{2}y}{dt^{2}}==\frac{\partial(L_{f}h)}{\partial\bm{x}}(\bm{f}(\bm{x})+\bm{g}(\bm{x})u)=L_{f}^{2}h+L_{g}L_{f}h\cdot u
-\]
+\begin{equation}
+\frac{d^{3}y}{dt^{3}}==\frac{\partial(L_{f}^{2}h)}{\partial\bm{x}}(\bm{f}(\bm{x})+\bm{g}(\bm{x})u)=L_{f}^{3}h+L_{g}L_{f}^{2}h\cdot u
+\end{equation}
 
 \end_inset
 
 Ha 
-\begin_inset Formula $L_{g}L_{f}h\neq0$
+\begin_inset Formula $L_{g}L_{f}^{2}h\neq0$
 \end_inset
 
-, akkor 
-\begin_inset Formula $r=2$
+, a rendszer relatív foka 
+\begin_inset Formula $r=3$
 \end_inset
 
-, ellenkező esetben folytatjuk a differenciálást, amíg a feltétel nem teljesül.
+.
+ Ellenkező esetben addig folytatjuk a differenciálást, amíg az 
+\begin_inset Formula $L_{g}L_{f}^{k}h\neq0$
+\end_inset
+
+ feltétel nem teljesül.
 \end_layout
 
 \begin_layout Standard
@@ -1946,6 +1975,320 @@ key "hangos2006analysis"
 
 \begin_layout Section
 Az űrbéli robot relatív fokai
+\end_layout
+
+\begin_layout Standard
+Az űrbéli robot több bemenetű, több kimenetű (MIMO) rendszer, ezért relatív
+ fokai bemenet-kimenet páronként definiálhatók.
+ A robot két bemenete a karon található két aktuátor, kimenete pedig a robotkar
+ végpontjának pozíciója, mely szintén két kimenetet (a végpont 
+\begin_inset Formula $x$
+\end_inset
+
+ és 
+\begin_inset Formula $y$
+\end_inset
+
+ koordinátája) jelent.
+ Így tehát összesen 4 különböző, 
+\begin_inset Formula $r_{u_{1},x}$
+\end_inset
+
+, 
+\begin_inset Formula $r_{u_{1},y}$
+\end_inset
+
+, 
+\begin_inset Formula $r_{u_{2},x}$
+\end_inset
+
+, 
+\begin_inset Formula $r_{u_{2},y}$
+\end_inset
+
+ relatív fokokat definiálhatunk az űrbéli robot esetén.
+\end_layout
+
+\begin_layout Standard
+Az űrbéli robot esetében a állapotváltozók vektora 
+\begin_inset Formula $\bm{x}=\left[q_{0},\,q_{1},\,q_{2},\,\dot{q}_{0},\,\dot{q}_{1},\,\dot{q}_{2}\right]^{\mathrm{\mathrm{T}}}$
+\end_inset
+
+, melynek deriváltja 
+\begin_inset Formula $\dot{\bm{x}}=\left[\dot{q}_{0},\,\dot{q}_{1},\,\dot{q}_{2},\,\ddot{q}_{0},\,\ddot{q}_{1},\,\ddot{q}_{2}\right]^{\mathrm{T}}$
+\end_inset
+
+.
+ Mivel a szögsebesség értékek állapotváltozók is egyben, a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:rel-deg-xdot"
+
+\end_inset
+
+ alakú felíráshoz a szöggyorsulásokat kell kifejeznünk a szögekkel és szögsebess
+égekkel.
+ Ezt a 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:eq-of-motion"
+
+\end_inset
+
+ mozgásegyenlet segítségével tehetjük meg az alábbi módon:
+\begin_inset Formula 
+\begin{equation}
+\ddot{\bm{q}}=\bm{M}^{-1}(\bm{Hu}-\bm{C}).
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Az 
+\begin_inset Formula $u_{1}$
+\end_inset
+
+ bemenet relatív fokai
+\end_layout
+
+\begin_layout Standard
+A 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:rel-deg-xdot"
+
+\end_inset
+
+ egyenlet ez esetben
+\begin_inset Formula 
+\begin{equation}
+\dot{\bm{x}}=\bm{f}(\bm{x})+\bm{g}(\bm{x})u_{1}.
+\end{equation}
+
+\end_inset
+
+Az 
+\begin_inset Formula $\dot{\bm{x}}$
+\end_inset
+
+ vektor kifejezéséből 
+\begin_inset Formula $u_{1}$
+\end_inset
+
+ együtthatóinak kigyűjtése után az 
+\begin_inset Formula $\bm{f}(\bm{x})$
+\end_inset
+
+ és 
+\begin_inset Formula $\bm{g}(\bm{x})$
+\end_inset
+
+ vektorok könnyedén meghatározóak, azonban terjedelmi okok miatt itt nem
+ közöljük őket.
+\end_layout
+
+\begin_layout Subsubsection
+A robotkar végpontjának 
+\begin_inset Formula $x$
+\end_inset
+
+ koordinátájára nézve
+\end_layout
+
+\begin_layout Standard
+Legyen a rendszer kimenete a robotkar végpontjának 
+\begin_inset Formula $x$
+\end_inset
+
+ koordinátája a robot súlypontjához rögzített koordináta-rendszerben:
+\begin_inset Formula 
+\begin{align}
+h(\bm{x})= & \frac{2l_{0}m_{0}\cos(\varphi_{0}+q_{0})+l_{1}(2m_{0}+m_{1})\cos(q_{0}+q_{1})}{2(m_{0}+m_{1}+m_{2})}\nonumber \\
+ & +\frac{l_{2}(2m_{0}+2m_{1}+m_{2})\cos(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}.
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Most számítsuk ki a relatív fok meghatározásához szükséges Lie-deriváltakat.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=0$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+L_{g}h=0
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=1$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+L_{g}L_{f}h=\phi(q_{0},q_{1},q_{2})
+\end{equation}
+
+\end_inset
+
+A kapott 
+\begin_inset Formula $\phi$
+\end_inset
+
+ összefüggés a robot szögkoordinátáitól függ (terjedelmi okok miatt a kifejtett
+ összefüggést nem közöljük), ami a legtöbb esetben nem nulla.
+ Ilyenkor a relatív fok 
+\begin_inset Formula $r_{u_{1},x}=2$
+\end_inset
+
+.
+ Előállhat azonban a szögkoordinátáknak olyan kombinációja, melyekre 
+\begin_inset Formula $\phi(q_{0},q_{1},q_{2})=0$
+\end_inset
+
+.
+ E kombinációk előfordulása a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:r-u1-x-3d"
+
+\end_inset
+
+ ábrán látható.
+ 
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/r_u1_x_3dplot.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A 
+\begin_inset Formula $\phi(q_{0},q_{1},q_{2})=0$
+\end_inset
+
+ előfordulása
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:r-u1-x-3d"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+A 
+\begin_inset Formula $q_{0}$
+\end_inset
+
+ változót kiküszöbölhetjük a 
+\begin_inset Formula $\phi$
+\end_inset
+
+ összefüggésből úgy, hogy a koordináta-rendszert úgy rögzítjük a robot súlypontj
+ához, hogy ne csak eltolva kerüljön a súlypontba, hanem forogjon is együtt
+ a robot alapjával.
+ Ez a megfontolás nem változtat a relatív fokokon, viszont az így kapott
+ 
+\begin_inset Formula $\hat{\phi}(q_{1},q_{2})$
+\end_inset
+
+ összefüggés így már csak két változótól függ.
+ A 
+\begin_inset Formula $\hat{\phi}(q_{1},q_{2})=0$
+\end_inset
+
+-át eredményező szögértékek a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:r-u1-x-2d"
+
+\end_inset
+
+ ábrán láthatóak.
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/r_u1_x_2dplot.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A 
+\begin_inset Formula $\hat{\phi}(q_{1},q_{2})=0$
+\end_inset
+
+ előfordulása
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:r-u1-x-2d"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
