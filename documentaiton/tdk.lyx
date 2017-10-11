@@ -2194,7 +2194,7 @@ A
 \begin_inset Formula $\phi(q_{0},q_{1},q_{2})=0$
 \end_inset
 
- előfordulása
+ esetek előfordulása
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:r-u1-x-3d"
@@ -2235,7 +2235,11 @@ A
 \begin_inset Formula $\hat{\phi}(q_{1},q_{2})$
 \end_inset
 
- összefüggés így már csak két változótól függ.
+ összefüggés így már csak két változótól függ, mivel így 
+\begin_inset Formula $q_{0}\equiv0$
+\end_inset
+
+.
  A 
 \begin_inset Formula $\hat{\phi}(q_{1},q_{2})=0$
 \end_inset
@@ -2248,6 +2252,40 @@ reference "fig:r-u1-x-2d"
 \end_inset
 
  ábrán láthatóak.
+ Ezen szögértékek esetén a relatív fok 
+\begin_inset Formula $r_{u_{1},x}>2$
+\end_inset
+
+.
+ A 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:r-u1-x-2d"
+
+\end_inset
+
+ ábrán látható, hogy egy fix 
+\begin_inset Formula $q_{1}$
+\end_inset
+
+ értékhez 4 különböző 
+\begin_inset Formula $q_{2}$
+\end_inset
+
+ érték tartozik, melyek 
+\begin_inset Formula $2\pi$
+\end_inset
+
+ periódusonként ismétlődnek, de 4 
+\begin_inset Formula $q_{2}$
+\end_inset
+
+ érték között is felfedezhető 
+\begin_inset Formula $\pi$
+\end_inset
+
+ eltolás páronként 2-2 érték között.
+ 
 \begin_inset Float figure
 placement h
 wide false
@@ -2286,6 +2324,10 @@ name "fig:r-u1-x-2d"
 
 \end_layout
 
+\end_inset
+
+
+\begin_inset Newline newline
 \end_inset
 
 
