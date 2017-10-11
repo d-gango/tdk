@@ -21,8 +21,10 @@ classdef wenBayard < handle
             I2 = system.I2;
             fi0 = system.fi0;
             
-           vx = 0;
-           vy = -0.1;
+            x0 = 2;
+            y0 = 0.5;
+            vx = 0;
+            vy = -0.05;
             k = system.angularMomentum();
             
             if step == 1
