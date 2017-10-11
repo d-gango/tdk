@@ -1,5 +1,6 @@
 classdef robotModel < handle
     properties
+        angMom
         q
         qd
         u
@@ -46,6 +47,7 @@ classdef robotModel < handle
             refreshMatrices(obj);
             
             makeSymbolicVariables(obj);
+            obj.angMom = angularMomentum(obj);
         end
         
         % calculate system matrices
@@ -303,7 +305,6 @@ classdef robotModel < handle
         end
         
         function pos = calcEndEffectorPos(obj, q)
-            global step stateVariables
             m0 = obj.m0;
             m1 = obj.m1;
             m2 = obj.m2;
@@ -383,6 +384,31 @@ classdef robotModel < handle
             obj.qdd_sym = qdd_sym;
             obj.u_sym = u_sym;
             
+        end
+        
+        function q = jointCoordinates(obj,x,y)
+            m0 = obj.m0;
+            m1 = obj.m1;
+            m2 = obj.m2;
+            l0 = obj.l0;
+            l1 = obj.l1;
+            l2 = obj.l2;
+            I0 = obj.I0;
+            I1 = obj.I1;
+            I2 = obj.I2;
+            fi0 = obj.fi0;
+            q0 = obj.q(1);
+            q1 = sym('q1');
+            q2 = sym('q2');
+            
+            pos = [ (l1*cos(q0 + q1)*(2*m0 + m1) + l2*cos(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2));
+                    (l1*sin(q0 + q1)*(2*m0 + m1) + l2*sin(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2))];
+            [s1,s2]=solve([ pos(1) == x, pos(2) == y], [q1,q2]);
+            
+            q1sol = double(s1(1));
+            q2sol = double(s2(1));
+            
+            q = [q0; q1sol; q2sol];           
         end
     end
     
