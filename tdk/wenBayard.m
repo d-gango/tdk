@@ -32,10 +32,10 @@ classdef wenBayard < handle
             fi0 = system.fi0;
             
             %TODO calculate the appropriate q values for this
-            x0 = 2.4845;
-            y0 = 0.9506;
-           vx = -0.1*2*sin(2*timeVector(step));
-           vy = 0.1*2*cos(2*timeVector(step));
+            x0 = 2;%2.4845;
+            y0 = 1;%0.9506;
+           vx = 0;%-0.1*2*sin(2*timeVector(step));
+           vy = 0;%0.1*2*cos(2*timeVector(step));
             k = system.angMom;
           
             if step == 1
@@ -49,7 +49,7 @@ classdef wenBayard < handle
                 obj.ddq_des(:,step) = [0;0;0];
                 desiredPosition(:,step) = [x0; y0];
             else
-               obj. q_des(:,step) = obj.q_des(:,step-1) + timeStep*obj.dq_des(:,step-1);
+               obj. q_des(:,step) = system.jointCoordinates(desiredPosition(1,step-1)+timeStep*vx, desiredPosition(2,step-1)+timeStep*vy);
                 q0des = obj.q_des(1,step);
                 q1des = obj.q_des(2,step);
                 q2des = obj.q_des(3,step);
@@ -66,7 +66,19 @@ classdef wenBayard < handle
             usol = system.H \ (system.M * obj.ddq_des(:,step) + system.C);
             system.refreshMatrices();  %restores the actual values
             
-            error_p = stateVariables(2:3,step) - obj.q_des(2:3,step);
+            error_p1 = stateVariables(2:3,step) - obj.q_des(2:3,step);
+            error_p2 = wrapTo2Pi(stateVariables(2:3,step)) - wrapTo2Pi(obj.q_des(2:3,step));
+            error = min([abs(error_p1) abs(error_p2)]);
+            if abs(error_p1) == error
+                whichError = 1;
+            else
+                whichError = 2;
+            end
+            if whichError == 1
+                error_p = error_p1;
+            else
+                error_p = error_p2;
+            end
             error_d = stateVariables(5:6,step) - obj.dq_des(2:3,step);
             
             u = usol - obj.P.*error_p - obj.D.*error_d;

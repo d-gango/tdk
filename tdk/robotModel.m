@@ -403,10 +403,20 @@ classdef robotModel < handle
             
             pos = [ (l1*cos(q0 + q1)*(2*m0 + m1) + l2*cos(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2));
                     (l1*sin(q0 + q1)*(2*m0 + m1) + l2*sin(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2))];
-            [s1,s2]=solve([ pos(1) == x, pos(2) == y], [q1,q2]);
+            [s1,s2]=vpasolve([ pos(1) == x, pos(2) == y], [q1,q2]);
             
-            q1sol = double(s1(1));
-            q2sol = double(s2(1));
+            if size(s1,2) > 1
+                if abs(s1(1)-obj.q(2)) < abs(s1(2)-obj.q(2))
+                    choice = 1;
+                else
+                    choice = 2;
+                end
+            else
+                choice = 1;
+            end
+            
+            q1sol = wrapTo2Pi(s1(choice));
+            q2sol = wrapTo2Pi(s2(choice));
             
             q = [q0; q1sol; q2sol];           
         end

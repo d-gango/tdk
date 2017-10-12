@@ -3,8 +3,8 @@ close all
 
 global timeStep stateVariables timeVector maxStep step desiredPosition laplaceSolution
 %initialization
-timeStep = 0.0001;
-maxStep = 100000;
+timeStep = 0.001;
+maxStep = 1500;
 stateVariables = zeros(6, maxStep+1);
 timeVector = zeros(1, maxStep+1);
 angularMomentum = zeros(1, maxStep+1);
@@ -44,7 +44,7 @@ for i = 1:maxStep
     endEffectorPosition(:,step) = model.endEffectorPos();
     errorNorm(i) = norm(desiredPosition(:,i) - endEffectorPosition(:,i));
     
-    %disp(timeVector(step));
+    disp(timeVector(step));
 end
 toc
 
