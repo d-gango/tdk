@@ -6,6 +6,7 @@ classdef wenBayard < handle
         q_des
         dq_des
         ddq_des
+        q_error
         P = [25;15];
         D = [17;10];
     end
@@ -16,6 +17,7 @@ classdef wenBayard < handle
             obj.q_des = zeros(3,maxStep);
             obj.dq_des = zeros(3,maxStep);
             obj.ddq_des = zeros(3,maxStep);
+            obj.q_error = zeros(2,maxStep);
         end
         
         function u = getU(obj, system)
@@ -66,20 +68,16 @@ classdef wenBayard < handle
             usol = system.H \ (system.M * obj.ddq_des(:,step) + system.C);
             system.refreshMatrices();  %restores the actual values
             
-            error_p1 = stateVariables(2:3,step) - obj.q_des(2:3,step);
-            error_p2 = wrapTo2Pi(stateVariables(2:3,step)) - wrapTo2Pi(obj.q_des(2:3,step));
-            error = min([abs(error_p1) abs(error_p2)]);
-            if abs(error_p1) == error
-                whichError = 1;
-            else
-                whichError = 2;
+            error_p = stateVariables(2:3,step) - obj.q_des(2:3,step);
+            if abs(error_p(1)) > pi
+                error_p(1) = wrapToPi(stateVariables(2,step)) - wrapToPi(obj.q_des(2,step));
             end
-            if whichError == 1
-                error_p = error_p1;
-            else
-                error_p = error_p2;
+            if abs(error_p(2)) > pi
+                error_p(2) = wrapToPi(stateVariables(3,step)) - wrapToPi(obj.q_des(3,step));
             end
             error_d = stateVariables(5:6,step) - obj.dq_des(2:3,step);
+            
+            obj.q_error(:,step) = error_p;
             
             u = usol - obj.P.*error_p - obj.D.*error_d;
             

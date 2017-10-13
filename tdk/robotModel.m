@@ -17,6 +17,8 @@ classdef robotModel < handle
         u_sym
         endEffector_sym
         endEffectorVel_sym
+        
+        prevJK
     end
     
     properties (Constant)
@@ -37,9 +39,9 @@ classdef robotModel < handle
         function obj = robotModel(state)    
             obj.q = zeros(3,1);
             obj.qd = zeros(3,1);
-            obj.q(1) = state(1);
-            obj.q(2) = state(2);
-            obj.q(3) = state(3);
+            obj.q(1) = wrapTo2Pi(state(1));
+            obj.q(2) = wrapTo2Pi(state(2));
+            obj.q(3) = wrapTo2Pi(state(3));
             obj.qd(1) = state(4);
             obj.qd(2) = state(5);
             obj.qd(3) = state(6);
@@ -108,9 +110,9 @@ classdef robotModel < handle
             I1 = obj.I1;
             I2 = obj.I2;
             fi0 = obj.fi0;
-            q0 = state(1);
-            q1 = state(2);
-            q2 = state(3);
+            q0 = wrapTo2Pi(state(1));
+            q1 = wrapTo2Pi(state(2));
+            q2 = wrapTo2Pi(state(3));
             dq0 = state(4);
             dq1 = state(5);
             dq2 = state(6);
@@ -156,7 +158,7 @@ classdef robotModel < handle
             state = obj.getStateVariables();
             newState = RK4(@obj.derivatives, state);
             
-            obj.q = newState(1:3);
+            obj.q = wrapTo2Pi(newState(1:3));
             obj.qd = newState(4:6);
         end
         
@@ -398,26 +400,44 @@ classdef robotModel < handle
             I2 = obj.I2;
             fi0 = obj.fi0;
             q0 = obj.q(1);
-            q1 = sym('q1');
-            q2 = sym('q2');
+            q1_sym = sym('q1');
+            q2_sym = sym('q2');
             
-            pos = [ (l1*cos(q0 + q1)*(2*m0 + m1) + l2*cos(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2));
-                    (l1*sin(q0 + q1)*(2*m0 + m1) + l2*sin(q0 + q1 + q2)*(2*m0 + 2*m1 + m2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2))];
-            [s1,s2]=vpasolve([ pos(1) == x, pos(2) == y], [q1,q2]);
+            pos = [ (l1*cos(q0 + q1_sym)*(2*m0 + m1) + l2*cos(q0 + q1_sym + q2_sym)*(2*m0 + 2*m1 + m2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2));
+                    (l1*sin(q0 + q1_sym)*(2*m0 + m1) + l2*sin(q0 + q1_sym + q2_sym)*(2*m0 + 2*m1 + m2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2))];
             
-            if size(s1,2) > 1
-                if abs(s1(1)-obj.q(2)) < abs(s1(2)-obj.q(2))
-                    choice = 1;
+            if isempty(obj.prevJK)
+                [s1,s2]=vpasolve([ pos(1) == x, pos(2) == y], [q1_sym,q2_sym]);
+
+                q1num = double(wrapTo2Pi(s1));
+                q2num = double(wrapTo2Pi(s2));
+
+                q1 = obj.q(2);
+                q2 = obj.q(3);
+                armBaseX = -(l1*cos(q0 + q1)*(m1 + 2*m2) + l2*m2*cos(q0 + q1 + q2) - 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2));
+                armBaseY = -(l1*sin(q0 + q1)*(m1 + 2*m2) + l2*m2*sin(q0 + q1 + q2) - 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2));
+                alpha = atan2(y-armBaseY, x-armBaseX);
+
+                q1num_mirror = -q1num - 2*q0 + 2*alpha;
+                q2num_mirror = -q2num;
+
+                if abs(q1num-q1) < abs(q1num_mirror-q1)
+                    q1sol = q1num;
+                    q2sol = q2num;
                 else
-                    choice = 2;
+                    [s1,s2]=vpasolve([ pos(1) == x, pos(2) == y], [q1_sym,q2_sym], [q1num_mirror, q2num_mirror]);
+
+                    q1sol = double(wrapTo2Pi(s1));
+                    q2sol = double(wrapTo2Pi(s2));
                 end
             else
-                choice = 1;
+                [s1,s2]=vpasolve([ pos(1) == x, pos(2) == y], [q1_sym,q2_sym], obj.prevJK);
+
+                q1sol = double(wrapTo2Pi(s1));
+                q2sol = double(wrapTo2Pi(s2));
             end
             
-            q1sol = wrapTo2Pi(s1(choice));
-            q2sol = wrapTo2Pi(s2(choice));
-            
+            obj.prevJK = [q1sol, q2sol];
             q = [q0; q1sol; q2sol];           
         end
     end
