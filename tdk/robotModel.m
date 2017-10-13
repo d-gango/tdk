@@ -406,6 +406,10 @@ classdef robotModel < handle
             pos = [ (l1*cos(q0 + q1_sym)*(2*m0 + m1) + l2*cos(q0 + q1_sym + q2_sym)*(2*m0 + 2*m1 + m2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2));
                     (l1*sin(q0 + q1_sym)*(2*m0 + m1) + l2*sin(q0 + q1_sym + q2_sym)*(2*m0 + 2*m1 + m2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2))];
             
+            global step
+            if step == 62
+               1+1;
+            end
             if isempty(obj.prevJK)
                 [s1,s2]=vpasolve([ pos(1) == x, pos(2) == y], [q1_sym,q2_sym]);
 
@@ -418,10 +422,19 @@ classdef robotModel < handle
                 armBaseY = -(l1*sin(q0 + q1)*(m1 + 2*m2) + l2*m2*sin(q0 + q1 + q2) - 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2));
                 alpha = atan2(y-armBaseY, x-armBaseX);
 
-                q1num_mirror = -q1num - 2*q0 + 2*alpha;
-                q2num_mirror = -q2num;
+                q1num_mirror = wrapTo2Pi(-q1num - 2*q0 + 2*alpha);
+                q2num_mirror = wrapTo2Pi(-q2num);
+                
+                difference = abs(q1num-q1)
+                if difference > pi
+                    difference = abs(wrapToPi(q1num)-wrapToPi(q1));
+                end
+                difference_m = abs(q1num_mirror-q1)
+                if difference_m > pi
+                    difference_m = abs(wrapToPi(q1num_mirror)-wrapToPi(q1));
+                end
 
-                if abs(q1num-q1) < abs(q1num_mirror-q1)
+                if difference < difference_m
                     q1sol = q1num;
                     q2sol = q2num;
                 else

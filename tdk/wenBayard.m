@@ -36,8 +36,8 @@ classdef wenBayard < handle
             %TODO calculate the appropriate q values for this
             x0 = 2;%2.4845;
             y0 = 1;%0.9506;
-           vx = 0;%-0.1*2*sin(2*timeVector(step));
-           vy = 0;%0.1*2*cos(2*timeVector(step));
+           vx = -0.1*2*sin(2*timeVector(step));
+           vy = 0.1*2*cos(2*timeVector(step));
             k = system.angMom;
           
             if step == 1
