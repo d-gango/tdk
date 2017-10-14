@@ -1,5 +1,6 @@
 classdef robotModel < handle
     properties
+        angMom
         q
         qd
         u
@@ -16,6 +17,8 @@ classdef robotModel < handle
         u_sym
         endEffector_sym
         endEffectorVel_sym
+        
+        prevJK
     end
     
     properties (Constant)
@@ -36,9 +39,9 @@ classdef robotModel < handle
         function obj = robotModel(state)    
             obj.q = zeros(3,1);
             obj.qd = zeros(3,1);
-            obj.q(1) = state(1);
-            obj.q(2) = state(2);
-            obj.q(3) = state(3);
+            obj.q(1) = wrapTo2Pi(state(1));
+            obj.q(2) = wrapTo2Pi(state(2));
+            obj.q(3) = wrapTo2Pi(state(3));
             obj.qd(1) = state(4);
             obj.qd(2) = state(5);
             obj.qd(3) = state(6);
@@ -46,6 +49,7 @@ classdef robotModel < handle
             refreshMatrices(obj);
             
             makeSymbolicVariables(obj);
+            obj.angMom = angularMomentum(obj);
         end
         
         % calculate system matrices
@@ -106,9 +110,9 @@ classdef robotModel < handle
             I1 = obj.I1;
             I2 = obj.I2;
             fi0 = obj.fi0;
-            q0 = state(1);
-            q1 = state(2);
-            q2 = state(3);
+            q0 = wrapTo2Pi(state(1));
+            q1 = wrapTo2Pi(state(2));
+            q2 = wrapTo2Pi(state(3));
             dq0 = state(4);
             dq1 = state(5);
             dq2 = state(6);
@@ -154,7 +158,7 @@ classdef robotModel < handle
             state = obj.getStateVariables();
             newState = RK4(@obj.derivatives, state);
             
-            obj.q = newState(1:3);
+            obj.q = wrapTo2Pi(newState(1:3));
             obj.qd = newState(4:6);
         end
         
@@ -303,7 +307,6 @@ classdef robotModel < handle
         end
         
         function pos = calcEndEffectorPos(obj, q)
-            global step stateVariables
             m0 = obj.m0;
             m1 = obj.m1;
             m2 = obj.m2;
@@ -383,6 +386,72 @@ classdef robotModel < handle
             obj.qdd_sym = qdd_sym;
             obj.u_sym = u_sym;
             
+        end
+        
+        function q = jointCoordinates(obj,x,y)
+            m0 = obj.m0;
+            m1 = obj.m1;
+            m2 = obj.m2;
+            l0 = obj.l0;
+            l1 = obj.l1;
+            l2 = obj.l2;
+            I0 = obj.I0;
+            I1 = obj.I1;
+            I2 = obj.I2;
+            fi0 = obj.fi0;
+            q0 = obj.q(1);
+            q1_sym = sym('q1');
+            q2_sym = sym('q2');
+            
+            pos = [ (l1*cos(q0 + q1_sym)*(2*m0 + m1) + l2*cos(q0 + q1_sym + q2_sym)*(2*m0 + 2*m1 + m2) + 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2));
+                    (l1*sin(q0 + q1_sym)*(2*m0 + m1) + l2*sin(q0 + q1_sym + q2_sym)*(2*m0 + 2*m1 + m2) + 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2))];
+            
+            global step
+            if step == 62
+               1+1;
+            end
+            if isempty(obj.prevJK)
+                [s1,s2]=vpasolve([ pos(1) == x, pos(2) == y], [q1_sym,q2_sym]);
+
+                q1num = double(wrapTo2Pi(s1));
+                q2num = double(wrapTo2Pi(s2));
+
+                q1 = obj.q(2);
+                q2 = obj.q(3);
+                armBaseX = -(l1*cos(q0 + q1)*(m1 + 2*m2) + l2*m2*cos(q0 + q1 + q2) - 2*l0*m0*cos(fi0 + q0))/(2*(m0 + m1 + m2));
+                armBaseY = -(l1*sin(q0 + q1)*(m1 + 2*m2) + l2*m2*sin(q0 + q1 + q2) - 2*l0*m0*sin(fi0 + q0))/(2*(m0 + m1 + m2));
+                alpha = atan2(y-armBaseY, x-armBaseX);
+
+                q1num_mirror = wrapTo2Pi(-q1num - 2*q0 + 2*alpha);
+                q2num_mirror = wrapTo2Pi(-q2num);
+                
+                difference = abs(q1num-q1)
+                if difference > pi
+                    difference = abs(wrapToPi(q1num)-wrapToPi(q1));
+                end
+                difference_m = abs(q1num_mirror-q1)
+                if difference_m > pi
+                    difference_m = abs(wrapToPi(q1num_mirror)-wrapToPi(q1));
+                end
+
+                if difference < difference_m
+                    q1sol = q1num;
+                    q2sol = q2num;
+                else
+                    [s1,s2]=vpasolve([ pos(1) == x, pos(2) == y], [q1_sym,q2_sym], [q1num_mirror, q2num_mirror]);
+
+                    q1sol = double(wrapTo2Pi(s1));
+                    q2sol = double(wrapTo2Pi(s2));
+                end
+            else
+                [s1,s2]=vpasolve([ pos(1) == x, pos(2) == y], [q1_sym,q2_sym], obj.prevJK);
+
+                q1sol = double(wrapTo2Pi(s1));
+                q2sol = double(wrapTo2Pi(s2));
+            end
+            
+            obj.prevJK = [q1sol, q2sol];
+            q = [q0; q1sol; q2sol];           
         end
     end
     
