@@ -22,7 +22,7 @@ angularMomentum(1) = model.angularMomentum();
 kineticEnergy(1) = model.kineticEnergy();
 endEffectorPosition(:,1) = model.endEffectorPos();
 
-controller = LaplaceController(model);
+controller = wenBayard();
 
 tic
 for i = 1:maxStep
