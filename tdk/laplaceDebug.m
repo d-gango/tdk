@@ -52,3 +52,9 @@ figure
 plot(timeVector(1:end-1), u_pd(2,:))
 title('u2 PD')
 grid on
+
+figure
+plot(timeVector(1:end-1), laplaceSolution(1,:), timeVector(1:end-1), laplaceSolution(2,:), timeVector(1:end-1), laplaceSolution(3,:))
+title('q_d')
+legend('q0','q1','q2')
+grid on

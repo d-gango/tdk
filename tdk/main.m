@@ -3,14 +3,14 @@ close all
 
 global timeStep stateVariables timeVector maxStep step desiredPosition laplaceSolution
 %initialization
-timeStep = 0.001;
-maxStep = 10000;
+timeStep = 0.01;
+maxStep = 1000;
 stateVariables = zeros(6, maxStep+1);
 timeVector = zeros(1, maxStep+1);
 angularMomentum = zeros(1, maxStep+1);
 kineticEnergy = zeros(1, maxStep+1);
 uVector = zeros(2, maxStep);
-endEffectorPosition = zeros(2, maxStep+1);
+endEffectorPosition = zeros(2, maxStep);
 desiredPosition = zeros(2, maxStep);
 errorNorm = zeros(1, maxStep);
 step = 1;
@@ -22,7 +22,7 @@ angularMomentum(1) = model.angularMomentum();
 kineticEnergy(1) = model.kineticEnergy();
 endEffectorPosition(:,1) = model.endEffectorPos();
 
-controller = wenBayard();
+controller = LaplaceController(model);
 
 tic
 for i = 1:maxStep

@@ -16,7 +16,7 @@ classdef LaplaceController < handle
          EQfinal
          prevError
          P = [70;50]
-         D = [15;10]
+         D = [30;15]%[15;10]
     end
     
     methods
@@ -27,8 +27,8 @@ classdef LaplaceController < handle
             obj.t = sym('t');
             obj.t0 = sym('t0');
             
-            obj.trajectory = [1.5 + 0.1*cos(obj.t + obj.t0);...
-                              0.4 + 0.1*sin(obj.t + obj.t0)];
+            obj.trajectory = [2 + 0.05*(obj.t + obj.t0)*cos(obj.t + obj.t0);...
+                              1 + 0.05*(obj.t + obj.t0)*sin(obj.t + obj.t0)];
             for i = 1:maxStep+1
                 desiredPosition(:,i) = double(subs(obj.trajectory, [obj.t, obj.t0], [(i-1)*timeStep, 0]));
             end
@@ -110,12 +110,20 @@ classdef LaplaceController < handle
                        ilaplace(U1sol, obj.s, obj.t);...
                        ilaplace(U2sol, obj.s, obj.t)];
             sol = real(double(limit(solution, obj.t, 0, 'right')));
+            sol(1:3) = wrapTo2Pi(sol(1:3));
             laplaceSolution(:,step) = sol;
             
             %hibaszámítás a PD-hez
            % disp(state(1));
             error = [sol(2) - state(2);...
                      sol(3) - state(3)];
+            if abs(error(1)) > pi
+                error(1) = wrapToPi(sol(2)) - wrapToPi(state(2));
+            end
+            if abs(error(2)) > pi
+                error(2) = wrapToPi(sol(3)) - wrapToPi(state(3));
+            end
+            
           %  disp(error);
             if step == 1
                 errorDot = [0; 0];

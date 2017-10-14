@@ -214,7 +214,7 @@ classdef robotModel < handle
             
             time = text(4,-4,num2str(timeVector(1)));
             
-            for i=1:50:length(timeVector)
+            for i=1:1:length(timeVector)
                 q0 = stateVariables(1,i);
                 q1 = stateVariables(2,i);
                 q2 = stateVariables(3,i);
