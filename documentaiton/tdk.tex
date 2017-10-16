@@ -44,22 +44,6 @@ Mûszaki Mechanikai Tanszék}}
 \hspace*{3em}Dr. Zelei Ambrus\\
 \hspace*{3em}tudományos munkatárs}}
 
-
-
-\usepackage{babel}
-
-
-
-
-
-
-\usepackage{babel}
-
-
-
-
-
-
 \usepackage{babel}
 \usepackage[style=numeric, backend=bibtex]{biblatex}
 \addbibresource{irodalomjegyzek.bib} 
@@ -71,10 +55,9 @@ Mûszaki Mechanikai Tanszék}}
 %\renewcommand{\footrulewidth}{0.4pt}
 \renewcommand{\sectionmark}[1]{\markright{\ \uppercase{#1}}}
 
-
-
-\usepackage{babel}
-
+\@ifundefined{showcaptionsetup}{}{%
+ \PassOptionsToPackage{caption=false}{subfig}}
+\usepackage{subfig}
 \makeatother
 
 \usepackage{babel}
@@ -486,7 +469,7 @@ Ezek után a másodfajú Lagrange egyenlet \eqref{lagrange} segítségével
 felírhatjuk a rendszer mozgásegyenletét, ami a következõ alakban írható
 fel:
 \begin{equation}
-\bm{M}(\bm{q})\ddot{\bm{q}}+\bm{C}(\bm{q},\dot{\bm{q}})=\bm{Hu},
+\bm{M}(\bm{q})\ddot{\bm{q}}+\bm{C}(\bm{q},\dot{\bm{q}})=\bm{Hu},\label{eq:eq-of-motion}
 \end{equation}
 ahol $\bm{M}$ a rendszer tömegmátrixa, $\bm{C}$ a centripetális
 és Coriolis erõket tartalmazó vektor, 
@@ -507,7 +490,7 @@ u_{2}
 és $\bm{C}$ mátrixok az \ref{chap:A-robot-mozg=0000E1segyenlet=0000E9nek}
 függelékben találhatók.
 
-\chapter{A rendszer relatív foka}
+\chapter{A rendszer relatív fokai}
 
 \section{Definíció}
 
@@ -520,7 +503,7 @@ kimenetû (SISO) rendszert:
 \begin{equation}
 \dot{\bm{x}}=\bm{f}(\bm{x})+\bm{g}(\bm{x})u,\label{eq:rel-deg-xdot}
 \end{equation}
-ahol $\bm{x}=\left[\bm{q}\,\dot{\bm{q}}\right]^{\mathrm{T}},\,\bm{x}\in\mathbb{R}^{2n}$
+ahol $\bm{x}=\left[\bm{q},\,\dot{\bm{q}}\right]^{\mathrm{T}},\,\bm{x}\in\mathbb{R}^{2n}$
 a rendszer állapotvektora. A rendszer kimenete pedig legyen
 \begin{equation}
 y=h(\bm{x}).\label{eq:rel-deg-output}
@@ -537,28 +520,35 @@ szerinti deriváltja a következõ:
 
 A jelölések egyszerûsítésének érdekében vezessük be az ún. Lie-derivált
 fogalmát:
-\[
+\begin{equation}
 \frac{\partial h(\bm{x})}{\partial\bm{x}}\bm{f}(\bm{x})=L_{f}h.
-\]
+\end{equation}
 
-A következõkben számítsuk ki a kimenet $k.$ idõ szerinti deriváltját
-\cite{hangos2006analysis}:
+A következõkben számítsuk ki a kimenet idõ szerinti deriváltjait,
+és vezessük be a $k$ indexet, melynek szerepét késõbb a definícióban
+láthatjuk \cite{hangos2006analysis}:
 \begin{itemize}
-\item $k=0$:
-\[
+\item a kimenet (nulladik derivált)
+\begin{equation}
 y=h(\bm{x})
-\]
-\item $k=1$
-\[
+\end{equation}
+\item elsõ derivált,$k=0$
+\begin{equation}
 \frac{dy}{dt}=\frac{\partial h(\bm{x})}{\partial\bm{x}}\dot{\bm{x}}=\frac{\partial h(\bm{x})}{\partial\bm{x}}(\bm{f}(\bm{x})+\bm{g}(\bm{x})u)=L_{f}h+L_{g}h\cdot u
-\]
+\end{equation}
 Feltételezzük, hogy $L_{g}h=0$, így $\dot{y}=L_{f}h$.
-\item $k=2$
-\[
+\item második derivált,$k=1$
+\begin{equation}
 \frac{d^{2}y}{dt^{2}}==\frac{\partial(L_{f}h)}{\partial\bm{x}}(\bm{f}(\bm{x})+\bm{g}(\bm{x})u)=L_{f}^{2}h+L_{g}L_{f}h\cdot u
-\]
-Ha $L_{g}L_{f}h\neq0$, akkor $r=2$, ellenkezõ esetben folytatjuk
-a differenciálást, amíg a feltétel nem teljesül.
+\end{equation}
+Feltételezzük, hogy $L_{g}L_{f}h=0$, így $\ddot{y}=L_{f}^{2}h$.
+\item harmadik derivált,$k=2$
+\begin{equation}
+\frac{d^{3}y}{dt^{3}}==\frac{\partial(L_{f}^{2}h)}{\partial\bm{x}}(\bm{f}(\bm{x})+\bm{g}(\bm{x})u)=L_{f}^{3}h+L_{g}L_{f}^{2}h\cdot u
+\end{equation}
+Ha $L_{g}L_{f}^{2}h\neq0$, a rendszer relatív foka $r=3$. Ellenkezõ
+esetben addig folytatjuk a differenciálást, amíg az $L_{g}L_{f}^{k}h\neq0$
+feltétel nem teljesül.
 \end{itemize}
 A relatív fok általános definíciója tehát a következõ \cite{hangos2006analysis}:
 
@@ -578,6 +568,357 @@ több kimenetû (MIMO) rendszerekre is. Ekkor a relatív fokokat páronként,
 az összes lehetséges bemenet-kimenet kombinációra számítjuk \cite{hangos2006analysis}.
 
 \section{Az ûrbéli robot relatív fokai}
+
+Az ûrbéli robot több bemenetû, több kimenetû (MIMO) rendszer, ezért
+relatív fokai bemenet-kimenet páronként definiálhatók. A robot két
+bemenete a karon található két aktuátor, kimenete pedig a robotkar
+végpontjának pozíciója, mely szintén két kimenetet (a végpont $x$
+és $y$ koordinátája) jelent. Így tehát összesen 4 különbözõ, $r_{u_{1},x}$,
+$r_{u_{1},y}$, $r_{u_{2},x}$, $r_{u_{2},y}$ relatív fokokat definiálhatunk
+az ûrbéli robot esetén.
+
+Az ûrbéli robot esetében a állapotváltozók vektora $\bm{x}=\left[q_{0},\,q_{1},\,q_{2},\,\dot{q}_{0},\,\dot{q}_{1},\,\dot{q}_{2}\right]^{\mathrm{\mathrm{T}}}$,
+melynek deriváltja $\dot{\bm{x}}=\left[\dot{q}_{0},\,\dot{q}_{1},\,\dot{q}_{2},\,\ddot{q}_{0},\,\ddot{q}_{1},\,\ddot{q}_{2}\right]^{\mathrm{T}}$.
+Mivel a szögsebesség értékek állapotváltozók is egyben, a \ref{eq:rel-deg-xdot}
+alakú felíráshoz a szöggyorsulásokat kell kifejeznünk a szögekkel
+és szögsebességekkel. Ezt a \eqref{eq:eq-of-motion} mozgásegyenlet
+segítségével tehetjük meg az alábbi módon:
+\begin{equation}
+\ddot{\bm{q}}=\bm{M}^{-1}(\bm{Hu}-\bm{C}).
+\end{equation}
+
+
+\subsection{Az $u_{1}$ bemenet relatív fokai}
+
+A \eqref{eq:rel-deg-xdot} egyenlet ez esetben
+\begin{equation}
+\dot{\bm{x}}=\bm{f}(\bm{x})+\bm{g}(\bm{x})u_{1}.
+\end{equation}
+Az $\dot{\bm{x}}$ vektor kifejezésébõl $u_{1}$ együtthatóinak kigyûjtése
+után az $\bm{f}(\bm{x})$ és $\bm{g}(\bm{x})$ vektorok könnyedén
+meghatározóak, azonban terjedelmi okok miatt itt nem közöljük õket.
+
+\subsubsection{A robotkar végpontjának $x$ koordinátájára nézve}
+
+Legyen a rendszer kimenete a robotkar végpontjának $x$ koordinátája
+a robot súlypontjához rögzített koordináta-rendszerben:
+\begin{align}
+h(\bm{x})= & \frac{2l_{0}m_{0}\cos(\varphi_{0}+q_{0})+l_{1}(2m_{0}+m_{1})\cos(q_{0}+q_{1})}{2(m_{0}+m_{1}+m_{2})}\nonumber \\
+ & +\frac{l_{2}(2m_{0}+2m_{1}+m_{2})\cos(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}.\label{eq:x-output}
+\end{align}
+
+Most számítsuk ki a relatív fok meghatározásához szükséges Lie-deriváltakat.
+\begin{itemize}
+\item $k=0$
+\begin{equation}
+L_{g}h=0
+\end{equation}
+\item $k=1$
+\begin{equation}
+L_{g}L_{f}h=\phi_{u_{1},x}(q_{0},q_{1},q_{2})
+\end{equation}
+A kapott $\phi_{u_{1},x}$ összefüggés a robot szögkoordinátáitól
+függ (terjedelmi okok miatt a kifejtett összefüggést nem közöljük),
+ami a legtöbb esetben nem nulla. Ilyenkor a relatív fok $r_{u_{1},x}=2$.
+Elõállhat azonban a szögkoordinátáknak olyan kombinációja, melyekre
+$\phi_{u_{1},x}(q_{0},q_{1},q_{2})=0$. E kombinációk elõfordulása
+a \ref{fig:r-u1-x-3d} ábrán látható. 
+\begin{figure}[h]
+\begin{centering}
+\includegraphics[scale=0.5]{image/r_u1_x_3dplot}\caption{A $\phi_{u_{1},x}(q_{0},q_{1},q_{2})=0$ esetek elõfordulása\label{fig:r-u1-x-3d}}
+\par\end{centering}
+\end{figure}
+\\
+A $q_{0}$ változót kiküszöbölhetjük a $\phi_{u_{1},x}$ összefüggésbõl
+úgy, hogy a koordináta-rendszert úgy rögzítjük a robot súlypontjához,
+hogy ne csak eltolva kerüljön a súlypontba, hanem forogjon is együtt
+a robot alapjával ($q_{0}$ szöggel). Ez a megfontolás nem változtat
+a relatív fokokon, viszont az így kapott $\hat{\phi}_{u_{1},x}(q_{1},q_{2})$
+összefüggés így már csak két változótól függ, mivel így az új koordináta-rendszerben
+$q_{0}\equiv0$. A $\hat{\phi}_{u_{1},x}(q_{1},q_{2})=0$-t eredményezõ
+szögértékek a \ref{fig:r-u1-x-2d} ábrán láthatóak. Ezen szögértékek
+esetén a relatív fok $r_{u_{1},x}>2$. A \ref{fig:r-u1-x-2d} ábrán
+látható, hogy egy fix $q_{1}$ értékhez 4 különbözõ $q_{2}$ érték
+tartozik, melyek $2\pi$ periódusonként ismétlõdnek, de a 4 $q_{2}$
+érték között is felfedezhetõ $\pi$ eltolás páronként 2-2 érték között.
+\begin{figure}[h]
+\centering{}\includegraphics[scale=0.5]{image/r_u1_x_2dplot}\caption{A $\hat{\phi}_{u_{1},x}(q_{1},q_{2})=0$ esetek elõfordulása\label{fig:r-u1-x-2d}}
+\end{figure}
+\\
+Ha a $\hat{\phi}_{u_{1},x}(q_{1},q_{2})=0$ összefüggésbe például
+$q_{1}=0$-t helyettesítünk, a kapott 4 konfiguráció, melyekre $r_{u_{1},x}>2$,
+a \ref{fig:4-konfig-ru1x} ábrán látható. 
+\begin{figure}[h]
+\subfloat[$q_{1}=0\,\mathrm{rad}$, $q_{2}=-1.692\,\mathrm{rad}$]{\centering{}\includegraphics[scale=0.2]{image/r_u1_x_example1}}\hspace{2cm}\subfloat[$q_{1}=0\,\mathrm{rad}$, $q_{2}=1.448\,\mathrm{rad}$]{\centering{}\includegraphics[scale=0.2]{image/r_u1_x_example3}}\smallskip{}
+\subfloat[$q_{1}=0\,\mathrm{rad}$, $q_{2}=-0.1254\,\mathrm{rad}$]{\centering{}\includegraphics[scale=0.2]{image/r_u1_x_example2}}\hspace{2cm}\subfloat[$q_{1}=0\,\mathrm{rad}$, $q_{2}=3.016\,\mathrm{rad}$]{\centering{}\includegraphics[scale=0.2]{image/r_u1_x_example4}}
+
+\caption []{4 konfiguráció, melyekre $r_{u_{1},x}>2$}
+\label{fig:4-konfig-ru1x}
+\end{figure}
+\item $k=2$
+\begin{equation}
+L_{g}L_{f}^{2}h=\tilde{\phi}_{u_{1},x}(\dot{q}_{1},\dot{q}_{2})
+\end{equation}
+A most kapott összefüggés a $\dot{q}_{1}$ és $\dot{q}_{2}$ szögsebességektõl
+függ. Azokban az esetekben, amikor $\tilde{\phi}_{u_{1},x}(\dot{q}_{1},\dot{q}_{2})\neq0$,
+a relatív fok $r_{u_{1},x}=3.$\\
+Amikor $\tilde{\phi}_{u_{1},x}(\dot{q}_{1},\dot{q}_{2})=0$, a relatív
+fok $r_{u_{1},x}>3.$ Ilyenkor $\tilde{\phi}_{u_{1},x}$-ból egy lineáris
+összefüggést kapunk $\dot{q}_{1}$ és $\dot{q}_{2}$ között
+\begin{equation}
+\dot{q}_{1}=a+b\dot{q}_{2}
+\end{equation}
+alakban. Ha ez a feltétel teljesül, tovább kell folytatnunk a számolást.
+\item $k=3$
+\begin{equation}
+L_{g}L_{f}^{3}h=\check{\phi}_{u_{1},x}(u_{2})=\alpha+\beta u_{2}
+\end{equation}
+Ez az összefüggés már csak az $u_{2}$ bemenettõl függ, méghozzá lineárisan.
+Abban az esetben, ha $\check{\phi}_{u_{1},x}(u_{2})\neq0$, a relatív
+fok $r_{u_{1},x}=4.$ Egy $u_{2}$ érték létezik, melyre $\check{\phi}_{u_{1},x}(u_{2})=0$,
+ilyenkor a relatív fok $r_{u_{1},x}>4$, és folytatnunk kell a számolást.
+\item $k=4$
+\begin{equation}
+L_{g}L_{f}^{4}h=C\neq0
+\end{equation}
+Mivel nem maradt már több változónk, aminek nincs elõírt értéke, a
+fenti összefüggés minden esetben egy nem zérus konstans. Az elõfordulható
+legmagasabb relatív fok az $u_{1}$ bemenet és a robotkar végpontjának
+$x$ koordinátája között tehát $r_{u_{1},x}=5$. 
+\end{itemize}
+
+\subsubsection{A robotkar végpontjának $y$ koordinátájára nézve}
+
+Hasonlóan számíthatjuk ki a relatív fokot, ha kimenetnek a robotkar
+végpontjának $y$ koordinátáját választjuk a súlyponthoz rögzített
+koordináta-rendszerben:
+\begin{align}
+h(\bm{x})= & \frac{2l_{0}m_{0}\sin(\varphi_{0}+q_{0})+l_{1}(2m_{0}+m_{1})\sin(q_{0}+q_{1})}{2(m_{0}+m_{1}+m_{2})}\nonumber \\
+ & +\frac{l_{2}(2m_{0}+2m_{1}+m_{2})\sin(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}.\label{eq:y-output}
+\end{align}
+A számolás menete megegyezik az elõzõ számítással, csak az eredményekben
+tér el attól.
+\begin{itemize}
+\item $k=0$
+\begin{equation}
+L_{g}h=0
+\end{equation}
+\item $k=1$
+\begin{equation}
+L_{g}L_{f}h=\phi_{u_{1},y}(q_{0},q_{1},q_{2})
+\end{equation}
+A kapott $\phi$ összefüggés itt is a szögkoordinátáktól függ, ami
+a legtöbb esetben nem nulla. Ilyenkor a relatív fok $r_{u_{1},y}=2$.
+Az $r_{u_{1},y}>2$ relatív fokot eredményezõ szögkoordináta kombinációk
+a \ref{fig:r-u1-y-3d} ábrán láthatóak. 
+\begin{figure}[h]
+\centering{}\includegraphics[scale=0.5]{image/r_u1_y_3dplot}\caption{A $\phi_{u_{1},y}(q_{0},q_{1},q_{2})=0$ esetek elõfordulása\label{fig:r-u1-y-3d}}
+\end{figure}
+\\
+A $q_{0}$ változó kiküszöbölése utána a kapott összefüggés $\hat{\phi}_{u_{1},y}(q_{1},q_{2})$
+. A $\hat{\phi}_{u_{1},y}(q_{1},q_{2})=0$-t, tehát $r_{u_{1},y}>2$
+relatív fokot eredményezõ szögértékek a \ref{fig:r-u1-y-2d} ábrán
+láthatóak. Egy fix $q_{1}$ értékhez itt is 4 különbözõ $q_{2}$ érték
+tartozik, melyek $2\pi$ periódusonként ismétlõdnek. A 4 $q_{2}$
+érték között itt is felfedezhetõ $\pi$ eltolás páronként 2-2 érték
+között. 
+\begin{figure}[h]
+\centering{}\includegraphics[scale=0.5]{image/r_u1_y_2dplot}\caption{A $\hat{\phi}_{u_{1},y}(q_{1},q_{2})=0$ esetek elõfordulása\label{fig:r-u1-y-2d}}
+\end{figure}
+\\
+Példaképp, ha a $\hat{\phi}_{u_{1},y}(q_{1},q_{2})=0$ összefüggésbe
+$q_{1}=0\,\mathrm{rad}$-t helyettesítünk, a kapott 4 konfiguráció,
+melyekre $r_{u_{1},y}>2$, a \ref{fig:4-konfig-ru1y} ábrán látható.
+\begin{figure}[h]
+\subfloat[$q_{1}=0\,\mathrm{rad}$, $q_{2}=-2.623\,\mathrm{rad}$]{\centering{}\includegraphics[scale=0.2]{image/r_u1_y_example1}}\hspace{2cm}\subfloat[$q_{1}=0\,\mathrm{rad}$, $q_{2}=0.5182\,\mathrm{rad}$]{\centering{}\includegraphics[scale=0.2]{image/r_u1_y_example3}}\smallskip{}
+\subfloat[$q_{1}=0\,\mathrm{rad}$, $q_{2}=-0.7657\,\mathrm{rad}$]{\centering{}\includegraphics[scale=0.2]{image/r_u1_y_example2}}\hspace{2cm}\subfloat[$q_{1}=0\,\mathrm{rad}$, $q_{2}=2.375\,\mathrm{rad}$]{\centering{}\includegraphics[scale=0.2]{image/r_u1_y_example4}}
+
+\caption []{4 konfiguráció, melyekre $r_{u_{1},y}>2$}
+\label{fig:4-konfig-ru1y}
+\end{figure}
+\item $k=2$
+\begin{equation}
+L_{g}L_{f}^{2}h=\tilde{\phi}_{u_{1},y}(\dot{q}_{1},\dot{q}_{2})
+\end{equation}
+Ez az összefüggés a $\dot{q}_{1}$ és $\dot{q}_{2}$ szögsebességektõl
+függ. Azokban az esetekben, amikor $\tilde{\phi}_{u_{1},y}(\dot{q}_{1},\dot{q}_{2})\neq0$,
+a relatív fok $r_{u_{1},y}=3.$\\
+Amikor $\tilde{\phi}_{u_{1},y}(\dot{q}_{1},\dot{q}_{2})=0$, a relatív
+fok $r_{u_{1},y}>3.$ Ilyenkor $\dot{q}_{1}$ és $\dot{q}_{2}$ között
+\begin{equation}
+\dot{q}_{1}=a+b\dot{q}_{2}
+\end{equation}
+lineáris összefüggés figyelhetõ meg.
+\item $k=3$
+\begin{equation}
+L_{g}L_{f}^{3}h=\check{\phi}_{u_{1},y}(u_{2})=\alpha+\beta u_{2}
+\end{equation}
+Ez az összefüggés csak az $u_{2}$ bemenettõl függ, méghozzá lineárisan.
+Amikor $\check{\phi}_{u_{1},y}(u_{2})\neq0$, a relatív fok $r_{u_{1},y}=4.$Az
+egy $u_{2}$ értékre, melyre $\check{\phi}_{u_{1},y}(u_{2})=0$, a
+relatív fok $r_{u_{1},y}>4$.
+\item $k=4$
+\begin{equation}
+L_{g}L_{f}^{4}h=C\neq0
+\end{equation}
+Mivel már minden változó értékét fixáltuk, ez a kifejezés minden esetben
+nem nulla. Így az elõfordulható legmagasabb relatív fok az $u_{1}$
+bemenet és a robotkar végpontjának $y$ koordinátája között $r_{u_{1},y}=5$. 
+\end{itemize}
+
+\subsection{Az $u_{2}$ bemenet relatív fokai}
+
+Vizsgáljuk most az $u_{2}$ bemenet hatását a robotkar végpontjának
+pozíciójára. A \eqref{eq:rel-deg-xdot} egyenlet így
+\begin{equation}
+\dot{\bm{x}}=\bm{f}(\bm{x})+\bm{g}(\bm{x})u_{2},
+\end{equation}
+ahol $\bm{f}(\bm{x})$ és $\bm{g}(\bm{x})$ vektorok könnyedén meghatározóak,
+de terjedelmi okokból nem közöljük õket.
+
+\subsubsection{A robotkar végpontjának $x$ koordinátájára nézve}
+
+Válasszuk elõször kimenetnek a robotkar végpontjának $x$ koordinátáját
+(\eqref{eq:x-output} egyenlet). Az $u_{1}$bemenet relatív fokainak
+számításával analóg módon most is a különbözõ Lie-deriváltakat kell
+vizsgálnunk az $r_{u_{2},x}$ relatív fok meghatározásához.
+\begin{itemize}
+\item $k=0$
+\begin{equation}
+L_{g}h=0
+\end{equation}
+\item $k=1$
+\begin{equation}
+L_{g}L_{f}h=\phi_{u_{2},x}(q_{0},q_{1},q_{2})
+\end{equation}
+A $\phi_{u_{2},x}$ összefüggés a robot 3 szögkoordinátájának függvénye,
+és a legtöbb esetben nem nulla értéket vesz fel. Ekkor a relatív fok
+$r_{u_{2},x}=2$. Az $r_{u_{2},x}>2$ relatív fokot eredményezõ szögkoordináták
+a \ref{fig:r-u2-x-3d} ábrán láthatóak. 
+\begin{figure}[h]
+\centering{}\includegraphics[scale=0.5]{image/r_u2_x_3dplot}\caption{A $\phi_{u_{2},x}(q_{0},q_{1},q_{2})=0$ esetek elõfordulása\label{fig:r-u2-x-3d}}
+\end{figure}
+\\
+A $\phi_{u_{2},x}$ kifejezésbõl szintén kiejthetjük a $q_{0}$ szöget
+a koordináta-rendszer forgatásával, így a $\hat{\phi}_{u_{2},x}(q_{1},q_{2})$
+kifejezéshez jutva. Az $r_{u_{2},x}>2$ relatív fokot eredményezõ
+$q_{1}$ és $q_{2}$ értékek a \ref{fig:r-u2-x-2d} ábrán láthatóak.
+Az ábráról észrevehetjük, hogy ellentétben az $u_{1}$ bemenet relatív
+fokainál tapasztaltakkal, itt egy rögzített $q_{1}$-hez csak 2 $q_{2}$
+érték tartozik, melyek $2\pi$ periodikusak.
+\begin{figure}[h]
+\centering{}\includegraphics[scale=0.5]{image/r_u2_x_2dplot}\caption{A $\hat{\phi}_{u_{2},x}(q_{1},q_{2})=0$ esetek elõfordulása\label{fig:r-u2-x-2d}}
+\end{figure}
+\\
+Szemléltetésül a $\hat{\phi}_{u_{2},x}(q_{1},q_{2})=0$ összefüggésbe
+$q_{1}=0\,\mathrm{rad}$-t helyettesítve, a kapott 2 konfiguráció,
+melyeknél $r_{u_{2},x}>2$, a \ref{fig:4-konfig-ru2x} ábrán látható.
+Észrevehetjük, hogy a kapott $q_{2}$ értékek közel állnak a $0\,\mathrm{rad}$
+és $\pi\,\mathrm{rad}$ értékekhez, az eltérést csak a numerikus számítások
+pontatlansága okozza. 
+\begin{figure}[h]
+\subfloat[$q_{1}=0\,\mathrm{rad}$, $q_{2}=3.114\,\mathrm{rad}$]{\centering{}\includegraphics[scale=0.2]{image/r_u2_x_example1}}\hfill{}\subfloat[$q_{1}=0\,\mathrm{rad}$, $q_{2}=0.02650\,\mathrm{rad}$]{\centering{}\includegraphics[scale=0.2]{image/r_u2_x_example2}}
+
+\caption []{2 konfiguráció, melyekre $r_{u_{2},x}>2$}
+\label{fig:4-konfig-ru2x}
+\end{figure}
+\item $k=2$
+\begin{equation}
+L_{g}L_{f}^{2}h=\tilde{\phi}_{u_{2},x}(\dot{q}_{1},\dot{q}_{2})
+\end{equation}
+A $\tilde{\phi}_{u_{2},x}$ összefüggés a $\dot{q}_{1}$ és $\dot{q}_{2}$
+szögsebességektõl függ. Amikor $\tilde{\phi}_{u_{2},x}(\dot{q}_{1},\dot{q}_{2})\neq0$,
+a relatív fok $r_{u_{2},x}=3.$ Ha $\tilde{\phi}_{u_{2},x}(\dot{q}_{1},\dot{q}_{2})=0$,
+a relatív fok $r_{u_{2},x}>3.$ Ilyenkor $\dot{q}_{1}$ és $\dot{q}_{2}$
+között
+\begin{equation}
+\dot{q}_{1}=a+b\dot{q}_{2}
+\end{equation}
+lineáris kapcsolat áll fent.
+\item $k=3$
+\begin{equation}
+L_{g}L_{f}^{3}h=\check{\phi}_{u_{2},x}(u_{1})=\alpha+\beta u_{1}
+\end{equation}
+A $\check{\phi}_{u_{2},x}$ kifejezés az $u_{1}$ bemenet lineáris
+függvénye. Amikor $\check{\phi}_{u_{2},x}(u_{1})\neq0$, a relatív
+fok $r_{u_{2},x}=4.$ $\check{\phi}_{u_{2},x}(u_{1})$ az $u_{1}$bemenet
+egyetlen értékénél vesz fel $0$-t, ilyenkor a relatív fok $r_{u_{2},x}>4$.
+\item $k=4$
+\begin{equation}
+L_{g}L_{f}^{4}h=C\neq0
+\end{equation}
+A kapott összefüggés nem nulla, így az elõfordulható legmagasabb relatív
+fok az $u_{2}$ bemenet és a robotkar végpontjának $x$ koordinátája
+között is $r_{u_{2},x}=5$.
+\end{itemize}
+
+\subsubsection{A robotkar végpontjának $y$ koordinátájára nézve}
+
+Legyen a kimenet a robotkar végpontjának $y$ koordinátája (\eqref{eq:y-output}
+egyenlet), és ismételjük meg az elõzõ pontban leírt számításokat.
+\begin{itemize}
+\item $k=0$
+\begin{equation}
+L_{g}h=0
+\end{equation}
+\item $k=1$
+\begin{equation}
+L_{g}L_{f}h=\phi_{u_{2},y}(q_{0},q_{1},q_{2})
+\end{equation}
+A $\phi_{u_{2},y}$ összefüggés itt is a robot 3 szögkoordinátájának
+függvénye, ami a legtöbb esetben nem nulla. Ekkor a relatív fok $r_{u_{2},y}=2$.
+Az $r_{u_{2},y}>2$ relatív fokot eredményezõ szögkoordináták a \ref{fig:r-u2-y-3d}
+ábrán láthatóak. 
+\begin{figure}[h]
+\centering{}\includegraphics[scale=0.5]{image/r_u2_y_3dplot}\caption{A $\phi_{u_{2},y}(q_{0},q_{1},q_{2})=0$ esetek elõfordulása\label{fig:r-u2-y-3d}}
+\end{figure}
+\\
+A $\phi_{u_{2},y}$ kifejezésbõl $q_{0}$ a szög kiejtésével a $\hat{\phi}_{u_{2},y}(q_{1},q_{2})$
+kifejezést kapjuk. Az $r_{u_{2},y}>2$ relatív fokot eredményezõ $q_{1}$
+és $q_{2}$ értékek a \ref{fig:r-u2-y-2d} ábrán láthatóak. Az elõzõ
+számításhoz hasonlóan egy rögzített $q_{1}$ értékhez 2 $q_{2}$ érték
+tartozik, melyek $2\pi$ periodikusak.
+\begin{figure}[h]
+\centering{}\includegraphics[scale=0.5]{image/r_u2_y_2dplot}\caption{A $\hat{\phi}_{u_{2},x}(q_{1},q_{2})=0$ esetek elõfordulása\label{fig:r-u2-y-2d}}
+\end{figure}
+\\
+Egy példaként $q_{1}=0\,\mathrm{rad}$-t helyettesítve a $\hat{\phi}_{u_{2},y}(q_{1},q_{2})=0$
+összefüggésbe , a kapott 2 konfiguráció, melyekre $r_{u_{2},y}>2$,
+a \ref{fig:4-konfig-ru2y} ábrán látható. 
+\begin{figure}[h]
+\subfloat[$q_{1}=0\,\mathrm{rad}$, $q_{2}=-1.272\,\mathrm{rad}$]{\centering{}\includegraphics[scale=0.2]{image/r_u2_y_example1}}\hfill{}\subfloat[$q_{1}=0\,\mathrm{rad}$, $q_{2}=1.259\,\mathrm{rad}$]{\centering{}\includegraphics[scale=0.2]{image/r_u2_y_example2}}
+
+\caption []{2 konfiguráció, melyekre $r_{u_{2},y}>2$}
+\label{fig:4-konfig-ru2y}
+\end{figure}
+\item $k=2$
+\begin{equation}
+L_{g}L_{f}^{2}h=\tilde{\phi}_{u_{2},y}(\dot{q}_{1},\dot{q}_{2})
+\end{equation}
+A $\tilde{\phi}_{u_{2},y}$ összefüggés a $\dot{q}_{1}$ és $\dot{q}_{2}$
+szögsebességek függvénye. $\tilde{\phi}_{u_{2},x}(\dot{q}_{1},\dot{q}_{2})\neq0$
+esetén a relatív fok $r_{u_{2},y}=3.$ Akkor, ha $\tilde{\phi}_{u_{2},y}(\dot{q}_{1},\dot{q}_{2})=0$,
+a relatív fok $r_{u_{2},y}>3.$ Ilyenkor $\dot{q}_{1}$ és $\dot{q}_{2}$között
+\begin{equation}
+\dot{q}_{1}=a+b\dot{q}_{2}
+\end{equation}
+lineáris kapcsolat van.
+\item $k=3$
+\begin{equation}
+L_{g}L_{f}^{3}h=\check{\phi}_{u_{2},y}(u_{1})=\alpha+\beta u_{1}
+\end{equation}
+$\check{\phi}_{u_{2},y}$ az $u_{1}$ bemenet lineáris függvénye.
+Amikor $\check{\phi}_{u_{2},y}(u_{1})\neq0$, a relatív fok $r_{u_{2},y}=4.$
+$\check{\phi}_{u_{2},x}(u_{1})=0$ egyetlen $u_{1}$ értéknél valósul
+meg, ekkor a relatív fok $r_{u_{2},y}>4$.
+\item $k=4$
+\begin{equation}
+L_{g}L_{f}^{4}h=C\neq0
+\end{equation}
+Az összefüggés nem nulla, tehát az elõfordulható legmagasabb relatív
+fok az $u_{2}$ bemenet és a robotkar végpontjának $y$ koordinátája
+között szintén $r_{u_{2},y}=5$. 
+\end{itemize}
 
 \chapter{Összefoglalás}
 

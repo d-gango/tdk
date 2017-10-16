@@ -25,22 +25,6 @@ Műszaki Mechanikai Tanszék}}
 \hspace*{3em}Dr. Zelei Ambrus\\
 \hspace*{3em}tudományos munkatárs}}
 
-
-
-\usepackage{babel}
-
-
-
-
-
-
-\usepackage{babel}
-
-
-
-
-
-
 \usepackage{babel}
 \usepackage[style=numeric, backend=bibtex]{biblatex}
 \addbibresource{irodalomjegyzek.bib} 
@@ -51,10 +35,6 @@ Műszaki Mechanikai Tanszék}}
 \fancyhead[LE]{\leftmark}
 %\renewcommand{\footrulewidth}{0.4pt}
 \renewcommand{\sectionmark}[1]{\markright{\ \uppercase{#1}}}
-
-
-
-\usepackage{babel}
 \end_preamble
 \options twoside,rightopen
 \use_default_options false
@@ -1692,7 +1672,7 @@ reference "chap:A-robot-mozgásegyenletének"
 \end_layout
 
 \begin_layout Chapter
-A rendszer relatív foka
+A rendszer relatív fokai
 \end_layout
 
 \begin_layout Section
@@ -2107,7 +2087,7 @@ Legyen a rendszer kimenete a robotkar végpontjának
 \begin_inset Formula 
 \begin{align}
 h(\bm{x})= & \frac{2l_{0}m_{0}\cos(\varphi_{0}+q_{0})+l_{1}(2m_{0}+m_{1})\cos(q_{0}+q_{1})}{2(m_{0}+m_{1}+m_{2})}\nonumber \\
- & +\frac{l_{2}(2m_{0}+2m_{1}+m_{2})\cos(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}.
+ & +\frac{l_{2}(2m_{0}+2m_{1}+m_{2})\cos(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}.\label{eq:x-output}
 \end{align}
 
 \end_inset
@@ -2141,13 +2121,13 @@ L_{g}h=0
 
 \begin_inset Formula 
 \begin{equation}
-L_{g}L_{f}h=\phi(q_{0},q_{1},q_{2})
+L_{g}L_{f}h=\phi_{u_{1},x}(q_{0},q_{1},q_{2})
 \end{equation}
 
 \end_inset
 
 A kapott 
-\begin_inset Formula $\phi$
+\begin_inset Formula $\phi_{u_{1},x}$
 \end_inset
 
  összefüggés a robot szögkoordinátáitól függ (terjedelmi okok miatt a kifejtett
@@ -2158,7 +2138,7 @@ A kapott
 
 .
  Előállhat azonban a szögkoordinátáknak olyan kombinációja, melyekre 
-\begin_inset Formula $\phi(q_{0},q_{1},q_{2})=0$
+\begin_inset Formula $\phi_{u_{1},x}(q_{0},q_{1},q_{2})=0$
 \end_inset
 
 .
@@ -2191,7 +2171,7 @@ status open
 
 \begin_layout Plain Layout
 A 
-\begin_inset Formula $\phi(q_{0},q_{1},q_{2})=0$
+\begin_inset Formula $\phi_{u_{1},x}(q_{0},q_{1},q_{2})=0$
 \end_inset
 
  esetek előfordulása
@@ -2224,7 +2204,7 @@ A
 \end_inset
 
  változót kiküszöbölhetjük a 
-\begin_inset Formula $\phi$
+\begin_inset Formula $\phi_{u_{1},x}$
 \end_inset
 
  összefüggésből úgy, hogy a koordináta-rendszert úgy rögzítjük a robot súlypontj
@@ -2236,7 +2216,7 @@ A
  szöggel).
  Ez a megfontolás nem változtat a relatív fokokon, viszont az így kapott
  
-\begin_inset Formula $\hat{\phi}(q_{1},q_{2})$
+\begin_inset Formula $\hat{\phi}_{u_{1},x}(q_{1},q_{2})$
 \end_inset
 
  összefüggés így már csak két változótól függ, mivel így az új koordináta-rendsz
@@ -2246,7 +2226,7 @@ erben
 
 .
  A 
-\begin_inset Formula $\hat{\phi}(q_{1},q_{2})=0$
+\begin_inset Formula $\hat{\phi}_{u_{1},x}(q_{1},q_{2})=0$
 \end_inset
 
 -t eredményező szögértékek a 
@@ -2311,7 +2291,7 @@ status open
 
 \begin_layout Plain Layout
 A 
-\begin_inset Formula $\hat{\phi}(q_{1},q_{2})=0$
+\begin_inset Formula $\hat{\phi}_{u_{1},x}(q_{1},q_{2})=0$
 \end_inset
 
  esetek előfordulása
@@ -2336,7 +2316,7 @@ name "fig:r-u1-x-2d"
 \end_inset
 
 Ha a 
-\begin_inset Formula $\hat{\phi}(q_{1},q_{2})=0$
+\begin_inset Formula $\hat{\phi}_{u_{1},x}(q_{1},q_{2})=0$
 \end_inset
 
  összefüggésbe például 
@@ -2350,7 +2330,7 @@ Ha a
 , a 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:4-konfig"
+reference "fig:4-konfig-ru1x"
 
 \end_inset
 
@@ -2381,11 +2361,11 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset Formula $q_{1}=0$
+\begin_inset Formula $q_{1}=0\,\mathrm{rad}$
 \end_inset
 
 , 
-\begin_inset Formula $q_{2}=-1.692$
+\begin_inset Formula $q_{2}=-1.692\,\mathrm{rad}$
 \end_inset
 
 
@@ -2422,11 +2402,11 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset Formula $q_{1}=0$
+\begin_inset Formula $q_{1}=0\,\mathrm{rad}$
 \end_inset
 
 , 
-\begin_inset Formula $q_{2}=1.448$
+\begin_inset Formula $q_{2}=1.448\,\mathrm{rad}$
 \end_inset
 
 
@@ -2462,11 +2442,11 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset Formula $q_{1}=0$
+\begin_inset Formula $q_{1}=0\,\mathrm{rad}$
 \end_inset
 
 , 
-\begin_inset Formula $q_{2}=-0.1254$
+\begin_inset Formula $q_{2}=-0.1254\,\mathrm{rad}$
 \end_inset
 
 
@@ -2503,11 +2483,11 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-\begin_inset Formula $q_{1}=0$
+\begin_inset Formula $q_{1}=0\,\mathrm{rad}$
 \end_inset
 
 , 
-\begin_inset Formula $q_{2}=3.016$
+\begin_inset Formula $q_{2}=3.016\,\mathrm{rad}$
 \end_inset
 
 
@@ -2538,7 +2518,7 @@ caption []{4 konfiguráció, melyekre $r_{u_{1},x}>2$}
 
 
 \backslash
-label{fig:4-konfig}
+label{fig:4-konfig-ru1x}
 \end_layout
 
 \end_inset
@@ -2558,7 +2538,7 @@ label{fig:4-konfig}
 
 \begin_inset Formula 
 \begin{equation}
-L_{g}L_{f}^{2}h=\tilde{\phi}(\dot{q}_{1},\dot{q}_{2})
+L_{g}L_{f}^{2}h=\tilde{\phi}_{u_{1},x}(\dot{q}_{1},\dot{q}_{2})
 \end{equation}
 
 \end_inset
@@ -2573,7 +2553,7 @@ A most kapott összefüggés a
 
  szögsebességektől függ.
  Azokban az esetekben, amikor 
-\begin_inset Formula $\tilde{\phi}(\dot{q}_{1},\dot{q}_{2})\neq0$
+\begin_inset Formula $\tilde{\phi}_{u_{1},x}(\dot{q}_{1},\dot{q}_{2})\neq0$
 \end_inset
 
 , a relatív fok 
@@ -2585,7 +2565,7 @@ A most kapott összefüggés a
 \end_inset
 
 Amikor 
-\begin_inset Formula $\tilde{\phi}(\dot{q}_{1},\dot{q}_{2})=0$
+\begin_inset Formula $\tilde{\phi}_{u_{1},x}(\dot{q}_{1},\dot{q}_{2})=0$
 \end_inset
 
 , a relatív fok 
@@ -2593,7 +2573,7 @@ Amikor
 \end_inset
 
  Ilyenkor 
-\begin_inset Formula $\tilde{\phi}$
+\begin_inset Formula $\tilde{\phi}_{u_{1},x}$
 \end_inset
 
 -ból egy lineáris összefüggést kapunk 
@@ -2604,7 +2584,7 @@ Amikor
 \begin_inset Formula $\dot{q}_{2}$
 \end_inset
 
-között
+ között
 \begin_inset Formula 
 \begin{equation}
 \dot{q}_{1}=a+b\dot{q}_{2}
@@ -2623,7 +2603,7 @@ alakban.
 
 \begin_inset Formula 
 \begin{equation}
-L_{g}L_{f}^{3}h=\check{\phi}(u_{2})=\alpha+\beta u_{2}
+L_{g}L_{f}^{3}h=\check{\phi}_{u_{1},x}(u_{2})=\alpha+\beta u_{2}
 \end{equation}
 
 \end_inset
@@ -2634,7 +2614,7 @@ Ez az összefüggés már csak az
 
  bemenettől függ, méghozzá lineárisan.
  Abban az esetben, ha 
-\begin_inset Formula $\check{\phi}(u_{2})\neq0$
+\begin_inset Formula $\check{\phi}_{u_{1},x}(u_{2})\neq0$
 \end_inset
 
 , a relatív fok 
@@ -2646,7 +2626,7 @@ Ez az összefüggés már csak az
 \end_inset
 
  érték létezik, melyre 
-\begin_inset Formula $\check{\phi}(u_{2})=0$
+\begin_inset Formula $\check{\phi}_{u_{1},x}(u_{2})=0$
 \end_inset
 
 , ilyenkor a relatív fok 
@@ -2674,11 +2654,11 @@ Mivel nem maradt már több változónk, aminek nincs előírt értéke, a fenti
 \begin_inset Formula $u_{1}$
 \end_inset
 
- bemenet és az 
+ bemenet és a robotkar végpontjának 
 \begin_inset Formula $x$
 \end_inset
 
- kimenet között tehát 
+ koordinátája között tehát 
 \begin_inset Formula $r_{u_{1},x}=5$
 \end_inset
 
@@ -2692,6 +2672,1578 @@ A robotkar végpontjának
 \end_inset
 
  koordinátájára nézve
+\end_layout
+
+\begin_layout Standard
+Hasonlóan számíthatjuk ki a relatív fokot, ha kimenetnek a robotkar végpontjának
+ 
+\begin_inset Formula $y$
+\end_inset
+
+ koordinátáját választjuk a súlyponthoz rögzített koordináta-rendszerben:
+\begin_inset Formula 
+\begin{align}
+h(\bm{x})= & \frac{2l_{0}m_{0}\sin(\varphi_{0}+q_{0})+l_{1}(2m_{0}+m_{1})\sin(q_{0}+q_{1})}{2(m_{0}+m_{1}+m_{2})}\nonumber \\
+ & +\frac{l_{2}(2m_{0}+2m_{1}+m_{2})\sin(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}.\label{eq:y-output}
+\end{align}
+
+\end_inset
+
+A számolás menete megegyezik az előző számítással, csak az eredményekben
+ tér el attól.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=0$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+L_{g}h=0
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=1$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+L_{g}L_{f}h=\phi_{u_{1},y}(q_{0},q_{1},q_{2})
+\end{equation}
+
+\end_inset
+
+A kapott 
+\begin_inset Formula $\phi$
+\end_inset
+
+ összefüggés itt is a szögkoordinátáktól függ, ami a legtöbb esetben nem
+ nulla.
+ Ilyenkor a relatív fok 
+\begin_inset Formula $r_{u_{1},y}=2$
+\end_inset
+
+.
+ Az 
+\begin_inset Formula $r_{u_{1},y}>2$
+\end_inset
+
+ relatív fokot eredményező szögkoordináta kombinációk a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:r-u1-y-3d"
+
+\end_inset
+
+ ábrán láthatóak.
+ 
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/r_u1_y_3dplot.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A 
+\begin_inset Formula $\phi_{u_{1},y}(q_{0},q_{1},q_{2})=0$
+\end_inset
+
+ esetek előfordulása
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:r-u1-y-3d"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+A 
+\begin_inset Formula $q_{0}$
+\end_inset
+
+ változó kiküszöbölése utána a kapott összefüggés 
+\begin_inset Formula $\hat{\phi}_{u_{1},y}(q_{1},q_{2})$
+\end_inset
+
+ .
+ A 
+\begin_inset Formula $\hat{\phi}_{u_{1},y}(q_{1},q_{2})=0$
+\end_inset
+
+-t, tehát 
+\begin_inset Formula $r_{u_{1},y}>2$
+\end_inset
+
+ relatív fokot eredményező szögértékek a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:r-u1-y-2d"
+
+\end_inset
+
+ ábrán láthatóak.
+ Egy fix 
+\begin_inset Formula $q_{1}$
+\end_inset
+
+ értékhez itt is 4 különböző 
+\begin_inset Formula $q_{2}$
+\end_inset
+
+ érték tartozik, melyek 
+\begin_inset Formula $2\pi$
+\end_inset
+
+ periódusonként ismétlődnek.
+ A 4 
+\begin_inset Formula $q_{2}$
+\end_inset
+
+ érték között itt is felfedezhető 
+\begin_inset Formula $\pi$
+\end_inset
+
+ eltolás páronként 2-2 érték között.
+ 
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/r_u1_y_2dplot.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A 
+\begin_inset Formula $\hat{\phi}_{u_{1},y}(q_{1},q_{2})=0$
+\end_inset
+
+ esetek előfordulása
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:r-u1-y-2d"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Példaképp, ha a 
+\begin_inset Formula $\hat{\phi}_{u_{1},y}(q_{1},q_{2})=0$
+\end_inset
+
+ összefüggésbe 
+\begin_inset Formula $q_{1}=0\,\mathrm{rad}$
+\end_inset
+
+-t helyettesítünk, a kapott 4 konfiguráció, melyekre 
+\begin_inset Formula $r_{u_{1},y}>2$
+\end_inset
+
+, a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:4-konfig-ru1y"
+
+\end_inset
+
+ ábrán látható.
+ 
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/r_u1_y_example1.svg
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $q_{1}=0\,\mathrm{rad}$
+\end_inset
+
+, 
+\begin_inset Formula $q_{2}=-2.623\,\mathrm{rad}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 2cm
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/r_u1_y_example3.svg
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $q_{1}=0\,\mathrm{rad}$
+\end_inset
+
+, 
+\begin_inset Formula $q_{2}=0.5182\,\mathrm{rad}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/r_u1_y_example2.svg
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $q_{1}=0\,\mathrm{rad}$
+\end_inset
+
+, 
+\begin_inset Formula $q_{2}=-0.7657\,\mathrm{rad}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 2cm
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/r_u1_y_example4.svg
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $q_{1}=0\,\mathrm{rad}$
+\end_inset
+
+, 
+\begin_inset Formula $q_{2}=2.375\,\mathrm{rad}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption []{4 konfiguráció, melyekre $r_{u_{1},y}>2$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{fig:4-konfig-ru1y}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=2$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+L_{g}L_{f}^{2}h=\tilde{\phi}_{u_{1},y}(\dot{q}_{1},\dot{q}_{2})
+\end{equation}
+
+\end_inset
+
+Ez az összefüggés a 
+\begin_inset Formula $\dot{q}_{1}$
+\end_inset
+
+ és 
+\begin_inset Formula $\dot{q}_{2}$
+\end_inset
+
+ szögsebességektől függ.
+ Azokban az esetekben, amikor 
+\begin_inset Formula $\tilde{\phi}_{u_{1},y}(\dot{q}_{1},\dot{q}_{2})\neq0$
+\end_inset
+
+, a relatív fok 
+\begin_inset Formula $r_{u_{1},y}=3.$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Amikor 
+\begin_inset Formula $\tilde{\phi}_{u_{1},y}(\dot{q}_{1},\dot{q}_{2})=0$
+\end_inset
+
+, a relatív fok 
+\begin_inset Formula $r_{u_{1},y}>3.$
+\end_inset
+
+ Ilyenkor 
+\begin_inset Formula $\dot{q}_{1}$
+\end_inset
+
+ és 
+\begin_inset Formula $\dot{q}_{2}$
+\end_inset
+
+ között
+\begin_inset Formula 
+\begin{equation}
+\dot{q}_{1}=a+b\dot{q}_{2}
+\end{equation}
+
+\end_inset
+
+lineáris összefüggés figyelhető meg.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=3$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+L_{g}L_{f}^{3}h=\check{\phi}_{u_{1},y}(u_{2})=\alpha+\beta u_{2}
+\end{equation}
+
+\end_inset
+
+Ez az összefüggés csak az 
+\begin_inset Formula $u_{2}$
+\end_inset
+
+ bemenettől függ, méghozzá lineárisan.
+ Amikor 
+\begin_inset Formula $\check{\phi}_{u_{1},y}(u_{2})\neq0$
+\end_inset
+
+, a relatív fok 
+\begin_inset Formula $r_{u_{1},y}=4.$
+\end_inset
+
+Az egy 
+\begin_inset Formula $u_{2}$
+\end_inset
+
+ értékre, melyre 
+\begin_inset Formula $\check{\phi}_{u_{1},y}(u_{2})=0$
+\end_inset
+
+, a relatív fok 
+\begin_inset Formula $r_{u_{1},y}>4$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=4$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+L_{g}L_{f}^{4}h=C\neq0
+\end{equation}
+
+\end_inset
+
+Mivel már minden változó értékét fixáltuk, ez a kifejezés minden esetben
+ nem nulla.
+ Így az előfordulható legmagasabb relatív fok az 
+\begin_inset Formula $u_{1}$
+\end_inset
+
+ bemenet és a robotkar végpontjának 
+\begin_inset Formula $y$
+\end_inset
+
+ koordinátája között 
+\begin_inset Formula $r_{u_{1},y}=5$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsection
+Az 
+\begin_inset Formula $u_{2}$
+\end_inset
+
+ bemenet relatív fokai
+\end_layout
+
+\begin_layout Standard
+Vizsgáljuk most az 
+\begin_inset Formula $u_{2}$
+\end_inset
+
+ bemenet hatását a robotkar végpontjának pozíciójára.
+ A 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:rel-deg-xdot"
+
+\end_inset
+
+ egyenlet így
+\begin_inset Formula 
+\begin{equation}
+\dot{\bm{x}}=\bm{f}(\bm{x})+\bm{g}(\bm{x})u_{2},
+\end{equation}
+
+\end_inset
+
+ahol 
+\begin_inset Formula $\bm{f}(\bm{x})$
+\end_inset
+
+ és 
+\begin_inset Formula $\bm{g}(\bm{x})$
+\end_inset
+
+ vektorok könnyedén meghatározóak, de terjedelmi okokból nem közöljük őket.
+\end_layout
+
+\begin_layout Subsubsection
+A robotkar végpontjának 
+\begin_inset Formula $x$
+\end_inset
+
+ koordinátájára nézve
+\end_layout
+
+\begin_layout Standard
+Válasszuk először kimenetnek a robotkar végpontjának 
+\begin_inset Formula $x$
+\end_inset
+
+ koordinátáját (
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:x-output"
+
+\end_inset
+
+ egyenlet).
+ Az 
+\begin_inset Formula $u_{1}$
+\end_inset
+
+bemenet relatív fokainak számításával analóg módon most is a különböző Lie-deriv
+áltakat kell vizsgálnunk az 
+\begin_inset Formula $r_{u_{2},x}$
+\end_inset
+
+ relatív fok meghatározásához.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=0$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+L_{g}h=0
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=1$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+L_{g}L_{f}h=\phi_{u_{2},x}(q_{0},q_{1},q_{2})
+\end{equation}
+
+\end_inset
+
+A 
+\begin_inset Formula $\phi_{u_{2},x}$
+\end_inset
+
+ összefüggés a robot 3 szögkoordinátájának függvénye, és a legtöbb esetben
+ nem nulla értéket vesz fel.
+ Ekkor a relatív fok 
+\begin_inset Formula $r_{u_{2},x}=2$
+\end_inset
+
+.
+ Az 
+\begin_inset Formula $r_{u_{2},x}>2$
+\end_inset
+
+ relatív fokot eredményező szögkoordináták a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:r-u2-x-3d"
+
+\end_inset
+
+ ábrán láthatóak.
+ 
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/r_u2_x_3dplot.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A 
+\begin_inset Formula $\phi_{u_{2},x}(q_{0},q_{1},q_{2})=0$
+\end_inset
+
+ esetek előfordulása
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:r-u2-x-3d"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+A 
+\begin_inset Formula $\phi_{u_{2},x}$
+\end_inset
+
+ kifejezésből szintén kiejthetjük a 
+\begin_inset Formula $q_{0}$
+\end_inset
+
+ szöget a koordináta-rendszer forgatásával, így a 
+\begin_inset Formula $\hat{\phi}_{u_{2},x}(q_{1},q_{2})$
+\end_inset
+
+ kifejezéshez jutva.
+ Az 
+\begin_inset Formula $r_{u_{2},x}>2$
+\end_inset
+
+ relatív fokot eredményező 
+\begin_inset Formula $q_{1}$
+\end_inset
+
+ és 
+\begin_inset Formula $q_{2}$
+\end_inset
+
+ értékek a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:r-u2-x-2d"
+
+\end_inset
+
+ ábrán láthatóak.
+ Az ábráról észrevehetjük, hogy ellentétben az 
+\begin_inset Formula $u_{1}$
+\end_inset
+
+ bemenet relatív fokainál tapasztaltakkal, itt egy rögzített 
+\begin_inset Formula $q_{1}$
+\end_inset
+
+-hez csak 2 
+\begin_inset Formula $q_{2}$
+\end_inset
+
+ érték tartozik, melyek 
+\begin_inset Formula $2\pi$
+\end_inset
+
+ periodikusak.
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/r_u2_x_2dplot.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A 
+\begin_inset Formula $\hat{\phi}_{u_{2},x}(q_{1},q_{2})=0$
+\end_inset
+
+ esetek előfordulása
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:r-u2-x-2d"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Szemléltetésül a 
+\begin_inset Formula $\hat{\phi}_{u_{2},x}(q_{1},q_{2})=0$
+\end_inset
+
+ összefüggésbe 
+\begin_inset Formula $q_{1}=0\,\mathrm{rad}$
+\end_inset
+
+-t helyettesítve, a kapott 2 konfiguráció, melyeknél 
+\begin_inset Formula $r_{u_{2},x}>2$
+\end_inset
+
+, a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:4-konfig-ru2x"
+
+\end_inset
+
+ ábrán látható.
+ Észrevehetjük, hogy a kapott 
+\begin_inset Formula $q_{2}$
+\end_inset
+
+ értékek közel állnak a 
+\begin_inset Formula $0\,\mathrm{rad}$
+\end_inset
+
+ és 
+\begin_inset Formula $\pi\,\mathrm{rad}$
+\end_inset
+
+ értékekhez, az eltérést csak a numerikus számítások pontatlansága okozza.
+ 
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/r_u2_x_example1.svg
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $q_{1}=0\,\mathrm{rad}$
+\end_inset
+
+, 
+\begin_inset Formula $q_{2}=3.114\,\mathrm{rad}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/r_u2_x_example2.svg
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $q_{1}=0\,\mathrm{rad}$
+\end_inset
+
+, 
+\begin_inset Formula $q_{2}=0.02650\,\mathrm{rad}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption []{2 konfiguráció, melyekre $r_{u_{2},x}>2$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{fig:4-konfig-ru2x}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=2$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+L_{g}L_{f}^{2}h=\tilde{\phi}_{u_{2},x}(\dot{q}_{1},\dot{q}_{2})
+\end{equation}
+
+\end_inset
+
+A 
+\begin_inset Formula $\tilde{\phi}_{u_{2},x}$
+\end_inset
+
+ összefüggés a 
+\begin_inset Formula $\dot{q}_{1}$
+\end_inset
+
+ és 
+\begin_inset Formula $\dot{q}_{2}$
+\end_inset
+
+ szögsebességektől függ.
+ Amikor 
+\begin_inset Formula $\tilde{\phi}_{u_{2},x}(\dot{q}_{1},\dot{q}_{2})\neq0$
+\end_inset
+
+, a relatív fok 
+\begin_inset Formula $r_{u_{2},x}=3.$
+\end_inset
+
+ Ha 
+\begin_inset Formula $\tilde{\phi}_{u_{2},x}(\dot{q}_{1},\dot{q}_{2})=0$
+\end_inset
+
+, a relatív fok 
+\begin_inset Formula $r_{u_{2},x}>3.$
+\end_inset
+
+ Ilyenkor 
+\begin_inset Formula $\dot{q}_{1}$
+\end_inset
+
+ és 
+\begin_inset Formula $\dot{q}_{2}$
+\end_inset
+
+ között
+\begin_inset Formula 
+\begin{equation}
+\dot{q}_{1}=a+b\dot{q}_{2}
+\end{equation}
+
+\end_inset
+
+lineáris kapcsolat áll fent.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=3$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+L_{g}L_{f}^{3}h=\check{\phi}_{u_{2},x}(u_{1})=\alpha+\beta u_{1}
+\end{equation}
+
+\end_inset
+
+A 
+\begin_inset Formula $\check{\phi}_{u_{2},x}$
+\end_inset
+
+ kifejezés az 
+\begin_inset Formula $u_{1}$
+\end_inset
+
+ bemenet lineáris függvénye.
+ Amikor 
+\begin_inset Formula $\check{\phi}_{u_{2},x}(u_{1})\neq0$
+\end_inset
+
+, a relatív fok 
+\begin_inset Formula $r_{u_{2},x}=4.$
+\end_inset
+
+ 
+\begin_inset Formula $\check{\phi}_{u_{2},x}(u_{1})$
+\end_inset
+
+ az 
+\begin_inset Formula $u_{1}$
+\end_inset
+
+bemenet egyetlen értékénél vesz fel 
+\begin_inset Formula $0$
+\end_inset
+
+-t, ilyenkor a relatív fok 
+\begin_inset Formula $r_{u_{2},x}>4$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=4$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+L_{g}L_{f}^{4}h=C\neq0
+\end{equation}
+
+\end_inset
+
+A kapott összefüggés nem nulla, így az előfordulható legmagasabb relatív
+ fok az 
+\begin_inset Formula $u_{2}$
+\end_inset
+
+ bemenet és a robotkar végpontjának 
+\begin_inset Formula $x$
+\end_inset
+
+ koordinátája között is 
+\begin_inset Formula $r_{u_{2},x}=5$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+A robotkar végpontjának 
+\begin_inset Formula $y$
+\end_inset
+
+ koordinátájára nézve
+\end_layout
+
+\begin_layout Standard
+Legyen a kimenet a robotkar végpontjának 
+\begin_inset Formula $y$
+\end_inset
+
+ koordinátája (
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:y-output"
+
+\end_inset
+
+ egyenlet), és ismételjük meg az előző pontban leírt számításokat.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=0$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+L_{g}h=0
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=1$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+L_{g}L_{f}h=\phi_{u_{2},y}(q_{0},q_{1},q_{2})
+\end{equation}
+
+\end_inset
+
+A 
+\begin_inset Formula $\phi_{u_{2},y}$
+\end_inset
+
+ összefüggés itt is a robot 3 szögkoordinátájának függvénye, ami a legtöbb
+ esetben nem nulla.
+ Ekkor a relatív fok 
+\begin_inset Formula $r_{u_{2},y}=2$
+\end_inset
+
+.
+ Az 
+\begin_inset Formula $r_{u_{2},y}>2$
+\end_inset
+
+ relatív fokot eredményező szögkoordináták a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:r-u2-y-3d"
+
+\end_inset
+
+ ábrán láthatóak.
+ 
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/r_u2_y_3dplot.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A 
+\begin_inset Formula $\phi_{u_{2},y}(q_{0},q_{1},q_{2})=0$
+\end_inset
+
+ esetek előfordulása
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:r-u2-y-3d"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+A 
+\begin_inset Formula $\phi_{u_{2},y}$
+\end_inset
+
+ kifejezésből 
+\begin_inset Formula $q_{0}$
+\end_inset
+
+ a szög kiejtésével a 
+\begin_inset Formula $\hat{\phi}_{u_{2},y}(q_{1},q_{2})$
+\end_inset
+
+ kifejezést kapjuk.
+ Az 
+\begin_inset Formula $r_{u_{2},y}>2$
+\end_inset
+
+ relatív fokot eredményező 
+\begin_inset Formula $q_{1}$
+\end_inset
+
+ és 
+\begin_inset Formula $q_{2}$
+\end_inset
+
+ értékek a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:r-u2-y-2d"
+
+\end_inset
+
+ ábrán láthatóak.
+ Az előző számításhoz hasonlóan egy rögzített 
+\begin_inset Formula $q_{1}$
+\end_inset
+
+ értékhez 2 
+\begin_inset Formula $q_{2}$
+\end_inset
+
+ érték tartozik, melyek 
+\begin_inset Formula $2\pi$
+\end_inset
+
+ periodikusak.
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/r_u2_y_2dplot.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A 
+\begin_inset Formula $\hat{\phi}_{u_{2},x}(q_{1},q_{2})=0$
+\end_inset
+
+ esetek előfordulása
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:r-u2-y-2d"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Egy példaként 
+\begin_inset Formula $q_{1}=0\,\mathrm{rad}$
+\end_inset
+
+-t helyettesítve a 
+\begin_inset Formula $\hat{\phi}_{u_{2},y}(q_{1},q_{2})=0$
+\end_inset
+
+ összefüggésbe , a kapott 2 konfiguráció, melyekre 
+\begin_inset Formula $r_{u_{2},y}>2$
+\end_inset
+
+, a 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:4-konfig-ru2y"
+
+\end_inset
+
+ ábrán látható.
+ 
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/r_u2_y_example1.svg
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $q_{1}=0\,\mathrm{rad}$
+\end_inset
+
+, 
+\begin_inset Formula $q_{2}=-1.272\,\mathrm{rad}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename image/r_u2_y_example2.svg
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset Formula $q_{1}=0\,\mathrm{rad}$
+\end_inset
+
+, 
+\begin_inset Formula $q_{2}=1.259\,\mathrm{rad}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption []{2 konfiguráció, melyekre $r_{u_{2},y}>2$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{fig:4-konfig-ru2y}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=2$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+L_{g}L_{f}^{2}h=\tilde{\phi}_{u_{2},y}(\dot{q}_{1},\dot{q}_{2})
+\end{equation}
+
+\end_inset
+
+A 
+\begin_inset Formula $\tilde{\phi}_{u_{2},y}$
+\end_inset
+
+ összefüggés a 
+\begin_inset Formula $\dot{q}_{1}$
+\end_inset
+
+ és 
+\begin_inset Formula $\dot{q}_{2}$
+\end_inset
+
+ szögsebességek függvénye.
+ 
+\begin_inset Formula $\tilde{\phi}_{u_{2},x}(\dot{q}_{1},\dot{q}_{2})\neq0$
+\end_inset
+
+ esetén a relatív fok 
+\begin_inset Formula $r_{u_{2},y}=3.$
+\end_inset
+
+ Akkor, ha 
+\begin_inset Formula $\tilde{\phi}_{u_{2},y}(\dot{q}_{1},\dot{q}_{2})=0$
+\end_inset
+
+, a relatív fok 
+\begin_inset Formula $r_{u_{2},y}>3.$
+\end_inset
+
+ Ilyenkor 
+\begin_inset Formula $\dot{q}_{1}$
+\end_inset
+
+ és 
+\begin_inset Formula $\dot{q}_{2}$
+\end_inset
+
+között
+\begin_inset Formula 
+\begin{equation}
+\dot{q}_{1}=a+b\dot{q}_{2}
+\end{equation}
+
+\end_inset
+
+lineáris kapcsolat van.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=3$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+L_{g}L_{f}^{3}h=\check{\phi}_{u_{2},y}(u_{1})=\alpha+\beta u_{1}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula $\check{\phi}_{u_{2},y}$
+\end_inset
+
+ az 
+\begin_inset Formula $u_{1}$
+\end_inset
+
+ bemenet lineáris függvénye.
+ Amikor 
+\begin_inset Formula $\check{\phi}_{u_{2},y}(u_{1})\neq0$
+\end_inset
+
+, a relatív fok 
+\begin_inset Formula $r_{u_{2},y}=4.$
+\end_inset
+
+ 
+\begin_inset Formula $\check{\phi}_{u_{2},x}(u_{1})=0$
+\end_inset
+
+ egyetlen 
+\begin_inset Formula $u_{1}$
+\end_inset
+
+ értéknél valósul meg, ekkor a relatív fok 
+\begin_inset Formula $r_{u_{2},y}>4$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $k=4$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+L_{g}L_{f}^{4}h=C\neq0
+\end{equation}
+
+\end_inset
+
+Az összefüggés nem nulla, tehát az előfordulható legmagasabb relatív fok
+ az 
+\begin_inset Formula $u_{2}$
+\end_inset
+
+ bemenet és a robotkar végpontjának 
+\begin_inset Formula $y$
+\end_inset
+
+ koordinátája között szintén 
+\begin_inset Formula $r_{u_{2},y}=5$
+\end_inset
+
+.
+ 
 \end_layout
 
 \begin_layout Chapter
