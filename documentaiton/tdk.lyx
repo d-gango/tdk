@@ -338,8 +338,7 @@ pagenumbering{arabic}
 Az ipari robotok szabályozástechnikájának uralkodó irányzata a rendszer
  dinamikáját kompenzáló, lineáris szabályozási módszerek használata.
  Ennek nagy hátránya, hogy ezek a szabályozási stratégiák nem használják
- ki a rendszer természetes dinamikája adta lehetőségeket, így veszítenek
- hatékonyságukból.
+ ki a rendszer természetes dinamikája adta lehetőségeket.
  Az alulaktuált rendszerek vizsgálatakor olyan szabályozók tervezésére törekszün
 k, amik a rendszer dinamikáját felhasználva gyorsabb, energia-hatékonyabb
  és robusztusabb szabályozást tesznek lehetővé.
@@ -347,9 +346,11 @@ k, amik a rendszer dinamikáját felhasználva gyorsabb, energia-hatékonyabb
 
 \begin_layout Standard
 Dolgozatom témája egy űrbéli robot szabályozási módszereinek vizsgálata.
- A robot egy robottestből és a hozzá kapcsolódó robotkarból épül fel.
+ A síkbeli modell egy robottestből és a hozzá kapcsolódó két tagú robotkarból
+ épül fel.
  A robot 3 szabadságfokú, de csak két aktuátorral rendelkezik, ezért alulaktuált
 nak tekinthető.
+ A robot térbeli orientációjának közvetlen szabályozására nincs aktuátor.
 \end_layout
 
 \begin_layout Standard
@@ -357,8 +358,8 @@ Dolgozatomban két szabályozási módszert alkalmaztam a robot irányírásáho
  Az egyik módszer az általam már korábban vizsgált, Laplace transzformáción
  alapuló szabályozó.
  A szabályozó implementálása során vizsgáltam a rendszer ún.
- relative degree-it, melynek segítségével leírható a szabályozó jel kimeneten
- való megjelenése.
+ relatív fokait (relative degree), melynek segítségével leírható a szabályozó
+ bemenő jelének és a szabályozó kimenetének kapcsolata.
 \end_layout
 
 \begin_layout Standard
@@ -413,7 +414,12 @@ Tegyük fel, hogy egy
 \begin_inset Formula $\ddot{\bm{q}}(t)$
 \end_inset
 
--re nézve.
+-re, valamint a bementek 
+\begin_inset Formula ${\bf u}$
+\end_inset
+
+ vektorára.
+ nézve.
  Ekkor a mozgásegyenlet felírható 
 \begin_inset Formula 
 \begin{equation}
@@ -426,7 +432,7 @@ alakban, ahol
 \begin_inset Formula $\bm{M}\in\mathbb{R}^{n\times n}$
 \end_inset
 
- a rendszer tömegmátrixa, 
+ a rendszer általános tömegmátrixa, 
 \begin_inset Formula $\bm{B}\in\mathbb{R}^{n\times n}$
 \end_inset
 
@@ -438,7 +444,7 @@ alakban, ahol
 \begin_inset Formula $\bm{G}\in\mathbb{R}^{n}$
 \end_inset
 
- a rendszerre ható gravitációs erők vektora, 
+ a gravitációból származó általános erők vektora, 
 \begin_inset Formula $\bm{H}\in\mathbb{R}^{n\times m}$
 \end_inset
 
@@ -447,6 +453,27 @@ alakban, ahol
 \end_inset
 
  a rendszerre ható bemenetek vektora.
+ Mivel az 
+\begin_inset Formula ${\bf M}$
+\end_inset
+
+, 
+\begin_inset Formula ${\bf B}$
+\end_inset
+
+, 
+\begin_inset Formula ${\bf K}$
+\end_inset
+
+, 
+\begin_inset Formula ${\bf G}$
+\end_inset
+
+ rendszermátrixok függetlenek az általános koordináták 
+\begin_inset Formula ${\bf q}$
+\end_inset
+
+ vektorától, a rendszer lineáris.
  Írjuk elő, hogy a rendszer aktuátorainak száma legyen kevesebb a szabadságfokok
  számánál (
 \begin_inset Formula $m<n$
@@ -457,7 +484,14 @@ alakban, ahol
 
 \begin_layout Standard
 A rendszer mozgásának előírásához vezessünk be egy ún.
- szervo-kényszert:
+ szervo-kényszert 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kirgetov1967motion,blajer1997dynamics,bencsik2017dynamic"
+
+\end_inset
+
+:
 \begin_inset Formula 
 \begin{equation}
 \bm{\sigma}(\bm{q},t)=\bm{f}(\bm{q},t)-\bm{y}_{d}(t)=0,\label{eq:szervo}
@@ -515,7 +549,7 @@ reference "eq:szervo-lin"
 \begin_inset Formula 
 \begin{equation}
 \begin{array}{rcl}
-(\bm{M}s^{2}+\bm{B}s+\bm{K})\bm{Q}(s)-\dot{\bm{q}}_{0}-s\bm{q}_{0}-\bm{q}_{0}+\bm{G} & = & \bm{HU}(s),\\
+\bm{M}(s^{2}\bm{Q}(s)-s\bm{q}_{0}-\dot{\bm{q}}_{0})+\bm{B}(s\bm{Q}(s)-\bm{q}_{0})+\bm{K}\bm{Q}(s)+\bm{G} & = & \bm{HU}(s),\\
 \bm{AQ}(s)+\bm{Y}_{d}(s) & = & \mathbf{0},
 \end{array}
 \end{equation}
@@ -534,8 +568,8 @@ ahol
 \begin_inset Formula $\bm{Y}_{d}(s)$
 \end_inset
 
- az előírt pálya Laplace-transzformáltja, 
-\begin_inset Formula $\bm{q}$
+ az előírt kimenet Laplace-transzformáltja, 
+\begin_inset Formula $\bm{q}_{0}$
 \end_inset
 
  és 
@@ -547,7 +581,7 @@ ahol
 \end_inset
 
  időpillanatban vett kezdeti értékei.
- Az így kapott lineáris egyenletrendszert
+ Az így kapott lineáris egyenletrendszert felírhatjuk a
 \begin_inset Formula 
 \begin{equation}
 \left[\begin{array}{cc}
@@ -557,15 +591,15 @@ ahol
 \bm{Q}(s)\\
 \bm{U}(s)
 \end{array}\right]=\left[\begin{array}{c}
-\dot{\bm{q}}_{0}+s\bm{q}_{0}+\bm{q}_{0}-\bm{G}\\
+{\bf M}(\dot{\bm{q}}_{0}+s\bm{q}_{0})+{\bf B}\bm{q}_{0}-\bm{G}\\
 -\bm{Y}_{d}(s)
 \end{array}\right]\label{eq:linear-sys-of-eq}
 \end{equation}
 
 \end_inset
 
-hipermátrixos alakba rendezve, amennyiben a hipermátrix invertálható, megoldást
- kapunk 
+hipermátrixos alakba rendezve.
+ Amennyiben a hipermátrix invertálható, megoldást kapunk 
 \begin_inset Formula $\bm{Q}(s)$
 \end_inset
 
@@ -575,8 +609,8 @@ hipermátrixos alakba rendezve, amennyiben a hipermátrix invertálható, megold
 
 -ra.
  A megoldások inverz Laplace transzformációját elvégezve megkapjuk a rendszer
- által leírt 
-\begin_inset Formula $\bm{q}(t)=\bm{y}_{d}(t)$
+ által leírt, a szervo-kényszert kielégítő 
+\begin_inset Formula $\bm{q}(t)=\bm{q}_{d}(t)$
 \end_inset
 
  pályát, és a pálya kövezéséhez szükséges 
@@ -584,7 +618,37 @@ hipermátrixos alakba rendezve, amennyiben a hipermátrix invertálható, megold
 \end_inset
 
  beavatkozó erőt.
- A kapott 
+ Eleve lineáris rendszerek esetén az eredményül kapott 
+\begin_inset Formula $\bm{q}(t)=\bm{q}_{d}(t)$
+\end_inset
+
+ és 
+\begin_inset Formula $\bm{u}(t)$
+\end_inset
+
+ vektorok általános érvényűek, tetszőleges 
+\begin_inset Formula $t$
+\end_inset
+
+ időpontban megadják az előírt általános koordinátákat és a beavatkozó erőket.
+ Ha a szabályozót nemlineáris rendszerekre alkalmazzuk a rendszer linearizálásáv
+al, a 
+\begin_inset Formula $\bm{q}(t)=\bm{q}_{d}(t)$
+\end_inset
+
+ és 
+\begin_inset Formula $\bm{u}(t)$
+\end_inset
+
+ értékeket minden 
+\begin_inset Formula $t$
+\end_inset
+
+ időpillanatban újra kell számolnunk.
+\end_layout
+
+\begin_layout Standard
+A kapott 
 \begin_inset Formula $\bm{u}$
 \end_inset
 
@@ -613,15 +677,12 @@ hipermátrixos alakba rendezve, amennyiben a hipermátrix invertálható, megold
 \end_inset
 
  időpontban vett értékével.
-\end_layout
-
-\begin_layout Standard
-Ahhoz, hogy a rendszer tetszőleges kezdeti értékekkel is az előírt pályát
- kövesse, ki kell egészítenünk egy PD szabályozóval.
+ Ahhoz, hogy a rendszer tetszőleges kezdeti értékekkel is az előírt pályához
+ tartson, ki kell egészítenünk egy PD szabályozóval.
  Ehhez elő kell állítanunk a rendszer pályakövetési hibáját:
 \begin_inset Formula 
 \begin{equation}
-\bm{e}=\bm{y}_{d}-\bm{q},
+\bm{e}=\bm{q}_{d}-\bm{q},
 \end{equation}
 
 \end_inset
@@ -629,7 +690,7 @@ Ahhoz, hogy a rendszer tetszőleges kezdeti értékekkel is az előírt pályát
 és annak idő szerinti deriváltját:
 \begin_inset Formula 
 \begin{equation}
-\dot{\bm{e}}=\dot{\bm{y}}_{d}-\dot{\bm{q}},
+\dot{\bm{e}}=\dot{\bm{q}}_{d}-\dot{\bm{q}},
 \end{equation}
 
 \end_inset
@@ -659,11 +720,11 @@ melyekből kiszámíthatjuk a rendszerre beavatkozó erőinek új vektorát az
 
 \end_inset
 
- mátrixokkal a rendszer véges időn belül beáll az előírt 
-\begin_inset Formula $\bm{y}_{d}$
+ mátrixokkal a rendszer tart az előírt 
+\begin_inset Formula ${\bf q}_{d}$
 \end_inset
 
- pályára.
+ pályához, ezáltal a szervo-kényszer hibája nullához tart.
 \end_layout
 
 \begin_layout Standard
@@ -685,6 +746,16 @@ reference "eq:input-vector"
 \end_inset
 
  tagok pedig a hibák korrigálásáért felelnek.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Ide jöjjön még a leírás a nemlineáris rendszerekről?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -695,13 +766,13 @@ Wen-Bayard szabályozó
 Az itt bemutatott szabályozó 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "mazur1996universal,Gango2016"
+key "bayard1988new,Jarzebowska2016,mazur1996universal"
 
 \end_inset
 
  eredetileg nem alulaktuált rendszerek irányítására lett kifejlesztve, de
- ahogy később REF-ben láthatjuk, kiegészíthető úgy, hogy bizonyos alulaktuált
- rendszerekhez is alkalmazható legyen.
+ ahogy később REF FEJEZET-ben láthatjuk, kiegészíthető úgy, hogy bizonyos
+ alulaktuált rendszerekhez is alkalmazható legyen.
 \end_layout
 
 \begin_layout Standard
