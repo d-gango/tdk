@@ -135,7 +135,6 @@ classdef LaplaceController < handle
                    
             u_ret = sol(4:5) + obj.P  .* error + obj.D .* errorDot;
         end            
-    end
-    
+    end   
 end
 
