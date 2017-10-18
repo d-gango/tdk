@@ -115,9 +115,8 @@ Műszaki Mechanikai Tanszék}}
 
  
 \begin_inset Graphics
-	filename bme_skyline.eps
+	filename image/bme_skyline.eps
 	width 40text%
-	keepAspectRatio
 
 \end_inset
 
@@ -376,6 +375,13 @@ A szabályozási módszerek bemutatása
 
 \begin_layout Section
 Analitikus megoldás Laplace transzformációval
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Analitikus-megoldás-Laplace"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -553,7 +559,7 @@ ahol
 \end{array}\right]=\left[\begin{array}{c}
 \dot{\bm{q}}_{0}+s\bm{q}_{0}+\bm{q}_{0}-\bm{G}\\
 -\bm{Y}_{d}(s)
-\end{array}\right]
+\end{array}\right]\label{eq:linear-sys-of-eq}
 \end{equation}
 
 \end_inset
@@ -4244,6 +4250,181 @@ Az összefüggés nem nulla, tehát az előfordulható legmagasabb relatív fok
 
 .
  
+\end_layout
+
+\begin_layout Chapter
+A szabályozási módszerek alkalmazása
+\end_layout
+
+\begin_layout Section
+Analitikus megoldás Laplace transzformációval
+\end_layout
+
+\begin_layout Standard
+A 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Analitikus-megoldás-Laplace"
+
+\end_inset
+
+.
+ fejezetben leírtaknak megfelelően ez a szabályozási módszer közvetlenül
+ csak lineáris rendszerekre alkalmazható.
+ Mivel az űrbéli robot 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:eq-of-motion"
+
+\end_inset
+
+ mozgásegyenlete nemlineáris, először linearizálnunk kell a rendszert, hogy
+ a szabályozót alkalmazhassuk 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gango2016"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+A 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:eq-of-motion"
+
+\end_inset
+
+ mozgásegyenlet 
+\begin_inset Formula ${\bf q}$
+\end_inset
+
+ és 
+\begin_inset Formula $\dot{{\bf q}}$
+\end_inset
+
+ vektorokra nézve nemlineáris, tehát e változók szerint kell elvégeznünk
+ a rendszer linearizálását.
+ Mivel a 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:eq-of-motion"
+
+\end_inset
+
+ mozgásegyenlet jobb oldalán csak lineáris kifejezések találhatók (a rendszer
+ az 
+\begin_inset Formula ${\bf u}$
+\end_inset
+
+ beavatkozó erők vektorára lineáris), elegendő az egyenlet bal oldalát linearizá
+lni.
+ Jelöljük a mozgásegyenlet bal oldalát 
+\begin_inset Formula ${\bf F}$
+\end_inset
+
+-fel:
+\begin_inset Formula 
+\begin{equation}
+{\bf F}({\bf q},\dot{{\bf q}})={\bf M}({\bf q})\ddot{{\bf q}}+{\bf C}({\bf q},\dot{{\bf q}}).
+\end{equation}
+
+\end_inset
+
+Az 
+\begin_inset Formula ${\bf F}$
+\end_inset
+
+ kifejezés egy adott pillanatban vett linearizált alakja
+\begin_inset Formula 
+\begin{equation}
+{\bf F}({\bf q},\dot{{\bf q}})\approx{\bf F}({\bf q}_{0},\dot{{\bf q}}_{0})+\left.\frac{\partial\mathbf{F}}{\partial\mathbf{q}}\right|_{{\bf q}_{0},\dot{{\bf q}}_{0}}({\bf q}-{\bf q}_{0})+\left.\frac{\partial\mathbf{F}}{\partial\dot{\mathbf{q}}}\right|_{{\bf q}_{0},\dot{{\bf q}}_{0}}({\bf \dot{q}}-\dot{{\bf q}}_{0}),
+\end{equation}
+
+\end_inset
+
+ahol 
+\begin_inset Formula ${\bf q}_{0}$
+\end_inset
+
+ és 
+\begin_inset Formula $\dot{{\bf q}}_{0}$
+\end_inset
+
+ vektorok a rendszer állapotváltozóinak az adott pillanatban vett értékei.
+\end_layout
+
+\begin_layout Standard
+Abban az esetben, ha a rendszer viselkedését előíró 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:szervo"
+
+\end_inset
+
+ szervo-kényszer is nemlineáris, arra is el kell végeznünk a linearizálást:
+\begin_inset Formula 
+\begin{equation}
+\bm{\sigma}({\bf q},t)\approx\bm{\sigma}({\bf q}_{0},t)+\left.\frac{\partial\bm{\sigma}}{\partial\mathbf{q}}\right|_{{\bf q}_{0}}.
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Így a linearizált mozgásegyenletből és a szervo-kényszerből már összeállíthatunk
+ egy egyenletrendszert, melyet Laplace transzformálva 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:linear-sys-of-eq"
+
+\end_inset
+
+ alakú egyenletrendszert kapunk.
+ Ha így kapott egyenletrendszer megoldjuk 
+\begin_inset Formula ${\bf Q}$
+\end_inset
+
+-ra és 
+\begin_inset Formula ${\bf U}$
+\end_inset
+
+-ra, majd az eredményeket inverz Laplace transzformáljuk, megkapjuk a szervo-kén
+yszert kielégítő 
+\begin_inset Formula ${\bf q}_{d}$
+\end_inset
+
+ szögértékeket, és az előírt pálya követéséhez szükséges 
+\begin_inset Formula ${\bf u}$
+\end_inset
+
+ beavatkozó erőket.
+ Végül a kapott 
+\begin_inset Formula ${\bf q}_{d}$
+\end_inset
+
+ vektort referenciaként használva a kiegészítő PD szabályozóval előállíthatjuk
+ a 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:input-vector"
+
+\end_inset
+
+ egyenletben leírt 
+\begin_inset Formula $\hat{{\bf u}}$
+\end_inset
+
+ beavatkozó erők vektorát, mellyel a kezdeti eltéréseket is kompenzálva
+ az előírt pályának megfelelően szabályozhatjuk a rendszert.
+\end_layout
+
+\begin_layout Subsection
+Szimulációs eredmények
 \end_layout
 
 \begin_layout Chapter
