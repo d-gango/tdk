@@ -4,3 +4,11 @@ tdk/saved_graphs/
 articles/
 *.*#
 *.bak
+documentaiton/tdk-blx.bib
+documentaiton/tdk.aux
+documentaiton/tdk.log
+documentaiton/tdk.pdf
+documentaiton/tdk.run.xml
+documentaiton/tdk.synctex.gz
+documentaiton/tdk.toc
+*-converted-to.pdf
