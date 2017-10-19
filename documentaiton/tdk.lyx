@@ -856,6 +856,16 @@ reference "eq:wen-bayard-pd"
 \end_inset
 
  önmagában nem alkalmazható.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+TODO review
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
@@ -867,33 +877,34 @@ Az űrbéli robot 2 dimenziós modellje egy robottestből és a hozzá kapcsoló
  robotkarból épül fel (
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Az-űrbéli-robot-felépítése"
+reference "fig:robot"
 
 \end_inset
 
  ábra).
- A robot két aktuátorral rendelkezik, melyek a robotkaron találhatók.
+ A robot két aktuátorral rendelkezik, melyek az 
+\begin_inset Formula $A$
+\end_inset
+
+ és 
+\begin_inset Formula $B$
+\end_inset
+
+ jelű csuklókban helyezkednek el.
  A robot 3 rotációs szabadsági fokkal (mindhárom rész elfordulása), és 2
  transzlációs szabadsági fokkal (a robot 
-\begin_inset Formula $x$
+\begin_inset Formula $x_{0}$
 \end_inset
 
  - 
-\begin_inset Formula $y$
+\begin_inset Formula $y_{0}$
 \end_inset
 
- síkbeli pozíciója) rendelkezik ( 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:általános-koordináták"
-
-\end_inset
-
- ábra) .
+ síkbeli pozíciója) rendelkezik.
  A 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:Az-űrbéli-robot-felépítése"
+reference "fig:robot"
 
 \end_inset
 
@@ -905,53 +916,6 @@ reference "tab:A-robotra-jellemző-fizikai-mennyiségek"
 \end_inset
 
  táblázat tartalmazza.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement h
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename image/robot_paramss.eps
-	lyxscale 50
-	scale 35
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Az űrbéli robot felépítése
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Az-űrbéli-robot-felépítése"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -977,10 +941,10 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-A robot mozgását leíró általános koordináták
+A robot felépítése
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:általános-koordináták"
+name "fig:robot"
 
 \end_inset
 
@@ -1335,7 +1299,7 @@ Mivel a rendszer nem tartalmaz disszipatív elemeket, illetve nem hatnak
 al (
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:általános-koordináták"
+reference "fig:robot"
 
 \end_inset
 
@@ -1361,7 +1325,7 @@ A mozgási egyenlet felírásához a másodfajú Lagrange egyenletet használjuk
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial\mathcal{T}}{\partial\dot{q}_{j}}-\frac{\partial\mathcal{T}}{\partial q_{j}}+\frac{\partial\mathcal{D}}{\partial\dot{q_{j}}}+\frac{\partial\mathcal{U}}{\partial q_{j}}=Q_{j},\;j=1...n,\label{lagrange}
+\frac{\mathrm{d}}{\mathrm{d}t}\frac{\partial\mathcal{T}}{\partial\dot{q}_{j}}-\frac{\partial\mathcal{T}}{\partial q_{j}}+\frac{\partial\mathcal{D}}{\partial\dot{q_{j}}}+\frac{\partial\mathcal{U}}{\partial q_{j}}=Q_{j},\;(j=1...n),\label{lagrange}
 \end{equation}
 
 \end_inset
@@ -1396,11 +1360,11 @@ ahol
 \end_inset
 
  szabadságfokú rendszer 
-\begin_inset Formula $j.$
+\begin_inset Formula $j$
 \end_inset
 
- általános koordinátáját.
- Az űrbáli robot esetében a disszipatív potenciál és a potenciális energia
+-edik általános koordinátáját.
+ Az űrbéli robot esetében a disszipatív potenciál és a potenciális energia
  is azonosan nulla.
 \end_layout
 
@@ -1616,6 +1580,16 @@ name "fig:súlypont"
 
 \end_inset
 
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+2 nélküli nevező, ha lehet
+\end_layout
+
+\end_inset
+
 Látható, hogy ezekben a vektorokban már nem szerepelnek az 
 \begin_inset Formula $x_{0}$
 \end_inset
@@ -1707,10 +1681,11 @@ ahol
 \begin_inset Formula $\bm{C}$
 \end_inset
 
- a centripetális és Coriolis erőket tartalmazó vektor, 
+ a sebességfüggő tehetetlenségi erőket tartalmazó általános erővektor, 
 \begin_inset Formula 
 \begin{equation}
 \bm{H}=\left[\begin{array}{cc}
+0 & 0\\
 1 & 0\\
 0 & 1
 \end{array}\right]
@@ -1729,7 +1704,7 @@ u_{2}
 
 \end_inset
 
- pedig a bemeneti nyomatékok vektora.
+ pedig a szabályozó nyomatékok vektora.
  Terjedelmük miatt az 
 \begin_inset Formula $\bm{M}$
 \end_inset
@@ -1760,7 +1735,7 @@ Definíció
 Az ún.
  relatív fok (relative degree) fontos szerepet játszik a nemlineáris rendszerek
  szabályozásában.
- Használatával leírhatjuk a bemenetek és kimenetek közt fellépő kapcsolatot.
+ Használatával leírhatjuk a bemenetek és kimenetek közt fennálló kapcsolatot.
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1828,7 +1803,15 @@ reference "eq:rel-deg-output"
  idő szerinti deriváltja a következő:
 \begin_inset Formula 
 \begin{equation}
-\frac{dy}{dt}=\frac{\partial h(\bm{x})}{\partial\bm{x}}\dot{\bm{x}}=\frac{\partial h(\bm{x})}{\partial\bm{x}}\bm{f}(\bm{x})+\frac{\partial h(\bm{x})}{\partial\bm{x}}\bm{g}(\bm{x})u.
+\frac{dy}{dt}=\frac{\partial h(\bm{x})}{\partial\bm{x}}\dot{\bm{x}},
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\frac{\partial h(\bm{x})}{\partial\bm{x}}\dot{\bm{x}}=\frac{\partial h(\bm{x})}{\partial\bm{x}}\bm{f}(\bm{x})+\frac{\partial h(\bm{x})}{\partial\bm{x}}\bm{g}(\bm{x})u
 \end{equation}
 
 \end_inset
@@ -1837,11 +1820,19 @@ reference "eq:rel-deg-output"
 \end_layout
 
 \begin_layout Standard
-A jelölések egyszerűsítésének érdekében vezessük be az ún.
- Lie-derivált fogalmát:
+A jelölések egyszerűsítésének érdekében az ún.
+ Lie-derivált fogalmát használja a hivatkozott szakirodalom:
 \begin_inset Formula 
 \begin{equation}
-\frac{\partial h(\bm{x})}{\partial\bm{x}}\bm{f}(\bm{x})=L_{f}h.
+\frac{\partial h(\bm{x})}{\partial\bm{x}}\bm{f}(\bm{x})=L_{f}h,
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+\frac{\partial h(\bm{x})}{\partial\bm{x}}\bm{g}(\bm{x})=L_{g}h.
 \end{equation}
 
 \end_inset
@@ -1878,7 +1869,7 @@ y=h(\bm{x})
 \end_layout
 
 \begin_layout Itemize
-első derivált,
+első derivált, 
 \begin_inset Formula $k=0$
 \end_inset
 
@@ -1890,7 +1881,7 @@ első derivált,
 
 \end_inset
 
-Feltételezzük, hogy 
+Feltételezzük, hogy olyan rendszert vizsgálunk, amelyre 
 \begin_inset Formula $L_{g}h=0$
 \end_inset
 
@@ -1909,12 +1900,12 @@ második derivált,
 
 \begin_inset Formula 
 \begin{equation}
-\frac{d^{2}y}{dt^{2}}==\frac{\partial(L_{f}h)}{\partial\bm{x}}(\bm{f}(\bm{x})+\bm{g}(\bm{x})u)=L_{f}^{2}h+L_{g}L_{f}h\cdot u
+\frac{d^{2}y}{dt^{2}}=\frac{\partial(L_{f}h)}{\partial\bm{x}}(\bm{f}(\bm{x})+\bm{g}(\bm{x})u)=L_{f}^{2}h+L_{g}L_{f}h\cdot u
 \end{equation}
 
 \end_inset
 
-Feltételezzük, hogy 
+Feltételezzük, hogy olyan rendszert vizsgálunk, amelyre 
 \begin_inset Formula $L_{g}L_{f}h=0$
 \end_inset
 
@@ -1933,16 +1924,16 @@ harmadik derivált,
 
 \begin_inset Formula 
 \begin{equation}
-\frac{d^{3}y}{dt^{3}}==\frac{\partial(L_{f}^{2}h)}{\partial\bm{x}}(\bm{f}(\bm{x})+\bm{g}(\bm{x})u)=L_{f}^{3}h+L_{g}L_{f}^{2}h\cdot u
+\frac{d^{3}y}{dt^{3}}=\frac{\partial(L_{f}^{2}h)}{\partial\bm{x}}(\bm{f}(\bm{x})+\bm{g}(\bm{x})u)=L_{f}^{3}h+L_{g}L_{f}^{2}h\cdot u
 \end{equation}
 
 \end_inset
 
-Ha 
+Ha a vizsgált rendszerre 
 \begin_inset Formula $L_{g}L_{f}^{2}h\neq0$
 \end_inset
 
-, a rendszer relatív foka 
+, akkor a rendszer relatív foka 
 \begin_inset Formula $r=3$
 \end_inset
 
@@ -2156,7 +2147,7 @@ A robotkar végpontjának
 \end_layout
 
 \begin_layout Standard
-Legyen a rendszer kimenete a robotkar végpontjának 
+A rendszer kimenete a robotkar végpontjának 
 \begin_inset Formula $x$
 \end_inset
 
@@ -2222,7 +2213,7 @@ A kapott
  E kombinációk előfordulása a 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:r-u1-x-3d"
+reference "fig:r-u1-x-rel-deg"
 
 \end_inset
 
@@ -2237,9 +2228,21 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename image/r_u1_x_3dplot.png
+	filename image/r_u1_x_3dplot.pdf
 	lyxscale 20
-	scale 50
+	scale 45
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename image/r_u1_x_2dplot.pdf
+	lyxscale 20
+	scale 45
 
 \end_inset
 
@@ -2251,10 +2254,15 @@ A
 \begin_inset Formula $\phi_{u_{1},x}(q_{0},q_{1},q_{2})=0$
 \end_inset
 
- esetek előfordulása
+ esetek előfordulása (bal oldal).
+ A 
+\begin_inset Formula $\hat{\phi}_{u_{1},x}(q_{1},q_{2})=0$
+\end_inset
+
+ esetek előfordulása (jobb oldal) 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:r-u1-x-3d"
+name "fig:r-u1-x-rel-deg"
 
 \end_inset
 
@@ -2309,11 +2317,11 @@ erben
 -t eredményező szögértékek a 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:r-u1-x-2d"
+reference "fig:r-u1-x-rel-deg"
 
 \end_inset
 
- ábrán láthatóak.
+ ábra bal oldalán láthatóak.
  Ezen szögértékek esetén a relatív fok 
 \begin_inset Formula $r_{u_{1},x}>2$
 \end_inset
@@ -2322,11 +2330,11 @@ reference "fig:r-u1-x-2d"
  A 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:r-u1-x-2d"
+reference "fig:r-u1-x-rel-deg"
 
 \end_inset
 
- ábrán látható, hogy egy fix 
+ ábra jobb oldalán látható, hogy egy fix 
 \begin_inset Formula $q_{1}$
 \end_inset
 
@@ -2348,47 +2356,6 @@ reference "fig:r-u1-x-2d"
 
  eltolás páronként 2-2 érték között.
  
-\begin_inset Float figure
-placement h
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename image/r_u1_x_2dplot.png
-	lyxscale 20
-	scale 50
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-A 
-\begin_inset Formula $\hat{\phi}_{u_{1},x}(q_{1},q_{2})=0$
-\end_inset
-
- esetek előfordulása
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:r-u1-x-2d"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \begin_inset Newline newline
 \end_inset
 
@@ -2397,7 +2364,7 @@ Ha a
 \end_inset
 
  összefüggésbe például 
-\begin_inset Formula $q_{1}=0$
+\begin_inset Formula $q_{1}=0\,\mathrm{rad}$
 \end_inset
 
 -t helyettesítünk, a kapott 4 konfiguráció, melyekre 
@@ -2412,6 +2379,8 @@ reference "fig:4-konfig-ru1x"
 \end_inset
 
  ábrán látható.
+ Ezekben a konfigurációkban is meghatározható a relatív fok, amit a további
+ számítások foglalnak össze.
  
 \begin_inset Float figure
 placement h
@@ -2649,11 +2618,11 @@ Amikor
 \begin_inset Formula $r_{u_{1},x}>3.$
 \end_inset
 
- Ilyenkor 
-\begin_inset Formula $\tilde{\phi}_{u_{1},x}$
+ Ilyenkor a 
+\begin_inset Formula $\tilde{\phi}_{u_{1},x}=0$
 \end_inset
 
--ból egy lineáris összefüggést kapunk 
+ egyenletből egy lineáris összefüggést kapunk 
 \begin_inset Formula $\dot{q}_{1}$
 \end_inset
 
@@ -2815,11 +2784,11 @@ A kapott
  relatív fokot eredményező szögkoordináta kombinációk a 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:r-u1-y-3d"
+reference "fig:r-u1-y-rel-deg"
 
 \end_inset
 
- ábrán láthatóak.
+ ábra bal oldalán láthatóak.
  
 \begin_inset Float figure
 placement h
@@ -2830,9 +2799,21 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename image/r_u1_y_3dplot.png
+	filename image/r_u1_y_3dplot.pdf
 	lyxscale 20
-	scale 50
+	scale 45
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename image/r_u1_y_2dplot.pdf
+	lyxscale 20
+	scale 45
 
 \end_inset
 
@@ -2844,10 +2825,15 @@ A
 \begin_inset Formula $\phi_{u_{1},y}(q_{0},q_{1},q_{2})=0$
 \end_inset
 
- esetek előfordulása
+ esetek előfordulása (bal oldal).
+ A 
+\begin_inset Formula $\hat{\phi}_{u_{1},y}(q_{1},q_{2})=0$
+\end_inset
+
+ esetek előfordulása (jobb oldal) 
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:r-u1-y-3d"
+name "fig:r-u1-y-rel-deg"
 
 \end_inset
 
@@ -2885,11 +2871,11 @@ A
  relatív fokot eredményező szögértékek a 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:r-u1-y-2d"
+reference "fig:r-u1-y-rel-deg"
 
 \end_inset
 
- ábrán láthatóak.
+ ábra jobb oldalán láthatóak.
  Egy fix 
 \begin_inset Formula $q_{1}$
 \end_inset
@@ -2913,47 +2899,6 @@ reference "fig:r-u1-y-2d"
 
  eltolás páronként 2-2 érték között.
  
-\begin_inset Float figure
-placement h
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename image/r_u1_y_2dplot.png
-	lyxscale 20
-	scale 50
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-A 
-\begin_inset Formula $\hat{\phi}_{u_{1},y}(q_{1},q_{2})=0$
-\end_inset
-
- esetek előfordulása
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:r-u1-y-2d"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \begin_inset Newline newline
 \end_inset
 
@@ -3421,11 +3366,11 @@ A
  relatív fokot eredményező szögkoordináták a 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:r-u2-x-3d"
+reference "fig:r-u2-x-rel-deg"
 
 \end_inset
 
- ábrán láthatóak.
+ ábra bal oldalán láthatóak.
  
 \begin_inset Float figure
 placement h
@@ -3436,9 +3381,21 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename image/r_u2_x_3dplot.png
+	filename image/r_u2_x_3dplot.pdf
 	lyxscale 20
-	scale 50
+	scale 45
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename image/r_u2_x_2dplot.pdf
+	lyxscale 20
+	scale 45
 
 \end_inset
 
@@ -3450,10 +3407,15 @@ A
 \begin_inset Formula $\phi_{u_{2},x}(q_{0},q_{1},q_{2})=0$
 \end_inset
 
- esetek előfordulása
+ esetek előfordulása (baj oldal).
+ A 
+\begin_inset Formula $\hat{\phi}_{u_{2},x}(q_{1},q_{2})=0$
+\end_inset
+
+ esetek előfordulása (jobb oldal)
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:r-u2-x-3d"
+name "fig:r-u2-x-rel-deg"
 
 \end_inset
 
@@ -3499,11 +3461,11 @@ A
  értékek a 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:r-u2-x-2d"
+reference "fig:r-u2-x-rel-deg"
 
 \end_inset
 
- ábrán láthatóak.
+ ábra jobb oldalán láthatóak.
  Az ábráról észrevehetjük, hogy ellentétben az 
 \begin_inset Formula $u_{1}$
 \end_inset
@@ -3521,47 +3483,6 @@ reference "fig:r-u2-x-2d"
 \end_inset
 
  periodikusak.
-\begin_inset Float figure
-placement h
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename image/r_u2_x_2dplot.png
-	lyxscale 20
-	scale 50
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-A 
-\begin_inset Formula $\hat{\phi}_{u_{2},x}(q_{1},q_{2})=0$
-\end_inset
-
- esetek előfordulása
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:r-u2-x-2d"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \begin_inset Newline newline
 \end_inset
 
@@ -3916,11 +3837,11 @@ A
  relatív fokot eredményező szögkoordináták a 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:r-u2-y-3d"
+reference "fig:r-u2-y-rel-deg"
 
 \end_inset
 
- ábrán láthatóak.
+ ábra bal oldalán láthatóak.
  
 \begin_inset Float figure
 placement h
@@ -3931,9 +3852,21 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename image/r_u2_y_3dplot.png
+	filename image/r_u2_y_3dplot.pdf
 	lyxscale 20
-	scale 50
+	scale 45
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename image/r_u2_y_2dplot.pdf
+	lyxscale 20
+	scale 45
 
 \end_inset
 
@@ -3945,10 +3878,15 @@ A
 \begin_inset Formula $\phi_{u_{2},y}(q_{0},q_{1},q_{2})=0$
 \end_inset
 
- esetek előfordulása
+ esetek előfordulása (jobb oldal).
+ A 
+\begin_inset Formula $\hat{\phi}_{u_{2},x}(q_{1},q_{2})=0$
+\end_inset
+
+ esetek előfordulása (bal oldal)
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:r-u2-y-3d"
+name "fig:r-u2-y-rel-deg"
 
 \end_inset
 
@@ -3994,11 +3932,11 @@ A
  értékek a 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "fig:r-u2-y-2d"
+reference "fig:r-u2-y-rel-deg"
 
 \end_inset
 
- ábrán láthatóak.
+ ábra jobb oldalán láthatóak.
  Az előző számításhoz hasonlóan egy rögzített 
 \begin_inset Formula $q_{1}$
 \end_inset
@@ -4012,47 +3950,6 @@ reference "fig:r-u2-y-2d"
 \end_inset
 
  periodikusak.
-\begin_inset Float figure
-placement h
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename image/r_u2_y_2dplot.png
-	lyxscale 20
-	scale 50
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-A 
-\begin_inset Formula $\hat{\phi}_{u_{2},x}(q_{1},q_{2})=0$
-\end_inset
-
- esetek előfordulása
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:r-u2-y-2d"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \begin_inset Newline newline
 \end_inset
 
@@ -4411,7 +4308,7 @@ Az
  kifejezés egy adott pillanatban vett linearizált alakja
 \begin_inset Formula 
 \begin{equation}
-{\bf F}({\bf q},\dot{{\bf q}})\approx{\bf F}({\bf q}_{0},\dot{{\bf q}}_{0})+\left.\frac{\partial\mathbf{F}}{\partial\mathbf{q}}\right|_{{\bf q}_{0},\dot{{\bf q}}_{0}}({\bf q}-{\bf q}_{0})+\left.\frac{\partial\mathbf{F}}{\partial\dot{\mathbf{q}}}\right|_{{\bf q}_{0},\dot{{\bf q}}_{0}}({\bf \dot{q}}-\dot{{\bf q}}_{0}),
+{\bf F}({\bf q},\dot{{\bf q}})\approx{\bf F}({\bf q}_{0},\dot{{\bf q}}_{0})+\left.\frac{\partial\mathbf{F}}{\partial\mathbf{q}}\right|_{{\bf q}_{0},\dot{{\bf q}}_{0}}({\bf q}-{\bf q}_{0})+\left.\frac{\partial\mathbf{F}}{\partial\dot{\mathbf{q}}}\right|_{{\bf q}_{0},\dot{{\bf q}}_{0}}(\dot{{\bf q}}-\dot{{\bf q}}_{0}),
 \end{equation}
 
 \end_inset
@@ -4640,7 +4537,7 @@ name "chap:A-robot-mozgásegyenletének"
 \end_layout
 
 \begin_layout Standard
-Az űrbéli robot mozgásegyenletének tömegmátrixa
+Az űrbéli robot mozgásegyenletének általános tömegmátrixa
 \begin_inset Formula 
 \begin{equation}
 \bm{M}=\left[\begin{array}{ccc}
@@ -4749,7 +4646,7 @@ m_{33}=\frac{4\theta_{2}(m_{0}+m_{1}+m_{2})+l_{2}^{2}m_{2}(m_{0}+m_{1})}{4(m_{0}
 \end_layout
 
 \begin_layout Standard
-A centripetális és Coriolis erőket tartalmazó vektor
+A sebességfüggő tehetetlenségi erőket tartalmazó általános erő vektor
 \begin_inset Formula 
 \begin{equation}
 \bm{C}=\left[\begin{array}{c}
