@@ -403,15 +403,15 @@ Tegyük fel, hogy egy
 
  szabadságfokú rendszer mozgásegyenlete lineáris az általános koordináták
  
-\begin_inset Formula $\bm{q}(t)$
+\begin_inset Formula $\mathbf{q}(t)$
 \end_inset
 
  vektorára , és annak első és második idő szerinti deriváltjaira, 
-\begin_inset Formula $\dot{\bm{q}}(t)$
+\begin_inset Formula $\dot{\mathbf{q}}(t)$
 \end_inset
 
 -re és 
-\begin_inset Formula $\ddot{\bm{q}}(t)$
+\begin_inset Formula $\ddot{\mathbf{q}}(t)$
 \end_inset
 
 -re, valamint a bementek 
@@ -423,33 +423,33 @@ Tegyük fel, hogy egy
  Ekkor a mozgásegyenlet felírható 
 \begin_inset Formula 
 \begin{equation}
-\bm{M}\ddot{\bm{q}}+\bm{B}\dot{\bm{q}}+\bm{Kq}+\bm{G}=\bm{Hu}\label{eq:lin-mozgasegyenlet}
+\mathbf{M}\ddot{\mathbf{q}}+\mathbf{B}\dot{\mathbf{q}}+\mathbf{Kq}+\mathbf{G}=\mathbf{Hu}\label{eq:lin-mozgasegyenlet}
 \end{equation}
 
 \end_inset
 
 alakban, ahol 
-\begin_inset Formula $\bm{M}\in\mathbb{R}^{n\times n}$
+\begin_inset Formula $\mathbf{M}\in\mathbb{R}^{n\times n}$
 \end_inset
 
  a rendszer általános tömegmátrixa, 
-\begin_inset Formula $\bm{B}\in\mathbb{R}^{n\times n}$
+\begin_inset Formula $\mathbf{B}\in\mathbb{R}^{n\times n}$
 \end_inset
 
  a rendszer csillapításait tartalmazó mátrix, 
-\begin_inset Formula $\bm{K}\in\mathbb{R}^{n\times n}$
+\begin_inset Formula $\mathbf{K}\in\mathbb{R}^{n\times n}$
 \end_inset
 
  a rendszer merevségi mátrixa, 
-\begin_inset Formula $\bm{G}\in\mathbb{R}^{n}$
+\begin_inset Formula $\mathbf{G}\in\mathbb{R}^{n}$
 \end_inset
 
  a gravitációból származó általános erők vektora, 
-\begin_inset Formula $\bm{H}\in\mathbb{R}^{n\times m}$
+\begin_inset Formula $\mathbf{H}\in\mathbb{R}^{n\times m}$
 \end_inset
 
  a rendszer bemeneti mátrixa, 
-\begin_inset Formula $\bm{u}\in\mathbb{R}^{m}$
+\begin_inset Formula $\mathbf{u}\in\mathbb{R}^{m}$
 \end_inset
 
  a rendszerre ható bemenetek vektora.
@@ -494,21 +494,21 @@ key "kirgetov1967motion,blajer1997dynamics,bencsik2017dynamic"
 :
 \begin_inset Formula 
 \begin{equation}
-\bm{\sigma}(\bm{q},t)=\bm{f}(\bm{q},t)-\bm{y}_{d}(t)=0,\label{eq:szervo}
+\mathbf{\sigma}(\mathbf{q},t)=\mathbf{f}(\mathbf{q},t)-\mathbf{y}_{d}(t)=0,\label{eq:szervo}
 \end{equation}
 
 \end_inset
 
 ahol 
-\begin_inset Formula $\bm{f}(\bm{q},t)\in\mathbb{R}^{m}$
+\begin_inset Formula $\mathbf{f}(\mathbf{q},t)\in\mathbb{R}^{m}$
 \end_inset
 
  egy tetszőleges függvény, 
-\begin_inset Formula $\bm{y}_{d}(\bm{q},t)\in\mathbb{R}^{m}$
+\begin_inset Formula $\mathbf{y}_{d}(\mathbf{q},t)\in\mathbb{R}^{m}$
 \end_inset
 
  pedig 
-\begin_inset Formula $\bm{f}$
+\begin_inset Formula $\mathbf{f}$
 \end_inset
 
  előírt értéke.
@@ -522,7 +522,7 @@ reference "eq:szervo"
  szervo-kényszert egy köttebb, lineáris alakban:
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{\sigma}(\bm{q},t)=\bm{Aq}(t)-\bm{y}_{d}(t)=\mathbf{0}\label{eq:szervo-lin}
+\boldsymbol{\sigma}(\mathbf{q},t)=\mathbf{Aq}(t)-\mathbf{y}_{d}(t)=\mathbf{0}\label{eq:szervo-lin}
 \end{equation}
 
 \end_inset
@@ -549,31 +549,31 @@ reference "eq:szervo-lin"
 \begin_inset Formula 
 \begin{equation}
 \begin{array}{rcl}
-\bm{M}(s^{2}\bm{Q}(s)-s\bm{q}_{0}-\dot{\bm{q}}_{0})+\bm{B}(s\bm{Q}(s)-\bm{q}_{0})+\bm{K}\bm{Q}(s)+\bm{G} & = & \bm{HU}(s),\\
-\bm{AQ}(s)+\bm{Y}_{d}(s) & = & \mathbf{0},
+\mathbf{M}(s^{2}\mathbf{Q}(s)-s\mathbf{q}_{0}-\dot{\mathbf{q}}_{0})+\mathbf{B}(s\mathbf{Q}(s)-\mathbf{q}_{0})+\mathbf{K}\mathbf{Q}(s)+\mathbf{G} & = & \mathbf{HU}(s),\\
+\mathbf{AQ}(s)+\mathbf{Y}_{d}(s) & = & \mathbf{0},
 \end{array}
 \end{equation}
 
 \end_inset
 
 ahol 
-\begin_inset Formula $\bm{Q}(s)$
+\begin_inset Formula $\mathbf{Q}(s)$
 \end_inset
 
  az általános koordináták, 
-\begin_inset Formula $\bm{U}(s)$
+\begin_inset Formula $\mathbf{U}(s)$
 \end_inset
 
  a beavatkozó erők, 
-\begin_inset Formula $\bm{Y}_{d}(s)$
+\begin_inset Formula $\mathbf{Y}_{d}(s)$
 \end_inset
 
  az előírt kimenet Laplace-transzformáltja, 
-\begin_inset Formula $\bm{q}_{0}$
+\begin_inset Formula $\mathbf{q}_{0}$
 \end_inset
 
  és 
-\begin_inset Formula $\dot{\bm{q}}_{0}$
+\begin_inset Formula $\dot{\mathbf{q}}_{0}$
 \end_inset
 
  a rendszer általános koordinátáinak és azok deriváltjának a 
@@ -585,14 +585,14 @@ ahol
 \begin_inset Formula 
 \begin{equation}
 \left[\begin{array}{cc}
-(\bm{M}s^{2}+\bm{B}s+\bm{K}) & -\bm{H}\\
-\bm{A} & \bm{0}
+(\mathbf{M}s^{2}+\mathbf{B}s+\mathbf{K}) & -\mathbf{H}\\
+\mathbf{A} & \mathbf{0}
 \end{array}\right]\left[\begin{array}{c}
-\bm{Q}(s)\\
-\bm{U}(s)
+\mathbf{Q}(s)\\
+\mathbf{U}(s)
 \end{array}\right]=\left[\begin{array}{c}
-{\bf M}(\dot{\bm{q}}_{0}+s\bm{q}_{0})+{\bf B}\bm{q}_{0}-\bm{G}\\
--\bm{Y}_{d}(s)
+{\bf M}(\dot{\mathbf{q}}_{0}+s\mathbf{q}_{0})+{\bf B}\mathbf{q}_{0}-\mathbf{G}\\
+-\mathbf{Y}_{d}(s)
 \end{array}\right]\label{eq:linear-sys-of-eq}
 \end{equation}
 
@@ -600,30 +600,30 @@ ahol
 
 hipermátrixos alakba rendezve.
  Amennyiben a hipermátrix invertálható, megoldást kapunk 
-\begin_inset Formula $\bm{Q}(s)$
+\begin_inset Formula $\mathbf{Q}(s)$
 \end_inset
 
 -ra és 
-\begin_inset Formula $\bm{U}(s)$
+\begin_inset Formula $\mathbf{U}(s)$
 \end_inset
 
 -ra.
  A megoldások inverz Laplace transzformációját elvégezve megkapjuk a rendszer
  által leírt, a szervo-kényszert kielégítő 
-\begin_inset Formula $\bm{q}(t)=\bm{q}_{d}(t)$
+\begin_inset Formula $\mathbf{q}(t)=\mathbf{q}_{d}(t)$
 \end_inset
 
  pályát, és a pálya kövezéséhez szükséges 
-\begin_inset Formula $\bm{u}(t)$
+\begin_inset Formula $\mathbf{u}(t)$
 \end_inset
 
  beavatkozó erőt.
  Eleve lineáris rendszerek esetén az eredményül kapott 
-\begin_inset Formula $\bm{q}(t)=\bm{q}_{d}(t)$
+\begin_inset Formula $\mathbf{q}(t)=\mathbf{q}_{d}(t)$
 \end_inset
 
  és 
-\begin_inset Formula $\bm{u}(t)$
+\begin_inset Formula $\mathbf{u}(t)$
 \end_inset
 
  vektorok általános érvényűek, tetszőleges 
@@ -633,11 +633,11 @@ hipermátrixos alakba rendezve.
  időpontban megadják az előírt általános koordinátákat és a beavatkozó erőket.
  Ha a szabályozót nemlineáris rendszerekre alkalmazzuk a rendszer linearizálásáv
 al, a 
-\begin_inset Formula $\bm{q}(t)=\bm{q}_{d}(t)$
+\begin_inset Formula $\mathbf{q}(t)=\mathbf{q}_{d}(t)$
 \end_inset
 
  és 
-\begin_inset Formula $\bm{u}(t)$
+\begin_inset Formula $\mathbf{u}(t)$
 \end_inset
 
  értékeket minden 
@@ -649,27 +649,27 @@ al, a
 
 \begin_layout Standard
 A kapott 
-\begin_inset Formula $\bm{u}$
+\begin_inset Formula $\mathbf{u}$
 \end_inset
 
  beavatkozó erő azonban csak akkor tartja az előírt 
-\begin_inset Formula $\bm{y}_{d}$
+\begin_inset Formula $\mathbf{y}_{d}$
 \end_inset
 
  pályán a rendszert, ha a rendszer kezdeti 
-\begin_inset Formula $\bm{q}_{0}$
+\begin_inset Formula $\mathbf{q}_{0}$
 \end_inset
 
  állapota és annak 
-\begin_inset Formula $\dot{\bm{q}}_{0}$
+\begin_inset Formula $\dot{\mathbf{q}}_{0}$
 \end_inset
 
  deriváltja rendre megegyezik 
-\begin_inset Formula $\bm{y}_{d}$
+\begin_inset Formula $\mathbf{y}_{d}$
 \end_inset
 
  és 
-\begin_inset Formula $\dot{\bm{y}}_{d}$
+\begin_inset Formula $\dot{\mathbf{y}}_{d}$
 \end_inset
 
  
@@ -682,7 +682,7 @@ A kapott
  Ehhez elő kell állítanunk a rendszer pályakövetési hibáját:
 \begin_inset Formula 
 \begin{equation}
-\bm{e}=\bm{q}_{d}-\bm{q},
+\mathbf{e}=\mathbf{q}_{d}-\mathbf{q},
 \end{equation}
 
 \end_inset
@@ -690,7 +690,7 @@ A kapott
 és annak idő szerinti deriváltját:
 \begin_inset Formula 
 \begin{equation}
-\dot{\bm{e}}=\dot{\bm{q}}_{d}-\dot{\bm{q}},
+\dot{\mathbf{e}}=\dot{\mathbf{q}}_{d}-\dot{\mathbf{q}},
 \end{equation}
 
 \end_inset
@@ -699,7 +699,7 @@ melyekből kiszámíthatjuk a rendszerre beavatkozó erőinek új vektorát az
  alábbi módon:
 \begin_inset Formula 
 \begin{equation}
-\hat{\bm{u}}(t)=\bm{u}(t)+\bm{Pe}(t)+\bm{D}\dot{\bm{e}}(t).\label{eq:input-vector}
+\hat{\mathbf{u}}(t)=\mathbf{u}(t)+\mathbf{Pe}(t)+\mathbf{D}\dot{\mathbf{e}}(t).\label{eq:input-vector}
 \end{equation}
 
 \end_inset
@@ -707,7 +707,7 @@ melyekből kiszámíthatjuk a rendszerre beavatkozó erőinek új vektorát az
  Megfelelően megválasztott 
 \begin_inset Formula 
 \begin{equation}
-\bm{P}=\text{diag}\left\{ (p_{i})\right\} ,\,p_{i}>0,\,i=1,\ldots,m,
+\mathbf{P}=\text{diag}\left\{ (p_{i})\right\} ,\,p_{i}>0,\,i=1,\ldots,m,
 \end{equation}
 
 \end_inset
@@ -715,7 +715,7 @@ melyekből kiszámíthatjuk a rendszerre beavatkozó erőinek új vektorát az
  
 \begin_inset Formula 
 \begin{equation}
-\bm{D}=\text{diag}\left\{ (d_{i})\right\} ,\,d_{i}>0,\,i=1,\ldots,m
+\mathbf{D}=\text{diag}\left\{ (d_{i})\right\} ,\,d_{i}>0,\,i=1,\ldots,m
 \end{equation}
 
 \end_inset
@@ -742,7 +742,7 @@ reference "eq:input-vector"
 
  tag, ami a pályán való haladást biztosítja, valójában egy referenciajel,
  a 
-\begin_inset Formula $\bm{Pe}(t)+\bm{D}\dot{\bm{e}}(t)$
+\begin_inset Formula $\mathbf{Pe}(t)+\mathbf{D}\dot{\mathbf{e}}(t)$
 \end_inset
 
  tagok pedig a hibák korrigálásáért felelnek.
@@ -777,14 +777,14 @@ key "bayard1988new,Jarzebowska2016,mazur1996universal"
 
 \begin_layout Standard
 A szabályozó alapgondolata, hogy az előírt 
-\begin_inset Formula $\bm{y}_{d}=\bm{q}_{d}$
+\begin_inset Formula $\mathbf{y}_{d}=\mathbf{q}_{d}$
 \end_inset
 
  pályát a mozgásegyenletbe behelyettesítve állítjuk elő a beavatkozó erők
  alapjelét,
 \begin_inset Formula 
 \begin{equation}
-\bm{u}=\bm{M}(\bm{q}_{d})\ddot{\bm{q}}_{d}+\bm{C}(\dot{\bm{q}}_{d},\bm{q}_{d})\dot{\bm{q}}_{d}+\bm{G}(\bm{q}).\label{eq:wen-bayard}
+\mathbf{u}=\mathbf{M}(\mathbf{q}_{d})\ddot{\mathbf{q}}_{d}+\mathbf{C}(\dot{\mathbf{q}}_{d},\mathbf{q}_{d})\dot{\mathbf{q}}_{d}+\mathbf{G}(\mathbf{q}).\label{eq:wen-bayard}
 \end{equation}
 
 \end_inset
@@ -799,7 +799,7 @@ reference "eq:input-vector"
  egyenlethez hasonlóan, 
 \begin_inset Formula 
 \begin{equation}
-\bm{e}=\bm{q}_{d}-\bm{q},
+\mathbf{e}=\mathbf{q}_{d}-\mathbf{q},
 \end{equation}
 
 \end_inset
@@ -807,7 +807,7 @@ reference "eq:input-vector"
 
 \begin_inset Formula 
 \begin{equation}
-\dot{\bm{e}}=\dot{\bm{q}}_{d}-\dot{\bm{q}}
+\dot{\mathbf{e}}=\dot{\mathbf{q}}_{d}-\dot{\mathbf{q}}
 \end{equation}
 
 \end_inset
@@ -822,7 +822,7 @@ reference "eq:wen-bayard"
  is kiegészíthető egy korrigáló PD szabályozóval,
 \begin_inset Formula 
 \begin{equation}
-\hat{\bm{u}}=\bm{M}(\bm{q}_{d})\ddot{\bm{q}}_{d}+\bm{C}(\dot{\bm{q}}_{d},\bm{q}_{d})\dot{\bm{q}}_{d}+\bm{G}(\bm{q})+\bm{Pe}(t)+\bm{D}\dot{\bm{e}}(t).\label{eq:wen-bayard-pd}
+\hat{\mathbf{u}}=\mathbf{M}(\mathbf{q}_{d})\ddot{\mathbf{q}}_{d}+\mathbf{C}(\dot{\mathbf{q}}_{d},\mathbf{q}_{d})\dot{\mathbf{q}}_{d}+\mathbf{G}(\mathbf{q})+\mathbf{Pe}(t)+\mathbf{D}\dot{\mathbf{e}}(t).\label{eq:wen-bayard-pd}
 \end{equation}
 
 \end_inset
@@ -840,7 +840,7 @@ Fontos megjegyezni, hogy alulaktuált rendszereknél
 \end_inset
 
  kényszer írható elő, ami kevesebb, mint a 
-\begin_inset Formula $\bm{q}$
+\begin_inset Formula $\mathbf{q}$
 \end_inset
 
  vektor 
@@ -1306,7 +1306,7 @@ reference "fig:robot"
  ábra),
 \begin_inset Formula 
 \[
-\bm{q}(t)=\left[\begin{array}{c}
+\mathbf{q}(t)=\left[\begin{array}{c}
 q_{0}(t)\\
 q_{1}(t)\\
 q_{2}(t)
@@ -1375,7 +1375,7 @@ A rendszer összes mozgási energiája
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-T=\sum_{i=0}^{2}\frac{1}{2}m_{i}\boldsymbol{v}_{i}^{2}+\frac{1}{2}\theta_{i}\omega_{i}^{2},
+T=\sum_{i=0}^{2}\frac{1}{2}m_{i}{\bf v}_{i}^{2}+\frac{1}{2}\theta_{i}\omega_{i}^{2},
 \end{equation}
 
 \end_inset
@@ -1385,7 +1385,7 @@ ahol
 \end_inset
 
  a robot egyes részeinek tömege, 
-\begin_inset Formula $\bm{v}_{i}$
+\begin_inset Formula ${\bf v}_{i}$
 \end_inset
 
  a sebességvektora, 
@@ -1436,7 +1436,7 @@ A sebességvektorok előállításához először fel kell írnunk az egyes rés
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{r}_{0}=\left[\begin{array}{c}
+{\bf r}_{0}=\left[\begin{array}{c}
 x_{0}\\
 y_{0}
 \end{array}\right],
@@ -1447,7 +1447,7 @@ y_{0}
 
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{r}_{1}=\left[\begin{array}{c}
+{\bf r}_{1}=\left[\begin{array}{c}
 x_{0}+l_{0}\cos(\varphi_{0}+q_{0})+\frac{l_{1}}{2}\cos(q_{0}+q_{1})\\
 y_{0}+l_{0}\sin(\varphi_{0}+q_{0})+\frac{l_{1}}{2}\sin(q_{0}+q_{1})
 \end{array}\right],
@@ -1461,7 +1461,7 @@ y_{0}+l_{0}\sin(\varphi_{0}+q_{0})+\frac{l_{1}}{2}\sin(q_{0}+q_{1})
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{r}_{2}=\left[\begin{array}{c}
+{\bf r}_{2}=\left[\begin{array}{c}
 x_{0}+l_{0}\cos(\varphi_{0}+q_{0})+l_{1}\cos(q_{0}+q_{1})+\frac{l_{2}}{2}\cos(q_{0}+q_{1}+q_{2})\\
 y_{0}+l_{0}\sin(\varphi_{0}+q_{0})+l_{1}\sin(q_{0}+q_{1})+\frac{l_{2}}{2}\sin(q_{0}+q_{1}+q_{2})
 \end{array}\right].
@@ -1477,7 +1477,7 @@ A különálló részek súlypontjába mutató helyvektorokból kiszámítható 
  közös súlypontja
 \begin_inset Formula 
 \begin{equation}
-\boldsymbol{r}_{S}=\frac{m_{0}\boldsymbol{r}_{0}+m_{1}\boldsymbol{r}_{1}+m_{2}\boldsymbol{r}_{2}}{m_{0}+m_{1}+m_{2}}.
+{\bf r}_{S}=\frac{m_{0}{\bf r}_{0}+m_{1}{\bf r}_{1}+m_{2}{\bf r}_{2}}{m_{0}+m_{1}+m_{2}}.
 \end{equation}
 
 \end_inset
@@ -1542,7 +1542,7 @@ name "fig:súlypont"
 \begin_inset Formula 
 \begin{equation}
 \begin{array}{c}
-\bm{\rho}_{0}=\bm{r}_{0}-\bm{r}_{S}=\\
+\mathbf{\boldsymbol{\rho}}_{0}=\mathbf{r}_{0}-\mathbf{r}_{S}=\\
 \left[\begin{array}{c}
 -\frac{2l_{0}(m_{1}+m_{2})\cos(\varphi_{0}+q_{0})+l_{1}(m_{1}+2m_{2})\cos(q_{0}+q_{1})+l_{2}m_{2}\cos(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}\\
 -\frac{2l_{0}(m_{1}+m_{2})\sin(\varphi_{0}+q_{0})+l_{1}(m_{1}+2m_{2})\sin(q_{0}+q_{1})+l_{2}m_{2}\sin(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}
@@ -1556,7 +1556,7 @@ name "fig:súlypont"
 \begin_inset Formula 
 \begin{equation}
 \begin{array}{c}
-\bm{\rho}_{1}=\bm{r}_{1}-\bm{r}_{S}=\\
+\bm{\rho}_{1}=\mathbf{r}_{1}-\mathbf{r}_{S}=\\
 \left[\begin{array}{c}
 \frac{2l_{0}m_{0}\cos(\varphi_{0}+q_{0})+l_{1}(m_{0}-m_{2})\cos(q_{0}+q_{1})-l_{2}m_{2}\cos(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}\\
 \frac{2l_{0}m_{0}\sin(\varphi_{0}+q_{0})+l_{1}(m_{0}-m_{2})\sin(q_{0}+q_{1})-l_{2}m_{2}\sin(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}
@@ -1570,7 +1570,7 @@ name "fig:súlypont"
 \begin_inset Formula 
 \begin{equation}
 \begin{array}{c}
-\bm{\rho}_{2}=\bm{r}_{2}-\bm{r}_{S}=\\
+\bm{\rho}_{2}=\mathbf{r}_{2}-\mathbf{r}_{S}=\\
 \left[\begin{array}{c}
 \frac{2l_{0}m_{0}\cos(\varphi_{0}+q_{0})+l_{1}(2m_{0}+m_{1})\cos(q_{0}+q_{1})+l_{2}(m_{0}+m_{1})\cos(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}\\
 \frac{2l_{0}m_{0}\sin(\varphi_{0}+q_{0})+l_{1}(2m_{0}+m_{1})\sin(q_{0}+q_{1})+l_{2}(m_{0}+m_{1})\sin(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}
@@ -1611,7 +1611,7 @@ A sebességvektorok előállításához vegyük a fent kiszámított helyvektoro
 \begin_inset Formula 
 \begin{equation}
 \begin{array}{c}
-\bm{v}_{0}=\frac{d\bm{\rho}_{0}}{dt}=\\
+\mathbf{v}_{0}=\frac{d\bm{\rho}_{0}}{dt}=\\
 \left[\begin{array}{c}
 -\frac{-2l_{0}(m_{1}+m_{2})\dot{q}_{0}\sin(\varphi_{0}+q_{0})-l_{1}(m_{1}+2m_{2})\left(\dot{q}_{0}+\dot{q}_{1}\right)\sin(q_{0}+q_{1})-l_{2}m_{2}\left(\dot{q}_{0}+\dot{q}_{1}+\dot{q}_{2}\right)\sin(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}\\
 -\frac{2l_{0}(m_{1}+m_{2})\dot{q}_{0}\cos(\varphi_{0}+q_{0})+l_{1}(m_{1}+2m_{2})\left(\dot{q}_{0}+\dot{q}_{1}\right)\cos(q_{0}+q_{1})+l_{2}m_{2}\left(\dot{q}_{0}+\dot{q}_{1}+\dot{q}_{2}\right)\cos(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}
@@ -1629,7 +1629,7 @@ A sebességvektorok előállításához vegyük a fent kiszámított helyvektoro
 \begin_inset Formula 
 \begin{equation}
 \begin{array}{c}
-\bm{v}_{1}=\frac{d\bm{\rho}_{1}}{dt}=\\
+\mathbf{v}_{1}=\frac{d\bm{\rho}_{1}}{dt}=\\
 \left[\begin{array}{c}
 \frac{-2l_{0}m_{0}\dot{q}_{0}\sin(\varphi_{0}+q_{0})-l_{1}(m_{0}-m_{2})\left(\dot{q}_{0}+\dot{q}_{1}\right)\sin(q_{0}+q_{1})+l_{2}m_{2}\left(\dot{q}_{0}+\dot{q}_{1}+\dot{q}_{2}\right)\sin(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}\\
 \frac{2l_{0}m_{0}\dot{q}_{0}\cos(\varphi_{0}+q_{0})+l_{1}(m_{0}-m_{2})\left(\dot{q}_{0}+\dot{q}_{1}\right)\cos(q_{0}+q_{1})-l_{2}m_{2}\left(\dot{q}_{0}+\dot{q}_{1}+\dot{q}_{2}\right)\cos(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}
@@ -1643,7 +1643,7 @@ A sebességvektorok előállításához vegyük a fent kiszámított helyvektoro
 \begin_inset Formula 
 \begin{equation}
 \begin{array}{c}
-\bm{v}_{2}=\frac{d\bm{\rho}_{2}}{dt}=\\
+\mathbf{v}_{2}=\frac{d\bm{\rho}_{2}}{dt}=\\
 \left[\begin{array}{c}
 \frac{-2l_{0}m_{0}\dot{q}_{0}\sin(\varphi_{0}+q_{0})-l_{1}(2m_{0}+m_{1})\left(\dot{q}_{0}+\dot{q}_{1}\right)\sin(q_{0}+q_{1})-l_{2}(m_{0}+m_{1})\left(\dot{q}_{0}+\dot{q}_{1}+\dot{q}_{2}\right)\sin(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}\\
 \frac{2l_{0}m_{0}\dot{q}_{0}\cos(\varphi_{0}+q_{0})+l_{1}(2m_{0}+m_{1})\left(\dot{q}_{0}+\dot{q}_{1}\right)\cos(q_{0}+q_{1})+l_{2}(m_{0}+m_{1})\left(\dot{q}_{0}+\dot{q}_{1}+\dot{q}_{2}\right)\cos(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}
@@ -1668,23 +1668,23 @@ reference "lagrange"
  írható fel:
 \begin_inset Formula 
 \begin{equation}
-\bm{M}(\bm{q})\ddot{\bm{q}}+\bm{C}(\bm{q},\dot{\bm{q}})=\bm{Hu},\label{eq:eq-of-motion}
+\mathbf{M}(\mathbf{q})\ddot{\mathbf{q}}+\mathbf{C}(\mathbf{q},\dot{\mathbf{q}})=\mathbf{Hu},\label{eq:eq-of-motion}
 \end{equation}
 
 \end_inset
 
 ahol 
-\begin_inset Formula $\bm{M}$
+\begin_inset Formula $\mathbf{M}$
 \end_inset
 
  a rendszer tömegmátrixa, 
-\begin_inset Formula $\bm{C}$
+\begin_inset Formula ${\bf C}$
 \end_inset
 
  a sebességfüggő tehetetlenségi erőket tartalmazó általános erővektor, 
 \begin_inset Formula 
 \begin{equation}
-\bm{H}=\left[\begin{array}{cc}
+\mathbf{H}=\left[\begin{array}{cc}
 0 & 0\\
 1 & 0\\
 0 & 1
@@ -1696,7 +1696,7 @@ ahol
  a rendszer bemeneti mátrixa, 
 \begin_inset Formula 
 \begin{equation}
-\bm{u}=\left[\begin{array}{c}
+\mathbf{u}=\left[\begin{array}{c}
 u_{1}\\
 u_{2}
 \end{array}\right]
@@ -1706,11 +1706,11 @@ u_{2}
 
  pedig a szabályozó nyomatékok vektora.
  Terjedelmük miatt az 
-\begin_inset Formula $\bm{M}$
+\begin_inset Formula $\mathbf{M}$
 \end_inset
 
  és 
-\begin_inset Formula $\bm{C}$
+\begin_inset Formula ${\bf C}$
 \end_inset
 
  mátrixok az 
@@ -1751,20 +1751,20 @@ A relatív fok definiálásához vegyünk egy általános egy bemenetű, egy kim
  (SISO) rendszert:
 \begin_inset Formula 
 \begin{equation}
-\dot{\bm{x}}=\bm{f}(\bm{x})+\bm{g}(\bm{x})u,\label{eq:rel-deg-xdot}
+\dot{\mathbf{x}}=\mathbf{f}(\mathbf{x})+\mathbf{g}(\mathbf{x})u,\label{eq:rel-deg-xdot}
 \end{equation}
 
 \end_inset
 
 ahol 
-\begin_inset Formula $\bm{x}=\left[\bm{q},\,\dot{\bm{q}}\right]^{\mathrm{T}},\,\bm{x}\in\mathbb{R}^{2n}$
+\begin_inset Formula $\mathbf{x}=\left[\mathbf{q},\,\dot{\mathbf{q}}\right]^{\mathrm{T}},\,\mathbf{x}\in\mathbb{R}^{2n}$
 \end_inset
 
  a rendszer állapotvektora.
  A rendszer kimenete pedig legyen
 \begin_inset Formula 
 \begin{equation}
-y=h(\bm{x}).\label{eq:rel-deg-output}
+y=h(\mathbf{x}).\label{eq:rel-deg-output}
 \end{equation}
 
 \end_inset
@@ -1803,7 +1803,7 @@ reference "eq:rel-deg-output"
  idő szerinti deriváltja a következő:
 \begin_inset Formula 
 \begin{equation}
-\frac{dy}{dt}=\frac{\partial h(\bm{x})}{\partial\bm{x}}\dot{\bm{x}},
+\frac{dy}{dt}=\frac{\partial h(\mathbf{x})}{\partial\mathbf{x}}\dot{\mathbf{x}},
 \end{equation}
 
 \end_inset
@@ -1811,7 +1811,7 @@ reference "eq:rel-deg-output"
 
 \begin_inset Formula 
 \begin{equation}
-\frac{\partial h(\bm{x})}{\partial\bm{x}}\dot{\bm{x}}=\frac{\partial h(\bm{x})}{\partial\bm{x}}\bm{f}(\bm{x})+\frac{\partial h(\bm{x})}{\partial\bm{x}}\bm{g}(\bm{x})u
+\frac{\partial h(\mathbf{x})}{\partial\mathbf{x}}\dot{\mathbf{x}}=\frac{\partial h(\mathbf{x})}{\partial\mathbf{x}}\mathbf{f}(\mathbf{x})+\frac{\partial h(\mathbf{x})}{\partial\mathbf{x}}\mathbf{g}(\mathbf{x})u
 \end{equation}
 
 \end_inset
@@ -1824,7 +1824,7 @@ A jelölések egyszerűsítésének érdekében az ún.
  Lie-derivált fogalmát használja a hivatkozott szakirodalom:
 \begin_inset Formula 
 \begin{equation}
-\frac{\partial h(\bm{x})}{\partial\bm{x}}\bm{f}(\bm{x})=L_{f}h,
+\frac{\partial h(\mathbf{x})}{\partial\mathbf{x}}\mathbf{f}(\mathbf{x})=L_{f}h,
 \end{equation}
 
 \end_inset
@@ -1832,7 +1832,7 @@ A jelölések egyszerűsítésének érdekében az ún.
 
 \begin_inset Formula 
 \begin{equation}
-\frac{\partial h(\bm{x})}{\partial\bm{x}}\bm{g}(\bm{x})=L_{g}h.
+\frac{\partial h(\mathbf{x})}{\partial\mathbf{x}}\mathbf{g}(\mathbf{x})=L_{g}h.
 \end{equation}
 
 \end_inset
@@ -1860,7 +1860,7 @@ key "hangos2006analysis"
 a kimenet (nulladik derivált)
 \begin_inset Formula 
 \begin{equation}
-y=h(\bm{x})
+y=h(\mathbf{x})
 \end{equation}
 
 \end_inset
@@ -1876,7 +1876,7 @@ első derivált,
 
 \begin_inset Formula 
 \begin{equation}
-\frac{dy}{dt}=\frac{\partial h(\bm{x})}{\partial\bm{x}}\dot{\bm{x}}=\frac{\partial h(\bm{x})}{\partial\bm{x}}(\bm{f}(\bm{x})+\bm{g}(\bm{x})u)=L_{f}h+L_{g}h\cdot u
+\frac{dy}{dt}=\frac{\partial h(\mathbf{x})}{\partial\mathbf{x}}\dot{\mathbf{x}}=\frac{\partial h(\mathbf{x})}{\partial\mathbf{x}}(\mathbf{f}(\mathbf{x})+\mathbf{g}(\mathbf{x})u)=L_{f}h+L_{g}h\cdot u
 \end{equation}
 
 \end_inset
@@ -1900,7 +1900,7 @@ második derivált,
 
 \begin_inset Formula 
 \begin{equation}
-\frac{d^{2}y}{dt^{2}}=\frac{\partial(L_{f}h)}{\partial\bm{x}}(\bm{f}(\bm{x})+\bm{g}(\bm{x})u)=L_{f}^{2}h+L_{g}L_{f}h\cdot u
+\frac{d^{2}y}{dt^{2}}=\frac{\partial(L_{f}h)}{\partial\mathbf{x}}(\mathbf{f}(\mathbf{x})+\mathbf{g}(\mathbf{x})u)=L_{f}^{2}h+L_{g}L_{f}h\cdot u
 \end{equation}
 
 \end_inset
@@ -1924,7 +1924,7 @@ harmadik derivált,
 
 \begin_inset Formula 
 \begin{equation}
-\frac{d^{3}y}{dt^{3}}=\frac{\partial(L_{f}^{2}h)}{\partial\bm{x}}(\bm{f}(\bm{x})+\bm{g}(\bm{x})u)=L_{f}^{3}h+L_{g}L_{f}^{2}h\cdot u
+\frac{d^{3}y}{dt^{3}}=\frac{\partial(L_{f}^{2}h)}{\partial\mathbf{x}}(\mathbf{f}(\mathbf{x})+\mathbf{g}(\mathbf{x})u)=L_{f}^{3}h+L_{g}L_{f}^{2}h\cdot u
 \end{equation}
 
 \end_inset
@@ -1960,8 +1960,8 @@ key "hangos2006analysis"
 Egy nemlineáris, egy bemenetű, egy kimenetű (SISO) rendszer
 \begin_inset Formula 
 \begin{align*}
-\dot{\bm{x}} & =\bm{f}(\bm{x})+\bm{g}(\bm{x})u\\
-y & =h(\bm{x})
+\dot{\bm{x}} & =\mathbf{f}(\mathbf{x})+\mathbf{g}(\mathbf{x})u\\
+y & =h(\mathbf{x})
 \end{align*}
 
 \end_inset
@@ -1971,22 +1971,22 @@ relatív foka
 \end_inset
 
  az 
-\begin_inset Formula $\bm{x}^{0}$
+\begin_inset Formula $\mathbf{x}^{0}$
 \end_inset
 
  pontban, ha
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $L_{g}L_{f}^{k}h(\bm{x})=0$
+\begin_inset Formula $L_{g}L_{f}^{k}h(\mathbf{x})=0$
 \end_inset
 
  minden 
-\begin_inset Formula $\bm{x}$
+\begin_inset Formula $\mathbf{x}$
 \end_inset
 
 -re az 
-\begin_inset Formula $\bm{x}^{0}$
+\begin_inset Formula $\mathbf{x}^{0}$
 \end_inset
 
  pont környezetében minden 
@@ -2001,7 +2001,7 @@ relatív foka
 \end_layout
 
 \begin_layout Enumerate
-\begin_inset Formula $L_{g}L_{f}^{r-1}h(\bm{x}^{0})\neq0.$
+\begin_inset Formula $L_{g}L_{f}^{r-1}h(\mathbf{x}^{0})\neq0.$
 \end_inset
 
 
@@ -2059,11 +2059,11 @@ Az űrbéli robot több bemenetű, több kimenetű (MIMO) rendszer, ezért relat
 
 \begin_layout Standard
 Az űrbéli robot esetében a állapotváltozók vektora 
-\begin_inset Formula $\bm{x}=\left[q_{0},\,q_{1},\,q_{2},\,\dot{q}_{0},\,\dot{q}_{1},\,\dot{q}_{2}\right]^{\mathrm{\mathrm{T}}}$
+\begin_inset Formula $\mathbf{x}=\left[q_{0},\,q_{1},\,q_{2},\,\dot{q}_{0},\,\dot{q}_{1},\,\dot{q}_{2}\right]^{\mathrm{\mathrm{T}}}$
 \end_inset
 
 , melynek deriváltja 
-\begin_inset Formula $\dot{\bm{x}}=\left[\dot{q}_{0},\,\dot{q}_{1},\,\dot{q}_{2},\,\ddot{q}_{0},\,\ddot{q}_{1},\,\ddot{q}_{2}\right]^{\mathrm{T}}$
+\begin_inset Formula $\dot{\mathbf{x}}=\left[\dot{q}_{0},\,\dot{q}_{1},\,\dot{q}_{2},\,\ddot{q}_{0},\,\ddot{q}_{1},\,\ddot{q}_{2}\right]^{\mathrm{T}}$
 \end_inset
 
 .
@@ -2086,7 +2086,7 @@ reference "eq:eq-of-motion"
  mozgásegyenlet segítségével tehetjük meg az alábbi módon:
 \begin_inset Formula 
 \begin{equation}
-\ddot{\bm{q}}=\bm{M}^{-1}(\bm{Hu}-\bm{C}).
+\ddot{\mathbf{q}}=\mathbf{M}^{-1}(\mathbf{Hu}-\mathbf{C}).
 \end{equation}
 
 \end_inset
@@ -2113,7 +2113,7 @@ reference "eq:rel-deg-xdot"
  egyenlet ez esetben
 \begin_inset Formula 
 \begin{equation}
-\dot{\bm{x}}=\bm{f}(\bm{x})+\bm{g}(\bm{x})u_{1}.
+\dot{\mathbf{x}}=\mathbf{f}(\mathbf{x})+\mathbf{g}(\mathbf{x})u_{1}.
 \end{equation}
 
 \end_inset
@@ -2154,7 +2154,7 @@ A rendszer kimenete a robotkar végpontjának
  koordinátája a robot súlypontjához rögzített koordináta-rendszerben:
 \begin_inset Formula 
 \begin{align}
-h(\bm{x})= & \frac{2l_{0}m_{0}\cos(\varphi_{0}+q_{0})+l_{1}(2m_{0}+m_{1})\cos(q_{0}+q_{1})}{2(m_{0}+m_{1}+m_{2})}\nonumber \\
+h(\mathbf{x})= & \frac{2l_{0}m_{0}\cos(\varphi_{0}+q_{0})+l_{1}(2m_{0}+m_{1})\cos(q_{0}+q_{1})}{2(m_{0}+m_{1}+m_{2})}\nonumber \\
  & +\frac{l_{2}(2m_{0}+2m_{1}+m_{2})\cos(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}.\label{eq:x-output}
 \end{align}
 
@@ -2729,7 +2729,7 @@ Hasonlóan számíthatjuk ki a relatív fokot, ha kimenetnek a robotkar végpont
  koordinátáját választjuk a súlyponthoz rögzített koordináta-rendszerben:
 \begin_inset Formula 
 \begin{align}
-h(\bm{x})= & \frac{2l_{0}m_{0}\sin(\varphi_{0}+q_{0})+l_{1}(2m_{0}+m_{1})\sin(q_{0}+q_{1})}{2(m_{0}+m_{1}+m_{2})}\nonumber \\
+h(\mathbf{x})= & \frac{2l_{0}m_{0}\sin(\varphi_{0}+q_{0})+l_{1}(2m_{0}+m_{1})\sin(q_{0}+q_{1})}{2(m_{0}+m_{1}+m_{2})}\nonumber \\
  & +\frac{l_{2}(2m_{0}+2m_{1}+m_{2})\sin(q_{0}+q_{1}+q_{2})}{2(m_{0}+m_{1}+m_{2})}.\label{eq:y-output}
 \end{align}
 
@@ -3272,17 +3272,17 @@ reference "eq:rel-deg-xdot"
  egyenlet így
 \begin_inset Formula 
 \begin{equation}
-\dot{\bm{x}}=\bm{f}(\bm{x})+\bm{g}(\bm{x})u_{2},
+\dot{\mathbf{x}}=\mathbf{f}(\mathbf{x})+\mathbf{g}(\mathbf{x})u_{2},
 \end{equation}
 
 \end_inset
 
 ahol 
-\begin_inset Formula $\bm{f}(\bm{x})$
+\begin_inset Formula $\mathbf{f}(\mathbf{x})$
 \end_inset
 
  és 
-\begin_inset Formula $\bm{g}(\bm{x})$
+\begin_inset Formula $\mathbf{g}(\mathbf{x})$
 \end_inset
 
  vektorok könnyedén meghatározóak, de terjedelmi okokból nem közöljük őket.
@@ -4540,7 +4540,7 @@ name "chap:A-robot-mozgásegyenletének"
 Az űrbéli robot mozgásegyenletének általános tömegmátrixa
 \begin_inset Formula 
 \begin{equation}
-\bm{M}=\left[\begin{array}{ccc}
+\mathbf{M}=\left[\begin{array}{ccc}
 m_{11} & m_{12} & m_{13}\\
 m_{21} & m_{22} & m_{23}\\
 m_{31} & m_{32} & m_{33}
@@ -4649,7 +4649,7 @@ m_{33}=\frac{4\theta_{2}(m_{0}+m_{1}+m_{2})+l_{2}^{2}m_{2}(m_{0}+m_{1})}{4(m_{0}
 A sebességfüggő tehetetlenségi erőket tartalmazó általános erő vektor
 \begin_inset Formula 
 \begin{equation}
-\bm{C}=\left[\begin{array}{c}
+\mathbf{C}=\left[\begin{array}{c}
 c_{1}\\
 c_{2}\\
 c_{3}
